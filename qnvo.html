@@ -1,0 +1,1572 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sofia C. (MCI) - SpeechCARE Explainability Framework</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <style>
+    
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #E5F1F3;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #1E3658;
+    padding: 70px 0 20px 0; /* Added top padding for sticky header */
+}
+
+/* Layout Components */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 20px;
+}
+
+.vertical_box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+
+}
+
+.horizontal_box {
+    display: flex;
+    width: 100%;
+    gap: 5rem;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* Borders */
+.border_bottom {
+    border-bottom: 2px solid #1E3658;
+}
+
+.border_full {
+    border: 2px solid #1E3658;
+    border-radius: 4px;
+}
+
+.border_top {
+   border-top: 2px solid #1E3658;
+}
+
+/* Typography */
+.title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #1E3658;
+    margin-bottom: 10px;
+}
+
+.bold_txt {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+
+.banner {
+    width: 100%;
+    height: 45px;
+    background-color: #1E3658;
+    color: white;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 4px 4px 0 0;
+}
+.profile_row{
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 2rem;
+}
+
+.sig_factor_row{
+    align-items: center;
+    flex-wrap: nowrap;
+    margin-top: 2rem;
+}
+
+.patient_profile {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex: 1;
+}
+
+.patient_image img {
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.patient_info {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    font-size: 1.2rem;
+    color: #1E3658;
+}
+
+.info_line {
+    font-size: 1.2rem;
+    padding:0;
+    margin:0;
+}
+
+.bold_txt {
+    font-weight: bold;
+    margin-right: 6px;
+}
+
+
+.system_outcome_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+.system_outcome_box .section_header{
+  margin-bottom:1.5rem;
+  border-bottom: 2px solid #7fa37f;
+}
+
+.outcome_content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 2rem;
+}
+
+.model_info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    white-space: nowrap;
+    flex: 1;
+    font-size: 1.2rem;
+}
+
+
+
+.pie_chart img {
+    width: 260px;
+    height: 260px;
+}
+
+.pie_chart {
+   display: flex;
+   flex-direction: column;
+   gap: 2px;
+    align-items: center;
+    justify-content: center;
+}
+
+.pie_chart_title{
+  font-size: 0.9rem;
+  font-weight: 200;
+
+}
+
+.pie_chart_info {
+    display: none;
+    transition: opacity 0.5s ease-in-out; /* Smooth fade-in effect */
+    font-size: 0.9rem;
+    margin-top:1rem;
+}
+
+
+.pie_chart_btn {
+    color: #7fa37f;
+    font-weight: bold;
+    font-size:0.9rem;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.pie_chart_btn:hover {
+    text-decoration: underline;
+}
+
+/* Right Side Layout */
+.right_side {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+
+
+/* Section Titles */
+.section_header {
+    font-size: 1.4rem;
+    color: #1E3658;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* System Outcome */
+.system_info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.2rem;
+}
+
+/* Modality Contribution */
+.modality_contrib {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.signif_factors {
+    flex: 1;
+}
+
+.accent_color{
+
+    color:#350a29 !important;
+}
+
+.signif_items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.signif_item {
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.4;
+}
+
+.bullet_point {
+    display: inline-block;
+    width: 8px !important;
+    height: 8px !important;
+    background-color: #1E3658;
+    border-radius: 50%;
+    margin-right: 8px;
+    margin-top: 7px;
+    flex-shrink: 0;
+}
+
+/* Audio Box */
+.audio_box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Info Box */
+.info_box {
+    position: relative;
+    padding: 20px;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.box_title {
+    position: absolute;
+    top: -12px;
+    left: 15px;
+    color: #1E3658;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background-color: #E5F1F3;
+    padding: 0 8px;
+}
+
+.acoustic_iterpretation {
+    margin: 1rem;
+
+}
+
+/* Expandable Content */
+.collapsible-content {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.collapsible-content.expanded {
+    max-height: 2000px;
+    width: 100%;
+}
+
+.expand-icon {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+/* Links */
+.more_info a {
+    color: #1E3658;
+    text-decoration: none;
+    font-style: italic;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.more_info a:hover {
+    text-decoration: underline;
+}
+
+/* Consideration Section */
+.consideration p {
+    padding: 15px 0;
+    font-weight: 600;
+}
+.consideration-section {
+    position: relative; /* Enables absolute positioning inside it */
+}
+
+.consideration-section.banner{
+  margin-bottom:2rem;
+}
+
+.right-image {
+    position:absolute;
+    bottom:0;
+    right:0;
+    width: 400px;
+    height: auto;
+    opacity: 0.5; /* controls transparency */
+    pointer-events: none; /* makes sure it doesn’t block clicks */
+    z-index:-1;
+    transform: translateY(20%)
+
+}
+
+.footer{
+  margin-top:2rem;
+}
+
+.footer > *{
+  margin-top:1.2rem;
+}
+
+.footer> p{
+  width: 65% !important;
+}
+.footer > .border_full{
+  width: 65%!important;
+}
+
+/* Child expandable sections */
+.child-banner {
+    width: 100%;
+    height: 40px;
+    background-color: #7fa37f;
+    color: white;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    cursor: pointer;
+    user-select: none;
+    margin-top: 15px;
+    border-radius: 4px;
+}
+
+.child-content {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.child-content.expanded {
+    max-height: 2000px;
+}
+
+/* Module specific styles */
+.module-subsection {
+
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 2px solid #1E3658;
+    border-radius: 4px;
+}
+
+
+.module-subsection-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #1E3658;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Audio player styling */
+audio {
+    width: 100%;
+    max-width: 400px;
+}
+
+.module-subsection-content .signif_items .signif_item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.module-subsection-content .bullet_point {
+    display: inline-block;
+    min-width: 6px;  /* Reduced from 8px */
+    height: 6px;     /* Reduced from 8px */
+    background-color: #1E3658;
+    border-radius: 50%;
+    margin-right: 8px;
+    margin-top: 7px;  /* Adjusted for better vertical alignment */
+    flex-shrink: 0;   /* Prevents bullet from shrinking */
+}
+
+.module-subsection-content.vertical_box {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.image-block {
+    width: 100%;
+    position: relative;
+}
+
+.image-block img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* Subtitles */
+.subtitle {
+    background-color: white;
+    margin: 0;
+    padding: 6px 10px;
+    text-align: center;
+    font-size: 1.8 rem;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid #ccc;
+    color: #1E3658;
+}
+.category-header {
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+    color:#004d0c;
+}
+.item-key {
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+/* Sticky Back Button */
+.sticky-back {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #1E3658;
+    color: white;
+    padding: 10px 20px;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.back-button {
+    background-color: #7fa37f;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.back-button:hover {
+    background-color: #6a8f6a;
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Sticky Back Button -->
+    <div class="sticky-back">
+        <button class="back-button" onclick="window.location.href='index.html'">← Back to Patient List</button>
+    </div>
+
+   <!-- Patient Heading Section -->
+    <div class="container">
+        <div class="vertical_box">
+            <div class="banner"></div>
+            <div class="vertical_box border_bottom">
+              <div class="horizontal_box profile_row">
+                <!-- Patient Profile -->
+                <div class="patient_profile">
+                  <div class="patient_image">
+                    <img src="assets/images/qnvo.jpeg" alt="Profile Image">
+                  </div>
+                  <div class="patient_info">
+                    <div class="info_line"><span class="bold_txt">Name:</span> <span>Sophia C.</span></div>
+                    <div class="info_line"><span class="bold_txt">Gender:</span> <span id="patientGender">Female</span></div>
+                    <div class="info_line"><span class="bold_txt">Age:</span> <span id="patientAge">72</span></div>
+                    <div class="info_line"><span class="bold_txt">Primary Language:</span> <span id="patientLanguage">English</span></div>
+                  </div>
+                </div>
+
+                <!-- System Outcome Section -->
+                <div class="system_outcome_box">
+                  <div class="section_header">System Outcome</div>
+                  <div class="horizontal_box outcome_content">
+                    <div class="model_info">
+                      <div><span class="bold_txt accent_color">Cognitive Status:</span> <span id="cognitiveStatus" class="bold_txt">MCI</span></div>
+                      <div><span class="bold_txt accent_color">System Confidence:</span> <span id="systemConfidence" class="bold_txt">71.0 %</span></div>
+                    </div>
+                    <div class="pie_chart">
+
+                      <img src="assets/images/qnvo_pie_chart.png" alt="Pie chart of the modality contribution">
+                      <div><span class="bold_txt pie_chart_title">Modality Contribution of Speech & Demographic </span><span class="pie_chart_btn" >(More Info)</span></div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="pie_chart_info">
+                ** The baseline SpeechCARE model was trained using only speech and demographic information. At this stage, we are unable to generate a pie chart showing
+                the separate contributions of Clinical, Speech, and Demographic information.
+                However, as we enhance the model by incorporating clinical, demographic, and speech data, the updated pie chart will reflect the contribution of each modality more comprehensively.
+              </div>
+            </div>
+
+
+            <!-- Second Row -->
+            <div class="horizontal_box sig_factor_row">
+                <div class="signif_factors">
+                    <div class="title">Significant Factors</div>
+                    <div class="signif_items" id="significantFactors">
+                        <div class="signif_item"><span class="bullet_point"></span>The voice was almost unstable with a relatively high standard deviation of Shimmer.</div><div class="signif_item"><span class="bullet_point"></span>The speaker's speech is disorganized, with ideas not fully developed and a lack of clear sequencing.</div><div class="signif_item"><span class="bullet_point"></span>The patient reports memory difficulties and experiences difficulty focusing.</div><div class="signif_item"><span class="bullet_point"></span>The patient has been diagnosed with anxiety, depression, and PTSD.</div>
+                    </div>
+                </div>
+                <div class="audio_box">
+                    <div class="title">Listen to the audio!</div>
+                    <div class="audio_player">
+                        <audio controls>
+                            <source src="assets/audio/qnvo.mp3" type="audio/mp3">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clinical Factors and SDoH Section -->
+    <div class="container">
+        <div class="vertical_box">
+            <div class="banner">Patient Health Assessment <span class="expand-icon">▼</span></div>
+            <div class="collapsible-content">
+                <div class="info_box border_full">
+                    <span class="box_title bold_txt">Clinical and Functional Overview</span>
+                    <div id="clinical_behavioral"><div class="category-header">Physiological</div>
+<div class="signif_item"><div class="bullet_point"></div><span class="item-key">Myocardial Infarction (Heart Attack):</span> <span class="item-value">Yes</span></div>
+<div class="signif_item"><div class="bullet_point"></div><span class="item-key">Congestive Heart Failure:</span> <span class="item-value">Yes</span></div>
+<div class="signif_item"><div class="bullet_point"></div><span class="item-key">General Frailty Indicator:</span> <span class="item-value">Yes</span></div>
+<div class="signif_item"><div class="bullet_point"></div><span class="item-key">Dyspnea Severity (Shortness of Breath):</span> <span class="item-value">At rest</span></div>
+<div class="signif_item"><div class="bullet_point"></div><span class="item-key">Recent Weight Loss:</span> <span class="item-value">Severe (>10%)</span></div>
+<div class="category-header">Psychological and Behavioral</div>
+<div class="signif_item"><div class="bullet_point"></div><span class="item-key">Mental Conditions Diagnosed:</span> <span class="item-value">Anxiety, Depression, PTSD</span></div></div>
+                </div>
+                <div class="info_box border_full">
+                    <span class="box_title bold_txt">Lab Tests</span>
+                    <div id="lab_tests"><div class="signif_item"><span class="bullet_point"></span><span class="item-key">Interleukin-6 ( I L-6):</span> 5.8 pg/mL</div><div class="signif_item"><span class="bullet_point"></span><span class="item-key">Nf L:</span> 12 pg/mL</div><div class="signif_item"><span class="bullet_point"></span><span class="item-key">Tau:</span> 350 pg/mL</div><div class="signif_item"><span class="bullet_point"></span><span class="item-key">Aβ42/ Aβ40:</span> 0.04</div><div class="signif_item"><span class="bullet_point"></span><span class="item-key">Apolipoprotein B ( Apo B):</span> 92 mg/dL</div><div class="signif_item"><span class="bullet_point"></span><span class="item-key">Systolic Blood Pressure ( S B P):</span> 166 mmHg</div><div class="signif_item"><span class="bullet_point"></span><span class="item-key">Diastolic Blood Pressure ( D B P):</span> 92 mmHg</div><div class="signif_item"><span class="bullet_point"></span><span class="item-key">Ankle- Brachial Index ( A B I):</span> 0.6</div></div>
+                </div>
+                <div class="info_box border_full">
+                    <span class="box_title bold_txt">Social Determinants of Health (SDOH)</span>
+                    <div id="SDoH"><div class="sdoh-text">The patient has a history of <strong>Alcohol Use</strong> as an <strong>Alcoholic</strong> and reports a <strong>Sedentary</strong> lifestyle is not applicable, however the patient's physical activity level is <strong>Light</strong>. The patient's chief complaint is <strong>memory difficulties</strong>, which she attributes to her ongoing mental health struggles, including <strong>anxiety</strong>, <strong>depression</strong>, and <strong>PTSD</strong>. Additionally, she reports <strong>weight loss</strong> and mentions feeling <strong>“foggy”</strong> at times, particularly when trying to recall information, and experiences <strong>difficulty focusing</strong>.</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Speech Explainability Section -->
+    <div class="container">
+        <div class="vertical_box">
+            <div class="banner">Speech Explainability <span class="expand-icon">▼</span></div>
+            <div class="collapsible-content">
+                <!-- Linguistic Module -->
+                <div class="linguistic-module">
+                    <div class="child-banner">
+                        Linguistic Module
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="child-content">
+                        <div class="info_box">
+                            <!-- Transcription Subsection -->
+                            <div class="module-subsection">
+                                <div class="module-subsection-content" id="transcription">
+                                    
+<br>
+<hr style="height: 1px; background-color: #e6f2f4; border: none; margin-top: 18px; margin-bottom: 18px; border-top: 1px dashed #ccc;"">
+<div align="center" style="margin-top: -35px;"><div style="display: inline-block; background: #e6f2f4; padding: 5px; color: #999; font-family: monospace"></div>
+</div>
+<div align='center' style='background: rgba(230.0, 242.0, 244.0, 1.0); padding-bottom:25px; font-family: Arial; color: rgb(0,0,0);'>
+        <div align='center'><div style="color: rgb(0,0,0); font-size: 12px; margin-bottom:25px;margin-top: -15px;">transcript text</div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.015 / 5</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_0'
+    style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.14078035254505836); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_0').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_0').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_0').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_0').style.opacity = 0;"
+> from the cookie jar </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.01</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_1'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.09348385818974037); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_1').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_1').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_1').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_1').style.opacity = 0;"
+>and </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.003 / 3</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_2'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.02253911665676371); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_2').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_2').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_2').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_2').style.opacity = 0;"
+>he's </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.003 / 2</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_3'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.02253911665676371); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_3').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_3').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_3').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_3').style.opacity = 0;"
+>going to </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.016 / 5</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_4'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.14866310160427795); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_4').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_4').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_4').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_4').style.opacity = 0;"
+>fall off the stool </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.022 / 8</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_5'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.2117250940780353); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_5').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_5').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_5').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_5').style.opacity = 0;"
+>and the sink and the bath and </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.041 / 3</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_6'
+    style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.40091107149930677); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_6').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_6').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_6').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_6').style.opacity = 0;"
+>the kitchen is </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.038 / 3</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_7'
+    style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.3772628243216478); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_7').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_7').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_7').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_7').style.opacity = 0;"
+>overflowing </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.004</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_8'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.030421865715983164); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_8').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_8').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_8').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_8').style.opacity = 0;"
+>and </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.019 / 3</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_9'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.1880768469003763); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_9').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_9').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_9').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_9').style.opacity = 0;"
+>the mother is </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.101 / 3</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_10'
+    style='display: inline; background: rgba(230.0, 242.0, 244.0, 1.0); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_10').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_10').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_10').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_10').style.opacity = 0;"
+>drying the </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.094 / 2</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_11'
+    style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.9290552584670232); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_11').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_11').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_11').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_11').style.opacity = 0;"
+>dishes </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.002</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_12'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.014656367597544035); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_12').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_12').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_12').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_12').style.opacity = 0;"
+>and </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.035 / 5</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_13'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.3457318280847692); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_13').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_13').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_13').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_13').style.opacity = 0;"
+>I see the backyard </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.006 / 4</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_14'
+    style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.05407011289364222); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_14').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_14').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_14').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_14').style.opacity = 0;"
+>through the window and </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.018 / 2</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_15'
+    style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.1723113487819369); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_15').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_15').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_15').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_15').style.opacity = 0;"
+>what else</div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_16'
+    style='display: inline; background: rgba(252.25490196078462, 200.16078431372495, 26.79215686274231, 0.0); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_16').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_16').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_16').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_16').style.opacity = 0;"
+>? </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.023 / 3</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_17'
+    style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.21960784313725487); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_17').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_17').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_17').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_17').style.opacity = 0;"
+>The cookie jar</div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_18'
+    style='display: inline; background: rgba(252.25490196078462, 200.16078431372495, 26.79215686274231, 0.0); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_18').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_18').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_18').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_18').style.opacity = 0;"
+>, </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.008 / 2</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_19'
+    style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.06983561101208147); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_19').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_19').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_19').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_19').style.opacity = 0;"
+>boy and </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.018 / 3</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_20'
+    style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.1723113487819369); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_20').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_20').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_20').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_20').style.opacity = 0;"
+>a girl and </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.036 / 3</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_21'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.3457318280847692); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_21').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_21').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_21').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_21').style.opacity = 0;"
+>it's </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.063 / 5</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_22'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.621628045157457); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_22').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_22').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_22').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_22').style.opacity = 0;"
+>on the top shelf </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.026</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_23'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.2511388393741335); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_23').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_23').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_23').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_23').style.opacity = 0;"
+>and </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.075 / 5</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_24'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.7398692810457518); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_24').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_24').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_24').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_24').style.opacity = 0;"
+>he's going to </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.038 / 3</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_25'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.3693800752624282); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_25').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_25').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_25').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_25').style.opacity = 0;"
+>fall off that </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.036 / 2</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_26'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.3536145771439889); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_26').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_26').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_26').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_26').style.opacity = 0;"
+>stool </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.009</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_27'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.08560110913052081); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_27').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_27').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_27').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_27').style.opacity = 0;"
+>and </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.023 / 2</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_28'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.219607843137255); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_28').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_28').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_28').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_28').style.opacity = 0;"
+>what else</div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_29'
+    style='display: inline; background: rgba(252.25490196078462, 200.16078431372495, 26.79215686274231, 0.0); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_29').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_29').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_29').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_29').style.opacity = 0;"
+>? </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.043 / 4</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_30'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.4245593186769657); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_30').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_30').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_30').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_30').style.opacity = 0;"
+>The mom's </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.048 / 4</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_31'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.4718558130322837); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_31').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_31').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_31').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_31').style.opacity = 0;"
+>going to slip on </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.05 / 4</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_32'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.49550406020994264); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_32').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_32').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_32').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_32').style.opacity = 0;"
+>the water if she </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.032 / 3</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_33'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.306318082788671); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_33').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_33').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_33').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_33').style.opacity = 0;"
+>doesn't </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.021 / 3</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_34'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.20384234501881549); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_34').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_34').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_34').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_34').style.opacity = 0;"
+>be careful</div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_35'
+    style='display: inline; background: rgba(252.25490196078462, 200.16078431372495, 26.79215686274231, 0.0); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_35').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_35').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_35').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_35').style.opacity = 0;"
+>. </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.004 / 2</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_36'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.030421865715983164); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_36').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_36').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_36').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_36').style.opacity = 0;"
+>And what </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.006 / 2</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_37'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.05407011289364243); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_37').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_37').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_37').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_37').style.opacity = 0;"
+>else do </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.042 / 4</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_38'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.4087938205585263); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_38').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_38').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_38').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_38').style.opacity = 0;"
+>you want me to </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.043 / 3</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_39'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.41667656961774624); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_39').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_39').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_39').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_39').style.opacity = 0;"
+>tell you? </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.013 / 4</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_40'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.12501485442661908); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_40').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_40').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_40').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_40').style.opacity = 0;"
+>Do you want me </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.014 / 4</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_41'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.13289760348583876); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_41').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_41').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_41').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_41').style.opacity = 0;"
+>to describe everything on </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.015 / 4</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_42'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.14078035254505847); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_42').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_42').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_42').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_42').style.opacity = 0;"
+>that that I see</div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_43'
+    style='display: inline; background: rgba(252.25490196078462, 200.16078431372495, 26.79215686274231, 0.0); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_43').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_43').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_43').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_43').style.opacity = 0;"
+>? </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.027 / 2</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_44'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.26690433749257286); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_44').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_44').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_44').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_44').style.opacity = 0;"
+>Oh, </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.022 / 5</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_45'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.2117250940780353); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_45').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_45').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_45').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_45').style.opacity = 0;"
+>that's it, </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.003 / 3</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_46'
+    style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.022539116656763607); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_46').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_46').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_46').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_46').style.opacity = 0;"
+>I think. </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.032 / 3</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_47'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.3142008318478907); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_47').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_47').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_47').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_47').style.opacity = 0;"
+>She's </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.044 / 3</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_48'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.43244206773618543); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_48').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_48').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_48').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_48').style.opacity = 0;"
+>drying the </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.01 / 2</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_49'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.08560110913052081); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_49').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_49').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_49').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_49').style.opacity = 0;"
+>dish</div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_50'
+    style='display: inline; background: rgba(252.25490196078462, 200.16078431372495, 26.79215686274231, 0.0); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_50').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_50').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_50').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_50').style.opacity = 0;"
+>. </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.005 / 2</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_51'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.04618736383442265); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_51').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_51').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_51').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_51').style.opacity = 0;"
+>Yes, </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.001 / 2</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_52'
+    style='display: inline; background: rgba(252.25490196078462, 200.16078431372495, 26.79215686274231, 0.0); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_52').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_52').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_52').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_52').style.opacity = 0;"
+>I can</div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_53'
+    style='display: inline; background: rgba(252.25490196078462, 200.16078431372495, 26.79215686274231, 0.0); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_53').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_53').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_53').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_53').style.opacity = 0;"
+>. </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.003 / 2</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_54'
+    style='display: inline; background: rgba(255.0, 195.0, 0.0, 0.02253911665676371); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_54').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_54').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_54').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_54').style.opacity = 0;"
+>Okay, </div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.05 / 2</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_55'
+    style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.4876213111507228); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_55').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_55').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_55').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_55').style.opacity = 0;"
+>so the</div></div><div style='display: inline; text-align: center;'
+><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.012</div
+><div id='_tp_gwwjynwvxalnedirkfle_ind_56'
+    style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.11713210536739943); border-radius: 3px; padding: 0px'
+    onclick="
+    if (this.previousSibling.style.display == 'none') {
+        this.previousSibling.style.display = 'block';
+        this.parentNode.style.display = 'inline-block';
+    } else {
+        this.previousSibling.style.display = 'none';
+        this.parentNode.style.display = 'inline';
+    }"
+    onmouseover="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_56').style.opacity = 1; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_56').style.opacity = 1;"
+    onmouseout="document.getElementById('_fb_gwwjynwvxalnedirkfle_ind_56').style.opacity = 0; document.getElementById('_fs_gwwjynwvxalnedirkfle_ind_56').style.opacity = 0;"
+></div></div></div></div>
+                                </div>
+                            </div>
+                            <!-- Linguistic Interpretation Subsection -->
+                            <div class="module-subsection">
+
+                                <div class="module-subsection-content signif_items" id="ling_interpret">
+                                    <div class="signif_item"><span class="bullet_point"></span><b style="color:#1E3658; white-space:nowrap">Disfluencies and Repetition:</b>  The speaker exhibits some disfluencies, with a moderate Speech Rate and a high Consecutive Repeated Clauses Count, as seen in the repeated questions ("what else?", "do you want me to describe everything on that that I see?", "what else do you want me to tell you?").</div><div class="signif_item"><span class="bullet_point"></span><b style="color:#1E3658; white-space:nowrap">Difficulty with Spatial Reasoning and Visualization:</b>  The speaker struggles to describe the scene, using vague references ("the kitchen is overflowing", "the backyard through the window") and having trouble with spatial relationships ("he's going to fall off the stool").</div><div class="signif_item"><span class="bullet_point"></span><b style="color:#1E3658; white-space:nowrap">Impaired Executive Function:</b>  The speaker's speech is disorganized, with ideas not fully developed ("the mom's going to slip on the water if she doesn't be careful", "she's drying the dish") and a lack of clear sequencing.</div><div class="signif_item"><span class="bullet_point"></span><b style="color:#1E3658; white-space:nowrap">Semantic Coherence:</b>  The speaker's narrative is somewhat disorganized, with ideas not clearly connected ("the cookie jar, boy and a girl and it's on the top shelf", "the sink and the bath").</div><div class="signif_item border_top"><b style="color:#1E3658">The speaker is likely cognitively impaired.</b></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acoustic Module -->
+                <div class="acoustic-module">
+                    <div class="child-banner">
+                        Acoustic Module
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="child-content">
+                        <div class="module-subsection">
+                            <div class="module-subsection-content vertical_box">
+                            <div class="image-block waveform">
+                              <img src="assets/images/qnvo_saliency.png" alt="Saliency Image">
+                              <div class=" signif_items acoustic_iterpretation">
+                                    <div class="signif_item">  <span class="bullet_point"></span>  The voice was almost unstable (standard deviation of Shimmer was relatively high).</div>
+                                </div>
+                            </div>
+                            <div class="image-block spectrogram">
+                              <img src="assets/images/qnvo_spectrogram.png" alt="Spectrogram Image">
+                                <div class=" signif_items acoustic_iterpretation">
+                                    <div class="signif_item">  <span class="bullet_point"></span>  Few pauses (e.g., pauses before nouns) were detected.</div><div class="signif_item">  <span class="bullet_point"></span>  High energy level were observed in the voice (see Spectrogram highlighted in green).</div><div class="signif_item">  <span class="bullet_point"></span>  Control over vocal folds was limited, with slightly reduced pitch variation (see F0 curve).</div><div class="signif_item">  <span class="bullet_point"></span>  Tongue–lip coordination for phoneme and syllable production was limited.</div>
+                                </div>
+                            </div>
+                            <div class="image-block entropy">
+                              <img src="assets/images/qnvo_entropy.png" alt="Entropy Image">
+                                <div class="signif_items acoustic_iterpretation">
+                                    <div class="signif_item">  <span class="bullet_point"></span>  Speech was rhythmic, with no flat or monotonous segments (see Entropy curve)</div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Consideration Section -->
+    <div class="container consideration-section">
+        <div class="vertical_box">
+            <div class="banner">Consideration</div>
+            <div class="footer">
+              <p>
+                    Please be advised that the sensitivity of this system is not 100%. A more comprehensive
+                    evaluation should include the individual's mediacal history and additional cognitive assessments.
+              </p>
+              <div class="info_box border_full">
+                  <div>
+                      To reduce the risk of cognitive status, evidence-based studies suggested:
+                      <div><span class="bullet_point"></span>Having regular excercise</div>
+                      <div><span class="bullet_point"></span>Connecting with familty/community</div>
+                      <div><span class="bullet_point"></span>Limiting alcohol intake</div>
+                  </div>
+              </div>
+              <img src="assets/images/decoration.png" alt="Decoration">
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+
+        // Wait a moment for elements to exist
+        setTimeout(() => {
+          const btn = document.querySelector('.pie_chart_btn');
+          const info = document.querySelector('.pie_chart_info');
+
+          btn.addEventListener('click', () => {
+            if (info.style.display === 'none') {
+              info.style.display = 'block';
+              btn.textContent = '(Less Info)';
+            } else {
+              info.style.display = 'none';
+              btn.textContent = '(More Info)';
+            }
+          });
+        }, 500); // Small delay to ensure DOM is ready
+        document.querySelectorAll('.banner').forEach(function(banner) {
+            const expandIcon = banner.querySelector('.expand-icon');
+            if (!expandIcon) return;
+
+            const content = banner.nextElementSibling;
+
+            // Initialize as collapsed
+            content.classList.remove('expanded');
+            expandIcon.textContent = '▼';
+
+            banner.addEventListener('click', function() {
+                const isExpanded = content.classList.toggle('expanded');
+                expandIcon.textContent = isExpanded ? '▲' : '▼';
+            });
+        });
+
+        // Child expandable sections
+        document.querySelectorAll('.child-banner').forEach(function(banner) {
+            const icon = banner.querySelector('.expand-icon');
+            const content = banner.nextElementSibling;
+
+            // Initialize as collapsed
+            content.classList.remove('expanded');
+            icon.textContent = '▼';
+
+            banner.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isExpanded = content.classList.toggle('expanded');
+                icon.textContent = isExpanded ? '▲' : '▼';
+            });
+        });
+    </script>
+</body>
+</html>
+
