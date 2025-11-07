@@ -1,0 +1,1536 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Assessment Report</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #E5F1F3;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #1E3658;
+            padding: 70px 0 20px 0; /* Added top padding for sticky header */
+        }
+
+        /* Layout Components */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 20px;
+        }
+
+        .vertical_box {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            position: relative;
+
+        }
+
+        .horizontal_box {
+            display: flex;
+            width: 100%;
+            gap: 5rem;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        /* Borders */
+        .border_bottom {
+            border-bottom: 2px solid #1E3658;
+        }
+
+        .border_full {
+            border: 2px solid #1E3658;
+            border-radius: 4px;
+        }
+
+        .border_top {
+           border-top: 2px solid #1E3658;
+        }
+
+        /* Typography */
+        .title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #1E3658;
+            margin-bottom: 10px;
+        }
+
+        .bold_txt {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+
+        .banner {
+            width: 100%;
+            height: 45px;
+            background-color: #1E3658;
+            color: white;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            cursor: pointer;
+            user-select: none;
+            border-radius: 4px 4px 0 0;
+        }
+        .profile_row{
+            display: flex;
+            flex-wrap: nowrap;
+            margin-top: 2rem;
+        }
+
+        .sig_factor_row{
+            align-items: center;
+            flex-wrap: nowrap;
+            margin-top: 2rem;
+        }
+
+        .patient_profile {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex: 1;
+        }
+
+        .patient_image img {
+            width: 240px;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .patient_info {
+            display: flex;
+            flex-direction: column;
+            gap: 0px;
+            font-size: 1.2rem;
+            color: #1E3658;
+        }
+
+        .info_line {
+            font-size: 1.2rem;
+            padding:0;
+            margin:0;
+        }
+
+        .bold_txt {
+            font-weight: bold;
+            margin-right: 6px;
+        }
+
+
+        .system_outcome_box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+
+        }
+
+        .system_outcome_box .section_header{
+          margin-bottom:1.5rem;
+          border-bottom: 2px solid #7fa37f;
+        }
+
+        .outcome_content {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 2rem;
+        }
+
+        .model_info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            white-space: nowrap;
+            flex: 1;
+            font-size: 1.2rem;
+        }
+
+
+
+        .pie_chart img {
+            width: 260px;
+            height: 260px;
+        }
+
+        .pie_chart {
+           display: flex;
+           flex-direction: column;
+           gap: 2px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pie_chart_title{
+          font-size: 0.9rem;
+          font-weight: 200;
+
+        }
+
+        .pie_chart_info {
+            display: none;
+            transition: opacity 0.5s ease-in-out; /* Smooth fade-in effect */
+            font-size: 0.9rem;
+            margin-top:1rem;
+        }
+
+
+        .pie_chart_btn {
+            color: #7fa37f;
+            font-weight: bold;
+            font-size:0.9rem;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .pie_chart_btn:hover {
+            text-decoration: underline;
+        }
+
+        /* Right Side Layout */
+        .right_side {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+
+
+        /* Section Titles */
+        .section_header {
+            font-size: 1.4rem;
+            color: #1E3658;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* System Outcome */
+        .system_info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Modality Contribution */
+        .modality_contrib {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+
+        .signif_factors {
+            flex: 1;
+        }
+
+        .accent_color{
+
+            color:#350a29 !important;
+        }
+
+        .signif_items {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .signif_item {
+            display: flex;
+            align-items: flex-start;
+            line-height: 1.4;
+        }
+
+        .bullet_point {
+            display: inline-block;
+            width: 8px !important;
+            height: 8px !important;
+            background-color: #1E3658;
+            border-radius: 50%;
+            margin-right: 8px;
+            margin-top: 7px;
+            flex-shrink: 0;
+        }
+
+        /* Audio Box */
+        .audio_box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Info Box */
+        .info_box {
+            position: relative;
+            padding: 20px;
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        .box_title {
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            color: #1E3658;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background-color: #E5F1F3;
+            padding: 0 8px;
+        }
+
+        .acoustic_iterpretation {
+            margin: 1rem;
+
+        }
+
+        /* Expandable Content */
+        .collapsible-content {
+            width: 100%;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .collapsible-content.expanded {
+            max-height: 2000px;
+            width: 100%;
+        }
+
+        .expand-icon {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Links */
+        .more_info a {
+            color: #1E3658;
+            text-decoration: none;
+            font-style: italic;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .more_info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Consideration Section */
+        .consideration p {
+            padding: 15px 0;
+            font-weight: 600;
+        }
+        .consideration-section {
+            position: relative; /* Enables absolute positioning inside it */
+        }
+
+        .consideration-section.banner{
+          margin-bottom:2rem;
+        }
+
+        .right-image {
+            position:absolute;
+            bottom:0;
+            right:0;
+            width: 400px;
+            height: auto;
+            opacity: 0.5; /* controls transparency */
+            pointer-events: none; /* makes sure it doesn’t block clicks */
+            z-index:-1;
+            transform: translateY(20%)
+
+        }
+
+        .footer{
+          margin-top:2rem;
+        }
+
+        .footer > *{
+          margin-top:1.2rem;
+        }
+
+        .footer> p{
+          width: 65% !important;
+        }
+        .footer > .border_full{
+          width: 65%!important;
+        }
+
+        /* Child expandable sections */
+        .child-banner {
+            width: 100%;
+            height: 40px;
+            background-color: #7fa37f;
+            color: white;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            cursor: pointer;
+            user-select: none;
+            margin-top: 15px;
+            border-radius: 4px;
+        }
+
+        .child-content {
+            width: 100%;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .child-content.expanded {
+            max-height: 2000px;
+        }
+
+        /* Module specific styles */
+        .module-subsection {
+
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 2px solid #1E3658;
+            border-radius: 4px;
+        }
+
+
+        .module-subsection-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #1E3658;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Audio player styling */
+        audio {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .module-subsection-content .signif_items .signif_item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .module-subsection-content .bullet_point {
+            display: inline-block;
+            min-width: 6px;  /* Reduced from 8px */
+            height: 6px;     /* Reduced from 8px */
+            background-color: #1E3658;
+            border-radius: 50%;
+            margin-right: 8px;
+            margin-top: 7px;  /* Adjusted for better vertical alignment */
+            flex-shrink: 0;   /* Prevents bullet from shrinking */
+        }
+
+        .module-subsection-content.vertical_box {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .image-block {
+            width: 100%;
+            position: relative;
+        }
+
+        .image-block img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Subtitles */
+        .subtitle {
+            background-color: white;
+            margin: 0;
+            padding: 6px 10px;
+            text-align: center;
+            font-size: 1.8 rem;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-top: 1px solid #ccc;
+            color: #1E3658;
+        }
+        .category-header {
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-size: 1.1em;
+            color:#004d0c;
+        }
+        .item-key {
+            font-weight: 600;
+            margin-right: 5px;
+        }
+
+        /* Sticky Back Button */
+        .sticky-back {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #1E3658;
+            color: white;
+            padding: 10px 20px;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-button {
+            background-color: #7fa37f;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #6a8f6a;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sticky Back Button -->
+    <div class="sticky-back">
+        <button class="back-button" onclick="window.location.href='index.html'">← Back to Patient List</button>
+    </div>
+
+    <!-- Patient Heading Section -->
+    <div class="container">
+        <div class="vertical_box">
+            <div class="banner"></div>
+            <div class="vertical_box border_bottom">
+                <div class="horizontal_box profile_row">
+                    <!-- Patient Profile -->
+                    <div class="patient_profile">
+                        <div class="patient_image">
+                            <img src="assets/images/irxs.jpeg", alt="Profile Image">
+                        </div>
+                        <div class="patient_info">
+                            <div class="info_line"><span class="bold_txt">Name:</span> <span>Emily J.</span></div>
+                            <div class="info_line"><span class="bold_txt">Gender:</span> <span id="patientGender">Female</span></div>
+                            <div class="info_line"><span class="bold_txt">Age:</span> <span id="patientAge">84</span></div>
+                            <div class="info_line"><span class="bold_txt">Primary Language:</span> <span id="patientLanguage">English</span></div>
+                        </div>
+                    </div>
+
+                    <!-- System Outcome Section -->
+                    <div class="system_outcome_box">
+                        <div class="section_header">System Outcome</div>
+                        <div class="horizontal_box outcome_content">
+                            <div class="model_info">
+                                <div><span class="bold_txt accent_color">Cognitive Status:</span> <span id="cognitiveStatus" class="bold_txt">ADRD</span></div>
+                                <div><span class="bold_txt accent_color">System Confidence:</span> <span id="systemConfidence" class="bold_txt">65.0 %</span></div>
+                            </div>
+                            <div class="pie_chart">
+                                <img src="assets/images/irxs_pie_chart.png" alt="Pie chart of the modality contribution">
+                                <div><span class="bold_txt pie_chart_title">Modality Contribution of Speech & Demographic </span><span class="pie_chart_btn" >(More Info)</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pie_chart_info">
+                    ** The baseline SpeechCARE model was trained using only speech and demographic information. At this stage, we are unable to generate a pie chart showing
+                    the separate contributions of Clinical, Speech, and Demographic information.
+                    However, as we enhance the model by incorporating clinical, demographic, and speech data, the updated pie chart will reflect the contribution of each modality more comprehensively.
+                </div>
+            </div>
+
+            <!-- Second Row -->
+            <div class="horizontal_box sig_factor_row">
+                <div class="signif_factors">
+                    <div class="title">Significant Factors</div>
+                    <div class="signif_items" id="significantFactors">
+                        <div class="signif_item"><span class="bullet_point"></span>The patient's speech was non-rhythmic, with strong evidence of flat or monotonous segments.</div><div class="signif_item"><span class="bullet_point"></span>The speaker's narrative showed impaired semantic organization, with some difficulty connecting ideas.</div><div class="signif_item"><span class="bullet_point"></span>The patient is severely isolated, indicating significant social challenges.</div><div class="signif_item"><span class="bullet_point"></span>The patient has a history of recent falls or high fall risk, which is a physiological indicator of cognitive impairment.</div>
+                    </div>
+                </div>
+                <div class="audio_box">
+                    <div class="title">Listen to the audio!</div>
+                    <div class="audio_player">
+                        <audio controls>
+                            <source src="assets/audio/irxs.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clinical Factors and SDoH Section -->
+    <div class="container">
+        <div class="vertical_box">
+            <div class="banner">Patient Health Assessment <span class="expand-icon">▼</span></div>
+            <div class="collapsible-content">
+                <div class="info_box border_full">
+                    <span class="box_title bold_txt">Clinical and Functional Overview</span>
+                    <div id="clinical_behavioral">
+                        <div class="category-header">Physiological</div>
+                        <div class="signif_item"><div class="bullet_point"></div><span class="item-key">Congestive Heart Failure:</span> <span class="item-value">Yes</span></div>
+                        <div class="signif_item"><div class="bullet_point"></div><span class="item-key">Recent Falls or High Fall Risk:</span> <span class="item-value">Yes</span></div>
+                        <div class="signif_item"><div class="bullet_point"></div><span class="item-key">General Frailty Indicator:</span> <span class="item-value">Yes</span></div>
+                        <div class="signif_item"><div class="bullet_point"></div><span class="item-key">Sleep Disturbances:</span> <span class="item-value">Yes</span></div>
+                        <div class="signif_item"><div class="bullet_point"></div><span class="item-key">Diabetes Diagnosis:</span> <span class="item-value">Diabetes with complications</span></div>
+                    </div>
+                </div>
+                <div class="info_box border_full">
+                    <span class="box_title bold_txt">Lab Tests</span>
+                    <div id="lab_tests">
+                        <div class="signif_item"><span class="bullet_point"></span><span class="item-key">Interleukin-6 ( I L-6):</span> 8.2 pg/mL</div>
+                        <div class="signif_item"><span class="bullet_point"></span><span class="item-key">Monocyte Chemoattractant Protein-1 ( M C P-1):</span> 620 pg/mL</div>
+                        <div class="signif_item"><span class="bullet_point"></span><span class="item-key">Fibrinogen:</span> 460 mg/dL</div>
+                        <div class="signif_item"><span class="bullet_point"></span><span class="item-key">Nf L:</span> 13 pg/mL</div>
+                        <div class="signif_item"><span class="bullet_point"></span><span class="item-key">Tau:</span> 480 pg/mL</div>
+                        <div class="signif_item"><span class="bullet_point"></span><span class="item-key">Aβ42/ Aβ40:</span> 0.035</div>
+                        <div class="signif_item"><span class="bullet_point"></span><span class="item-key">Fasting Glucose:</span> 230 mg/dL</div>
+                        <div class="signif_item"><span class="bullet_point"></span><span class="item-key">Low- Density Lipoprotein ( L D L):</span> 186 mg/dL</div>
+                        <div class="signif_item"><span class="bullet_point"></span><span class="item-key">Albuminuria:</span> 35 mg/g creatinine</div>
+                    </div>
+                </div>
+                <div class="info_box border_full">
+                    <span class="box_title bold_txt">Social Determinants of Health (SDOH)</span>
+                    <div id="SDoH">
+                        <div class="sdoh-text">The patient is <strong>Severely isolated</strong> and <strong>Often skips meals due to lack of food</strong>, indicating significant social and nutritional challenges. Additionally, the patient's chief complaint is <strong>pain</strong> due to congestive heart failure, which is affecting his ability to carry out daily activities. He also has <strong>stage 3 pressure ulcers</strong>, which require ongoing care and monitoring. His mental health symptoms appear to be exacerbated by his physical condition and <strong>stress from his financial situation</strong>, which is characterized by <strong>severe financial strain</strong>. Furthermore, his social support is <strong>limited</strong>, which could be contributing to his depressive symptoms.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Speech Explainability Section -->
+    <div class="container">
+        <div class="vertical_box">
+            <div class="banner">Speech Explainability <span class="expand-icon">▼</span></div>
+            <div class="collapsible-content">
+                <!-- Linguistic Module -->
+                <div class="linguistic-module">
+                    <div class="child-banner">
+                        Linguistic Module
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="child-content">
+                        <div class="info_box">
+                            <!-- Transcription Subsection -->
+                            <div class="module-subsection">
+                                <div class="module-subsection-content" id="transcription">
+                                    <br>
+                                    <hr style="height: 1px; background-color: #e6f2f4; border: none; margin-top: 18px; margin-bottom: 18px; border-top: 1px dashed #ccc;"">
+                                    <div align="center" style="margin-top: -35px;"><div style="display: inline-block; background: #e6f2f4; padding: 5px; color: #999; font-family: monospace"></div></div>
+                                    <div align='center' style='background: rgba(230.0, 242.0, 244.0, 1.0); padding-bottom:25px; font-family: Arial; color: rgb(0,0,0);'>
+                <div align='center'><div style="color: rgb(0,0,0); font-size: 12px; margin-bottom:25px;margin-top: -15px;">transcript text</div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.011</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_0'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.05407011289364222); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_0').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_0').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_0').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_0').style.opacity = 0;"
+        > </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.022 / 2</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_1'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.10924935630817977); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_1').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_1').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_1').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_1').style.opacity = 0;"
+        >reaching </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.006</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_2'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.03042186571598325); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_2').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_2').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_2').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_2').style.opacity = 0;"
+        >up </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.006</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_3'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.03042186571598325); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_3').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_3').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_3').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_3').style.opacity = 0;"
+        >to </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.064 / 2</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_4'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.33784907902554956); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_4').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_4').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_4').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_4').style.opacity = 0;"
+        >get a </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.19</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_5'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 1.0); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_5').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_5').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_5').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_5').style.opacity = 0;"
+        >cookie</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_6'
+            style='display: inline; background: rgba(177.47843137254833, 120.04313725490039, 215.51372549019572, 0.0); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_6').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_6').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_6').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_6').style.opacity = 0;"
+        >. </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.009</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_7'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.03830461477520309); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_7').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_7').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_7').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_7').style.opacity = 0;"
+        >And </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.02</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_8'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.10136660724896014); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_8').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_8').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_8').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_8').style.opacity = 0;"
+        >the </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.044</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_9'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.22749059219647463); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_9').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_9').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_9').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_9').style.opacity = 0;"
+        >little </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.049</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_10'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.25902158843335304); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_10').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_10').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_10').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_10').style.opacity = 0;"
+        >boy </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.052</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_11'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.27478708655179246); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_11').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_11').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_11').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_11').style.opacity = 0;"
+        >is </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.06 / 2</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_12'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.3142008318478906); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_12').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_12').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_12').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_12').style.opacity = 0;"
+        >reaching </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.062 / 2</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_13'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.3299663299663299); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_13').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_13').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_13').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_13').style.opacity = 0;"
+        >for a </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.068</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_14'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.35361457714398903); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_14').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_14').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_14').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_14').style.opacity = 0;"
+        >cookie</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_15'
+            style='display: inline; background: rgba(177.47843137254833, 120.04313725490039, 215.51372549019572, 0.0); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_15').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_15').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_15').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_15').style.opacity = 0;"
+        >. </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.014</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_16'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.06983561101208147); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_16').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_16').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_16').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_16').style.opacity = 0;"
+        >He</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.017</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_17'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.08560110913052085); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_17').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_17').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_17').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_17').style.opacity = 0;"
+        >'</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.009</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_18'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.04618736383442265); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_18').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_18').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_18').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_18').style.opacity = 0;"
+        >s </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.012</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_19'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.06195286195286191); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_19').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_19').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_19').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_19').style.opacity = 0;"
+        >got </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.009</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_20'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.03830461477520309); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_20').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_20').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_20').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_20').style.opacity = 0;"
+        >his </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.011</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_21'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.05407011289364222); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_21').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_21').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_21').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_21').style.opacity = 0;"
+        >chair</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_22'
+            style='display: inline; background: rgba(177.47843137254833, 120.04313725490039, 215.51372549019572, 0.0); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_22').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_22').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_22').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_22').style.opacity = 0;"
+        >, </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.03</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_23'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.1565458506634977); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_23').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_23').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_23').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_23').style.opacity = 0;"
+        >the </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.061 / 2</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_24'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.3220835809071103); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_24').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_24').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_24').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_24').style.opacity = 0;"
+        >stool </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.051</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_25'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.2669043374925727); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_25').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_25').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_25').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_25').style.opacity = 0;"
+        >is </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.058 / 2</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_26'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.2984353337294513); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_26').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_26').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_26').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_26').style.opacity = 0;"
+        >tilting </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.019 / 4</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_27'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.09348385818974048); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_27').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_27').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_27').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_27').style.opacity = 0;"
+        >and he's </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.036 / 4</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_28'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.1880768469003762); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_28').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_28').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_28').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_28').style.opacity = 0;"
+        >holding a cookie in </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.01 / 3</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_29'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.04618736383442258); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_29').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_29').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_29').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_29').style.opacity = 0;"
+        >his left hand</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_30'
+            style='display: inline; background: rgba(177.47843137254833, 120.04313725490039, 215.51372549019572, 0.0); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_30').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_30').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_30').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_30').style.opacity = 0;"
+        >. </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.025</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_31'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.12501485442661905); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_31').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_31').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_31').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_31').style.opacity = 0;"
+        >And </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.001</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_32'
+            style='display: inline; background: rgba(223.521568627451, 226.95686274509805, 240.48627450980393, 0.0); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_32').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_32').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_32').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_32').style.opacity = 0;"
+        >the </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.094</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_33'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.49550406020994264); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_33').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_33').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_33').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_33').style.opacity = 0;"
+        >mother</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.042</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_34'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.219607843137255); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_34').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_34').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_34').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_34').style.opacity = 0;"
+        >'</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.007</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_35'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.030421865715983164); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_35').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_35').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_35').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_35').style.opacity = 0;"
+        >s </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.024 / 2</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_36'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.12501485442661905); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_36').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_36').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_36').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_36').style.opacity = 0;"
+        >drying </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.007</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_37'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.03042186571598325); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_37').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_37').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_37').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_37').style.opacity = 0;"
+        >di</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.012</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_38'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.06195286195286191); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_38').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_38').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_38').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_38').style.opacity = 0;"
+        >shes </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.028 / 2</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_39'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.14078035254505836); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_39').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_39').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_39').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_39').style.opacity = 0;"
+        >in the </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.028</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_40'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.14078035254505836); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_40').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_40').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_40').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_40').style.opacity = 0;"
+        >water</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_41'
+            style='display: inline; background: rgba(177.47843137254833, 120.04313725490039, 215.51372549019572, 0.0); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_41').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_41').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_41').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_41').style.opacity = 0;"
+        >. </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.075</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_42'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.39302832244008723); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_42').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_42').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_42').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_42').style.opacity = 0;"
+        >The </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.031</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_43'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.1565458506634977); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_43').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_43').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_43').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_43').style.opacity = 0;"
+        >di</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.037</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_44'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.1959595959595959); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_44').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_44').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_44').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_44').style.opacity = 0;"
+        >sh </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.006 / 2</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_45'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.030421865715983164); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_45').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_45').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_45').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_45').style.opacity = 0;"
+        >water'</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.0</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_46'
+            style='display: inline; background: rgba(223.521568627451, 226.95686274509805, 240.48627450980393, 0.0); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_46').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_46').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_46').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_46').style.opacity = 0;"
+        >s </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.005</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_47'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.022539116656763607); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_47').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_47').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_47').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_47').style.opacity = 0;"
+        >on </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.066</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_48'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.3457318280847692); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_48').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_48').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_48').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_48').style.opacity = 0;"
+        >and </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0 / 2</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_49'
+            style='display: inline; background: rgba(177.47843137254833, 120.04313725490039, 215.51372549019572, 0.0); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_49').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_49').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_49').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_49').style.opacity = 0;"
+        >it'</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.004</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_50'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.014656367597544035); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_50').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_50').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_50').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_50').style.opacity = 0;"
+        >s </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.022 / 2</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_51'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.10924935630817977); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_51').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_51').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_51').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_51').style.opacity = 0;"
+        >pouring </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.058</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_52'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.29843533372945136); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_52').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_52').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_52').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_52').style.opacity = 0;"
+        >over</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.01</div
+        ><div id='_tp_reuljdlpavcowusoooiy_ind_53'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.04618736383442265); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_53').style.opacity = 1; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_53').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_reuljdlpavcowusoooiy_ind_53').style.opacity = 0; document.getElementById('_fs_reuljdlpavcowusoooiy_ind_53').style.opacity = 0;"
+        ></div></div></div></div>
+                                        </div>
+                                    </div>
+                            <!-- Linguistic Interpretation Subsection -->
+                            <div class="module-subsection">
+                                <div class="module-subsection-content signif_items" id="ling_interpret">
+                                    <div class="signif_item"><span class="bullet_point"></span><b style="color:#1E3658; white-space:nowrap">Semantic Coherence:</b>  The speaker's narrative is relatively clear and well-organized, but the quantitative analysis reveals a moderate Content Density of 0.657143, suggesting some impaired semantic organization. For example, the speaker describes the scene in a logical sequence, but may have some difficulty connecting ideas, as seen in the transition from describing the boy reaching for a cookie to the mother drying dishes.</div>
+                                    <div class="signif_item"><span class="bullet_point"></span><b style="color:#1E3658; white-space:nowrap">Disfluencies and Repetition:</b>  Although there are no noticeable disfluencies or repetition in the speaker's narrative, the lack of repetition or hesitation may indicate a reliance on more automatic language processing, which could be a subtle indicator of cognitive impairment.</div>
+                                    <div class="signif_item"><span class="bullet_point"></span><b style="color:#1E3658; white-space:nowrap">Lexical Richness:</b>  The speaker's vocabulary diversity is relatively good, but the quantitative analysis reveals a moderate Type-Token Ratio (TTR) of 0.603774, suggesting some word-finding difficulties. For example, the speaker uses simple nouns like "cookie" and "chair" but may struggle to find more specific or descriptive words.</div>
+                                    <div class="signif_item"><span class="bullet_point"></span><b style="color:#1E3658; white-space:nowrap">Speech Rate and Planning:</b>  The quantitative analysis reveals a relatively slow Speech Rate (Wps) of 1.766665, which may indicate some planning difficulties. For example, the speaker takes time to describe the scene, and the slow speech rate may suggest difficulty in retrieving words or organizing thoughts.</div>
+                                    <div class="signif_item border_top"><b style="color:#1E3658">The speaker is predicted to be cognitively impaired.</b></div>
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+
+                <!-- Acoustic Module -->
+                <div class="acoustic-module">
+                    <div class="child-banner">
+                        Acoustic Module
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="child-content">
+                        <div class="module-subsection">
+                            <div class="module-subsection-content vertical_box">
+                                <div class="image-block waveform">
+                                    <img src="assets/images/irxs_saliency.png" alt="Waveform">
+                                    <div class="signif_items acoustic_iterpretation">
+                                        <div class="signif_item"><span class="bullet_point"></span>The voice was almost stable (standard deviation of Shimmer was relatively low).</div>
+                                    </div>
+                                </div>
+                                <div class="image-block spectrogram">
+                                    <img src="assets/images/irxs_spectrogram.png" alt="SHAP Spectrogram">
+                                    <div class="signif_items acoustic_iterpretation">
+                                        <div class="signif_item"><span class="bullet_point"></span>Several pauses (e.g., pauses before nouns) were detected.</div>
+                                        <div class="signif_item"><span class="bullet_point"></span>Very low energy level were observed in the voice (see Spectrogram highlighted in green).</div>
+                                        <div class="signif_item"><span class="bullet_point"></span>Control over vocal folds was limited, with slightly reduced pitch variation (see F0 curve).</div>
+                                        <div class="signif_item"><span class="bullet_point"></span>Tongue–lip coordination for phoneme and syllable production was natural.</div>
+                                    </div>
+                                </div>
+                                <div class="image-block entropy">
+                                    <img src="assets/images/irxs_entropy.png" alt="Entropy">
+                                    <div class="signif_items acoustic_iterpretation">
+                                        <div class="signif_item"><span class="bullet_point"></span>Speech was non-rhythmic, with strong evidence of flat or monotonous segments (see Entropy curve)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+
+    <!-- Consideration Section -->
+    <div class="container consideration-section">
+        <div class="vertical_box">
+            <div class="banner">Consideration</div>
+            <div class="footer">
+                <p>
+                    Please be advised that the sensitivity of this system is not 100%. A more comprehensive
+                    evaluation should include the individual's mediacal history and additional cognitive assessments.
+                </p>
+                <div class="info_box border_full">
+                    <div>
+                        To reduce the risk of cognitive status, evidence-based studies suggested:
+                        <div><span class="bullet_point"></span>Having regular excercise</div>
+                        <div><span class="bullet_point"></span>Connecting with familty/community</div>
+                        <div><span class="bullet_point"></span>Limiting alcohol intake</div>
+                    </div>
+                </div>
+                <img src="assets/images/decoration.png" alt="Decoration" class="right-image">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Wait a moment for elements to exist
+        setTimeout(() => {
+            const btn = document.querySelector('.pie_chart_btn');
+            const info = document.querySelector('.pie_chart_info');
+
+            btn.addEventListener('click', () => {
+                if (info.style.display === 'none') {
+                    info.style.display = 'block';
+                    btn.textContent = '(Less Info)';
+                } else {
+                    info.style.display = 'none';
+                    btn.textContent = '(More Info)';
+                }
+            });
+        }, 500); // Small delay to ensure DOM is ready
+
+        document.querySelectorAll('.banner').forEach(function(banner) {
+            const expandIcon = banner.querySelector('.expand-icon');
+            if (!expandIcon) return;
+
+            const content = banner.nextElementSibling;
+
+            // Initialize as collapsed
+            content.classList.remove('expanded');
+            expandIcon.textContent = '▼';
+
+            banner.addEventListener('click', function() {
+                const isExpanded = content.classList.toggle('expanded');
+                expandIcon.textContent = isExpanded ? '▲' : '▼';
+            });
+        });
+
+        // Child expandable sections
+        document.querySelectorAll('.child-banner').forEach(function(banner) {
+            const icon = banner.querySelector('.expand-icon');
+            const content = banner.nextElementSibling;
+
+            // Initialize as collapsed
+            content.classList.remove('expanded');
+            icon.textContent = '▼';
+
+            banner.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isExpanded = content.classList.toggle('expanded');
+                icon.textContent = isExpanded ? '▲' : '▼';
+            });
+        });
+    </script>
+</body>
+</html>
+
+    
