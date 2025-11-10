@@ -262,7 +262,6 @@ body {
 }
 
 .bullet_point {
-    display: inline-block;
     width: 8px !important;
     height: 8px !important;
     background-color: #1E3658;
@@ -270,6 +269,23 @@ body {
     margin-right: 8px;
     margin-top: 7px;
     flex-shrink: 0;
+}
+
+.signif_item1 {
+  position: relative;
+  padding-left: 18px;   /* space for the bullet */
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.bullet_point1 {
+  position: absolute;
+  left: 0;
+  top: 12px;             /* adjust to vertically align bullet */
+  width: 8px;
+  height: 8px;
+  background-color: #1E3658;
+  border-radius: 50%;
 }
 
 /* Audio Box */
@@ -638,7 +654,7 @@ audio {
 <div align="center" style="margin-top: -35px;"><div style="display: inline-block; background: #e6f2f4; padding: 5px; color: #999; font-family: monospace"></div>
 </div>
 <div align='center' style='background: rgba(230.0, 242.0, 244.0, 1.0); padding-bottom:25px; font-family: Arial; color: rgb(0,0,0);'>
-        <div align='center'><div style="color: rgb(0,0,0); font-size: 12px; margin-bottom:25px;margin-top: -15px;">transcript text</div><div style='display: inline; text-align: center;'
+    <div style='display: inline; text-align: center;'
 ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.018 / 2</div
 ><div id='_tp_yqerejdsrbcwgmeagjkh_ind_0'
     style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.11713210536739943); border-radius: 3px; padding: 0px'
@@ -1527,12 +1543,16 @@ audio {
                             <div class="module-subsection">
 
                                 <div class="module-subsection-content signif_items" id="ling_interpret">
-                                    <div class="signif_item"><span class="bullet_point"></span><b style="color:#1E3658; white-space:nowrap">Lexical Richness:</b> The speaker's vocabulary is diverse, with no significant issues with word-finding or overuse of vague words, as seen in the use of words like "attentively", "overflow", and "ruffling".</div><div class="signif_item"><span class="bullet_point"></span><b style="color:#1E3658; white-space:nowrap">Syntactic Complexity:</b> The speaker's sentence structure is varied and complex, with no significant simplification or grammatical errors, as seen in the sentence "The mother is washing the dishes, but not very attentively, allowing the sink to overflow onto the floor."</div><div class="signif_item"><span class="bullet_point"></span><b style="color:#1E3658; white-space:nowrap">Semantic Coherence:</b> The speaker's description is clear and well-organized, with no significant difficulties with referencing the visual scene or conveying meaning, as seen in the description of the children trying to get into the cookie jar and the mother's distraction.</div><div class="signif_item"><span class="bullet_point"></span><b style="color:#1E3658; white-space:nowrap">Difficulty with Spatial Reasoning and Visualization:</b> The speaker accurately describes the spatial relationships between objects in the scene, such as the stool falling over and the curtains being ruffled by the wind, with no significant difficulties with spatial reasoning or visualization.</div><div class="signif_item border_top"><b style="color:#1E3658">The speaker is likely healthy.</b></div>
+                                    <div class="signif_item1"><span class="bullet_point1"></span><b style="color:#1E3658; white-space:nowrap">Lexical Richness:</b> <span class="bul_con">The speaker's vocabulary is diverse, with no significant issues with word-finding or overuse of vague words, as seen in the use of words like "attentively", "overflow", and "ruffling".</span></div>
+                                    <div class="signif_item1"><span class="bullet_point1"></span><b style="color:#1E3658; white-space:nowrap">Syntactic Complexity:</b> The speaker's sentence structure is varied and complex, with no significant simplification or grammatical errors, as seen in the sentence "The mother is washing the dishes, but not very attentively, allowing the sink to overflow onto the floor."</div>
+                                    <div class="signif_item1"><span class="bullet_point1"></span><b style="color:#1E3658; white-space:nowrap">Semantic Coherence:</b> The speaker's description is clear and well-organized, with no significant difficulties with referencing the visual scene or conveying meaning, as seen in the description of the children trying to get into the cookie jar and the mother's distraction.</div>
+                                    <div class="signif_item1"><span class="bullet_point1"></span><b style="color:#1E3658; white-space:nowrap">Difficulty with Spatial Reasoning and Visualization:</b> The speaker accurately describes the spatial relationships between objects in the scene, such as the stool falling over and the curtains being ruffled by the wind, with no significant difficulties with spatial reasoning or visualization.</div>
+                                    <div class="signif_item border_top"><b style="color:#1E3658">The speaker is likely healthy.</b></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                
 
                 <!-- Acoustic Module -->
                 <div class="acoustic-module">
@@ -1563,7 +1583,7 @@ audio {
                             </div>
                             </div>
                         </div>
-
+                    </div>
                     </div>
                 </div>
             </div>

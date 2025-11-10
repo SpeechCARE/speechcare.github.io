@@ -273,6 +273,23 @@ body {
     flex-shrink: 0;
 }
 
+.signif_item1 {
+  position: relative;
+  padding-left: 18px;   /* space for the bullet */
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.bullet_point1 {
+  position: absolute;
+  left: 0;
+  top: 12px;             /* adjust to vertically align bullet */
+  width: 8px;
+  height: 8px;
+  background-color: #1E3658;
+  border-radius: 50%;
+}
+
 /* Audio Box */
 .audio_box {
     flex: 1;
@@ -579,7 +596,10 @@ audio {
                 <div class="signif_factors">
                     <div class="title">Significant Factors</div>
                     <div class="signif_items" id="significantFactors">
-                        <div class="signif_item"><span class="bullet_point"></span>The voice was almost unstable with a relatively high standard deviation of Shimmer.</div><div class="signif_item"><span class="bullet_point"></span>The speaker's speech is disorganized, with ideas not fully developed and a lack of clear sequencing.</div><div class="signif_item"><span class="bullet_point"></span>The patient reports memory difficulties and experiences difficulty focusing.</div><div class="signif_item"><span class="bullet_point"></span>The patient has been diagnosed with anxiety, depression, and PTSD.</div>
+                        <div class="signif_item"><span class="bullet_point"></span>The voice was almost unstable with a relatively high standard deviation of Shimmer.</div>
+                        <div class="signif_item"><span class="bullet_point"></span>The speaker's speech is disorganized, with ideas not fully developed and a lack of clear sequencing.</div>
+                        <div class="signif_item"><span class="bullet_point"></span>The patient reports memory difficulties and experiences difficulty focusing.</div>
+                        <div class="signif_item"><span class="bullet_point"></span>The patient has been diagnosed with anxiety, depression, and PTSD.</div>
                     </div>
                 </div>
                 <div class="audio_box">
@@ -645,7 +665,7 @@ audio {
 <div align="center" style="margin-top: -35px;"><div style="display: inline-block; background: #e6f2f4; padding: 5px; color: #999; font-family: monospace"></div>
 </div>
 <div align='center' style='background: rgba(230.0, 242.0, 244.0, 1.0); padding-bottom:25px; font-family: Arial; color: rgb(0,0,0);'>
-        <div align='center'><div style="color: rgb(0,0,0); font-size: 12px; margin-bottom:25px;margin-top: -15px;">transcript text</div><div style='display: inline; text-align: center;'
+    <div style='display: inline; text-align: center;'
 ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.015 / 5</div
 ><div id='_tp_gwwjynwvxalnedirkfle_ind_0'
     style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.14078035254505836); border-radius: 3px; padding: 0px'
@@ -1450,12 +1470,16 @@ audio {
                             <div class="module-subsection">
 
                                 <div class="module-subsection-content signif_items" id="ling_interpret">
-                                    <div class="signif_item"><span class="bullet_point"></span><b style="color:#1E3658; white-space:nowrap">Disfluencies and Repetition:</b>  The speaker exhibits some disfluencies, with a moderate Speech Rate and a high Consecutive Repeated Clauses Count, as seen in the repeated questions ("what else?", "do you want me to describe everything on that that I see?", "what else do you want me to tell you?").</div><div class="signif_item"><span class="bullet_point"></span><b style="color:#1E3658; white-space:nowrap">Difficulty with Spatial Reasoning and Visualization:</b>  The speaker struggles to describe the scene, using vague references ("the kitchen is overflowing", "the backyard through the window") and having trouble with spatial relationships ("he's going to fall off the stool").</div><div class="signif_item"><span class="bullet_point"></span><b style="color:#1E3658; white-space:nowrap">Impaired Executive Function:</b>  The speaker's speech is disorganized, with ideas not fully developed ("the mom's going to slip on the water if she doesn't be careful", "she's drying the dish") and a lack of clear sequencing.</div><div class="signif_item"><span class="bullet_point"></span><b style="color:#1E3658; white-space:nowrap">Semantic Coherence:</b>  The speaker's narrative is somewhat disorganized, with ideas not clearly connected ("the cookie jar, boy and a girl and it's on the top shelf", "the sink and the bath").</div><div class="signif_item border_top"><b style="color:#1E3658">The speaker is likely cognitively impaired.</b></div>
+                                    <div class="signif_item1"><span class="bullet_point1"></span><b style="color:#1E3658; white-space:nowrap">Disfluencies and Repetition:</b>  The speaker exhibits some disfluencies, with a moderate Speech Rate and a high Consecutive Repeated Clauses Count, as seen in the repeated questions ("what else?", "do you want me to describe everything on that that I see?", "what else do you want me to tell you?").</div>
+                                    <div class="signif_item1"><span class="bullet_point1"></span><b style="color:#1E3658; white-space:nowrap">Difficulty with Spatial Reasoning and Visualization:</b>  The speaker struggles to describe the scene, using vague references ("the kitchen is overflowing", "the backyard through the window") and having trouble with spatial relationships ("he's going to fall off the stool").</div>
+                                    <div class="signif_item1"><span class="bullet_point1"></span><b style="color:#1E3658; white-space:nowrap">Impaired Executive Function:</b>  The speaker's speech is disorganized, with ideas not fully developed ("the mom's going to slip on the water if she doesn't be careful", "she's drying the dish") and a lack of clear sequencing.</div>
+                                    <div class="signif_item1"><span class="bullet_point1"></span><b style="color:#1E3658; white-space:nowrap">Semantic Coherence:</b>  The speaker's narrative is somewhat disorganized, with ideas not clearly connected ("the cookie jar, boy and a girl and it's on the top shelf", "the sink and the bath").</div>
+                                    <div class="signif_item border_top"><b style="color:#1E3658">The speaker is likely cognitively impaired.</b></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                
 
                 <!-- Acoustic Module -->
                 <div class="acoustic-module">
@@ -1488,6 +1512,7 @@ audio {
                         </div>
 
                     </div>
+                </div>
                 </div>
             </div>
         </div>
