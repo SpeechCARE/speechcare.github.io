@@ -1,0 +1,1097 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Martin J. (ADRD) - SpeechCARE Explainability Framework</title>
+            <link rel="icon" type="image/png" href="assets/images/favicon.png">
+            <link rel="stylesheet" href="styles.css">
+        </head>
+        <body>
+            <!-- Sticky Back Button -->
+            <div class="sticky-back">
+                <button class="back-button" onclick="window.location.href='index.html'">← Back to Patient List</button>
+            </div>
+           <!-- Patient Heading Section -->
+            <div class="container">
+                <div class="vertical_box">
+                    <div class="banner"></div>
+                    <div class="vertical_box border_bottom">
+                      <div class="horizontal_box profile_row">
+                        <!-- Patient Profile -->
+                        <div class="patient_profile">
+                          <div class="patient_image">
+                            <img src="assets/images/saiw.png" alt="patient_image">
+                          </div>
+                          <div class="patient_info">
+                            <div class="info_line"><span class="bold_txt">Name:</span> <span>Martin J.</span></div>
+                            <div class="info_line"><span class="bold_txt">Gender:</span> <span id="patientGender">Male</span></div>
+                            <div class="info_line"><span class="bold_txt">Age:</span> <span id="patientAge">86</span></div>
+                            <div class="info_line"><span class="bold_txt">Primary Language:</span> <span id="patientLanguage">English</span></div>
+                          </div>
+                        </div>
+
+                        <!-- System Outcome Section -->
+                        <div class="system_outcome_box">
+                          <div class="section_header">System Outcome</div>
+                          <div class="horizontal_box outcome_content">
+                            <div class="model_info">
+                              <div><span class="bold_txt accent_color">Cognitive Status:</span> <span id="cognitiveStatus" class="bold_txt">ADRD</span></div>
+                              <div><span class="bold_txt accent_color">System Confidence:</span> <span id="systemConfidence" class="bold_txt">94.0 %</span></div>
+                            </div>
+                            <div class="pie_chart">
+                              <img src="assets/images/skht_piechart.png">
+                              <div><span class="bold_txt pie_chart_title">Modality Contribution of Speech & Demographic </span><span class="pie_chart_btn" >(More Info)</span></div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="pie_chart_info">
+                        ** The baseline SpeechCARE model was trained using only speech and demographic information. At this stage, we are unable to generate a pie chart showing
+                        the separate contributions of Clinical, Speech, and Demographic information.
+                        However, as we enhance the model by incorporating clinical, demographic, and speech data, the updated pie chart will reflect the contribution of each modality more comprehensively.
+                      </div>
+                    </div>
+
+
+                    <!-- Second Row -->
+                    <div class="horizontal_box sig_factor_row">
+                        <div class="signif_factors">
+                            <div class="title">Significant Factors</div>
+                            <div class="signif_items" id="significantFactors">
+                                <div class="signif_item"><span class="bullet_point"></span>The voice was almost stable, but control over vocal folds was limited, with slightly reduced pitch variation.</div><div class="signif_item"><span class="bullet_point"></span>The speaker's speech is somewhat disorganized, with incomplete ideas and abrupt topic shifts, indicating impaired executive function.</div><div class="signif_item"><span class="bullet_point"></span>The patient is severely isolated, with limited social support, which may be contributing to his depressive symptoms and cognitive decline.</div><div class="signif_item"><span class="bullet_point"></span>The patient has a history of recent falls or high fall risk, which is a physiological indicator of potential cognitive impairment.</div>
+                            </div>
+                        </div>
+                        <div class="audio_box">
+                            <div class="title">Listen to the audio!</div>
+                            <div class="audio_player">
+                                <audio controls>
+                                    <source src="assets/audio/skht.mp3">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clinical Factors and SDoH Section -->
+            <div class="container">
+                <div class="vertical_box">
+                    <div class="banner">Patient Health Assessment <span class="expand-icon">▼</span></div>
+                    <div class="collapsible-content">
+                        <div class="info_box border_full">
+                            <span class="box_title bold_txt">Clinical and Functional Overview</span>
+                            <div id="clinical_behavioral"><div class="category-header">Physiological</div>
+<div class="signif_item"><div class="bullet_point"></div><span class="item-key">Diabetes Diagnosis:</span> <span class="item-value">Diabetes with complications</span></div>
+<div class="signif_item"><div class="bullet_point"></div><span class="item-key">Congestive Heart Failure:</span> <span class="item-value">Yes</span></div>
+<div class="signif_item"><div class="bullet_point"></div><span class="item-key">Recent Falls or High Fall Risk:</span> <span class="item-value">Yes</span></div>
+<div class="signif_item"><div class="bullet_point"></div><span class="item-key">General Frailty Indicator:</span> <span class="item-value">Yes</span></div>
+<div class="signif_item"><div class="bullet_point"></div><span class="item-key">Sleep Disturbances:</span> <span class="item-value">Yes</span></div>
+<div class="category-header">Psychological and Behavioral</div>
+<div class="signif_item"><div class="bullet_point"></div><span class="item-key">Mental Conditions Diagnosed:</span> <span class="item-value">Anxiety, Depression,ADHD</span></div></div>
+                        </div>
+                        <div class="info_box border_full">
+                            <span class="box_title bold_txt">Lab Tests</span>
+                            <div id="lab_tests"><div class="signif_item"><span class="bullet_point"></span><span class="item-key">Interleukin-6 ( I L-6):</span> 8.2 pg/mL</div><div class="signif_item"><span class="bullet_point"></span><span class="item-key">Monocyte Chemoattractant Protein-1 ( M C P-1):</span> 620 pg/mL</div><div class="signif_item"><span class="bullet_point"></span><span class="item-key">Fibrinogen:</span> 460 mg/dL</div><div class="signif_item"><span class="bullet_point"></span><span class="item-key">Aβ42:</span> 320 pg/mL</div><div class="signif_item"><span class="bullet_point"></span><span class="item-key">Nf L:</span> 13 pg/mL</div><div class="signif_item"><span class="bullet_point"></span><span class="item-key">Tau:</span> 480 pg/mL</div><div class="signif_item"><span class="bullet_point"></span><span class="item-key">Aβ42/ Aβ40:</span> 0.035</div><div class="signif_item"><span class="bullet_point"></span><span class="item-key">Apolipoprotein B ( Apo B):</span> 105 mg/dL</div><div class="signif_item"><span class="bullet_point"></span><span class="item-key">Fasting Glucose:</span> 230 mg/dL</div><div class="signif_item"><span class="bullet_point"></span><span class="item-key">Low- Density Lipoprotein ( L D L):</span> 186 mg/dL</div><div class="signif_item"><span class="bullet_point"></span><span class="item-key">Albuminuria:</span> 35 mg/g creatinine</div></div>
+                        </div>
+                        <div class="info_box border_full">
+                            <span class="box_title bold_txt">Social Determinants of Health (SDOH)</span>
+                            <div id="SDoH"><div class="sdoh-text">The patient is <strong>Severely isolated</strong>, with limited social support, and often relies on others for assistance, which may be contributing to his depressive symptoms. He also experiences <strong>Financial Strain</strong>, which is impacting his mental health and ability to access prescribed medications, occasionally missing doses due to cost or availability. Additionally, the patient's chief complaint is <strong>pain</strong> due to congestive heart failure, affecting his daily activities, and he has <strong>stage 3 pressure ulcers</strong>, requiring ongoing care and monitoring. A multidisciplinary approach is necessary to address his physical symptoms, particularly pain and wound care, as well as his mental health needs, which are exacerbated by his physical condition and financial stress.</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Speech Explainability Section -->
+            <div class="container">
+                <div class="vertical_box">
+                    <div class="banner">Speech Explainability <span class="expand-icon">▼</span></div>
+                    <div class="collapsible-content">
+                        <!-- Linguistic Module -->
+                        <div class="linguistic-module">
+                            <div class="child-banner">
+                                Linguistic Module
+                                <span class="expand-icon">▼</span>
+                            </div>
+                            <div class="child-content">
+                                <div class="info_box">
+                                    <!-- Transcription Subsection -->
+                                    <div class="module-subsection">
+                                        <div class="module-subsection-content" id="transcription">
+                                            
+    <br>
+    <!-- <hr style="height: 1px; background-color: #e6f2f4; border: none; margin-top: 18px; margin-bottom: 18px; border-top: 1px dashed #ccc;""> -->
+    <div align="center" style="margin-top: -35px;"><div style="display: inline-block; background: #e6f2f4; padding: 5px; color: #999; font-family: monospace"></div>
+    </div>
+     <div align='center' style='background: rgba(230.0, 242.0, 244.0, 1.0); padding-bottom:25px; font-family: Arial; color: rgb(0,0,0);'>
+                <div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.023</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_0'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.3142008318478907); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_0').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_0').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_0').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_0').style.opacity = 0;"
+        > </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.033</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_1'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.44820756585462457); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_1').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_1').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_1').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_1').style.opacity = 0;"
+        >up </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.041</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_2'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.5664488017429193); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_2').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_2').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_2').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_2').style.opacity = 0;"
+        >on </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.052</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_3'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.7241037829273124); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_3').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_3').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_3').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_3').style.opacity = 0;"
+        >this </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.069</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_4'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.9448207565854626); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_4').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_4').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_4').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_4').style.opacity = 0;"
+        >tip </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.018</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_5'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.23537334125569415); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_5').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_5').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_5').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_5').style.opacity = 0;"
+        >la</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.024</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_6'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.3299663299663301); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_6').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_6').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_6').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_6').style.opacity = 0;"
+        >dder</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_7'
+            style='display: inline; background: rgba(177.47843137254833, 120.04313725490039, 215.51372549019572, 0.0); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_7').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_7').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_7').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_7').style.opacity = 0;"
+        >, </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.024</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_8'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.3220835809071103); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_8').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_8').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_8').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_8').style.opacity = 0;"
+        >and </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.018 / 3</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_9'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.25113883937413345); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_9').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_9').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_9').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_9').style.opacity = 0;"
+        >she's </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.005</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_10'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.06195286195286207); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_10').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_10').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_10').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_10').style.opacity = 0;"
+        >asking </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.004</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_11'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.04618736383442265); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_11').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_11').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_11').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_11').style.opacity = 0;"
+        >him </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.042 / 2</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_12'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.5822142998613588); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_12').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_12').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_12').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_12').style.opacity = 0;"
+        >to bring </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.001 / 4</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_13'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.00677361853832443); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_13').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_13').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_13').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_13').style.opacity = 0;"
+        >some of this down </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.004</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_14'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.05407011289364243); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_14').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_14').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_14').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_14').style.opacity = 0;"
+        >or </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.002 / 3</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_15'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.030421865715983164); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_15').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_15').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_15').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_15').style.opacity = 0;"
+        >whatever it was</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_16'
+            style='display: inline; background: rgba(177.47843137254833, 120.04313725490039, 215.51372549019572, 0.0); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_16').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_16').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_16').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_16').style.opacity = 0;"
+        >, </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.019 / 2</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_17'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.2590215884333532); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_17').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_17').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_17').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_17').style.opacity = 0;"
+        >a jar </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.014</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_18'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.1959595959595959); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_18').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_18').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_18').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_18').style.opacity = 0;"
+        >or </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.024 / 3</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_19'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.3299663299663301); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_19').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_19').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_19').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_19').style.opacity = 0;"
+        >whatever it is</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_20'
+            style='display: inline; background: rgba(177.47843137254833, 120.04313725490039, 215.51372549019572, 0.0); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_20').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_20').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_20').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_20').style.opacity = 0;"
+        >, </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.051 / 2</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_21'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.7083382848088731); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_21').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_21').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_21').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_21').style.opacity = 0;"
+        >so it </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.035 / 3</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_22'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.48762131115072294); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_22').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_22').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_22').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_22').style.opacity = 0;"
+        >doesn't </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.033</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_23'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.44820756585462457); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_23').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_23').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_23').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_23').style.opacity = 0;"
+        >break</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_24'
+            style='display: inline; background: rgba(177.47843137254833, 120.04313725490039, 215.51372549019572, 0.0); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_24').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_24').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_24').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_24').style.opacity = 0;"
+        >. </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.023</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_25'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.32208358090711037); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_25').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_25').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_25').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_25').style.opacity = 0;"
+        >There</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.019</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_26'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.2511388393741335); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_26').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_26').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_26').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_26').style.opacity = 0;"
+        >'</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.032</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_27'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.44820756585462457); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_27').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_27').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_27').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_27').style.opacity = 0;"
+        >s </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.048 / 4</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_28'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.6610417904535549); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_28').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_28').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_28').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_28').style.opacity = 0;"
+        >a mother over here</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_29'
+            style='display: inline; background: rgba(177.47843137254833, 120.04313725490039, 215.51372549019572, 0.0); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_29').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_29').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_29').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_29').style.opacity = 0;"
+        >. </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.008 / 2</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_30'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.10924935630817992); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_30').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_30').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_30').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_30').style.opacity = 0;"
+        >She'</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.012</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_31'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.15654585066349747); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_31').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_31').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_31').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_31').style.opacity = 0;"
+        >s </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.055 / 2</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_32'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.755634779164191); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_32').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_32').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_32').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_32').style.opacity = 0;"
+        >watching them</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_33'
+            style='display: inline; background: rgba(177.47843137254833, 120.04313725490039, 215.51372549019572, 0.0); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_33').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_33').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_33').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_33').style.opacity = 0;"
+        >. </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.016 / 4</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_34'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.22749059219647463); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_34').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_34').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_34').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_34').style.opacity = 0;"
+        >She has that break </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.042 / 3</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_35'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.5822142998613588); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_35').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_35').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_35').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_35').style.opacity = 0;"
+        >in her hand</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_36'
+            style='display: inline; background: rgba(177.47843137254833, 120.04313725490039, 215.51372549019572, 0.0); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_36').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_36').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_36').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_36').style.opacity = 0;"
+        >, </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.014 / 4</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_37'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.1959595959595959); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_37').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_37').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_37').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_37').style.opacity = 0;"
+        >and it looks like </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.01 / 3</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_38'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.13289760348583876); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_38').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_38').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_38').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_38').style.opacity = 0;"
+        >it's </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.017 / 2</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_39'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.22749059219647463); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_39').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_39').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_39').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_39').style.opacity = 0;"
+        >a very </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.024 / 2</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_40'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.3299663299663299); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_40').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_40').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_40').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_40').style.opacity = 0;"
+        >strong break</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_41'
+            style='display: inline; background: rgba(177.47843137254833, 120.04313725490039, 215.51372549019572, 0.0); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_41').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_41').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_41').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_41').style.opacity = 0;"
+        >. </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.011 / 5</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_42'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.14866310160427798); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_42').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_42').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_42').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_42').style.opacity = 0;"
+        >She's looking real </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.009 / 4</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_43'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.12501485442661905); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_43').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_43').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_43').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_43').style.opacity = 0;"
+        >good at it, </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.003 / 3</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_44'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.03830461477520309); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_44').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_44').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_44').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_44').style.opacity = 0;"
+        >a jar or </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>-0.012</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_45'
+            style='display: inline; background: rgba(230.0, 242.0, 244.0, 0.16442859972271748); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_45').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_45').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_45').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_45').style.opacity = 0;"
+        >whatever</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_46'
+            style='display: inline; background: rgba(177.47843137254833, 120.04313725490039, 215.51372549019572, 0.0); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_46').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_46').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_46').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_46').style.opacity = 0;"
+        >. </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.019 / 3</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_47'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.2590215884333532); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_47').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_47').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_47').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_47').style.opacity = 0;"
+        >She's </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.022 / 3</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_48'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.29843533372945136); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_48').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_48').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_48').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_48').style.opacity = 0;"
+        >touching, </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.05 / 4</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_49'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.6846900376312143); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_49').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_49').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_49').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_49').style.opacity = 0;"
+        >giving a little touch </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.028 / 4</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_50'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.3851455733808676); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_50').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_50').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_50').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_50').style.opacity = 0;"
+        >of her mouth, </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.018 / 2</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_51'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.24325609031491383); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_51').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_51').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_51').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_51').style.opacity = 0;"
+        >all of </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.023 / 2</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_52'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.3142008318478907); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_52').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_52').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_52').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_52').style.opacity = 0;"
+        >that stuff </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.022 / 3</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_53'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.29843533372945136); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_53').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_53').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_53').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_53').style.opacity = 0;"
+        >that's </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.046 / 2</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_54'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.6295107942166767); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_54').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_54').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_54').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_54').style.opacity = 0;"
+        >there. </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.028 / 4</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_55'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.3851455733808676); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_55').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_55').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_55').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_55').style.opacity = 0;"
+        >And it looks like </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.016 / 3</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_56'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.219607843137255); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_56').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_56').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_56').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_56').style.opacity = 0;"
+        >he's </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.071 / 4</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_57'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 0.9842345018815607); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_57').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_57').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_57').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_57').style.opacity = 0;"
+        >going to bring some </div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.073 / 4</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_58'
+            style='display: inline; background: rgba(171.0, 105.0, 212.0, 1.0); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_58').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_58').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_58').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_58').style.opacity = 0;"
+        >of that down,</div></div><div style='display: inline; text-align: center;'
+    ><div style='display: none; color: #999; padding-top: 0px; font-size: 12px;'>0.0</div
+        ><div id='_tp_murtrvpfibzbeicexean_ind_59'
+            style='display: inline; background: rgba(177.47843137254833, 120.04313725490039, 215.51372549019572, 0.0); border-radius: 3px; padding: 0px'
+            onclick="
+            if (this.previousSibling.style.display == 'none') {
+                this.previousSibling.style.display = 'block';
+                this.parentNode.style.display = 'inline-block';
+            } else {
+                this.previousSibling.style.display = 'none';
+                this.parentNode.style.display = 'inline';
+            }"
+            onmouseover="document.getElementById('_fb_murtrvpfibzbeicexean_ind_59').style.opacity = 1; document.getElementById('_fs_murtrvpfibzbeicexean_ind_59').style.opacity = 1;"
+            onmouseout="document.getElementById('_fb_murtrvpfibzbeicexean_ind_59').style.opacity = 0; document.getElementById('_fs_murtrvpfibzbeicexean_ind_59').style.opacity = 0;"
+        ></div></div></div></div>
+                                        </div>
+                                    </div>
+                                    <!-- Linguistic Interpretation Subsection -->
+                                    <div class="module-subsection">
+
+                                        <div class="module-subsection-content signif_items" id="ling_interpret">
+                                            <div class="signif_item1"><span class="bullet_point1"></span><b style="color:#1E3658; white-space:nowrap">Syntactic Complexity:</b> The speaker's sentence structure is relatively simple, with a lack of complex grammar or varied sentence lengths, as seen in the text: "up on this tip ladder, and she's asking him to bring some of this down or whatever it was, a jar or whatever it is".</div>
+                                            <div class="signif_item1"><span class="bullet_point1"></span><b style="color:#1E3658; white-space:nowrap">Semantic Coherence:</b> The speaker's description is somewhat disorganized, with vague references ("it," "that break") and unclear meaning ("all of that stuff that's there"), as seen in the text: "She's looking real good at it, a jar or whatever. She's touching, giving a little touch of her mouth, all of that stuff that's there".</div>
+                                            <div class="signif_item1"><span class="bullet_point1"></span><b style="color:#1E3658; white-space:nowrap">Difficulty with Spatial Reasoning and Visualization:</b> The speaker struggles to describe the scene, using vague spatial references ("up on this tip ladder," "over here"), as seen in the text: "up on this tip ladder, and she's asking him to bring some of this down or whatever it was".</div>
+                                            <div class="signif_item1"><span class="bullet_point1"></span><b style="color:#1E3658; white-space:nowrap">Impaired Executive Function:</b> The speaker's speech is somewhat disorganized, with incomplete ideas ("so it doesn't break") and abrupt topic shifts ("And it looks like he's going to bring some of that down"), as seen in the text: "so it doesn't break. There's a mother over here. She's watching them".</div>
+                                            <div class="signif_item border_top"><b style="color:#1E3658">The speaker is likely cognitively impaired.</b></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+
+                        <!-- Acoustic Module -->
+                        <div class="acoustic-module">
+                            <div class="child-banner">
+                                Acoustic Module
+                                <span class="expand-icon">▼</span>
+                            </div>
+                            <div class="child-content">
+                                <div class="module-subsection">
+                                    <div class="module-subsection-content vertical_box">
+                                    <div class="image-block waveform">
+                                        <img src="assets/images/skht_saliency.png">
+                                        <div class=" signif_items acoustic_iterpretation">
+                                            <div class="signif_item">  <span class="bullet_point"></span>  The voice was almost stable (standard deviation of Shimmer was relatively low).</div>
+                                        </div>
+                                    </div>
+                                    <div class="image-block spectrogram">
+                                        <img src="assets/images/skht_spectrogram.png">
+                                        <div class=" signif_items acoustic_iterpretation">
+                                            <div class="signif_item">  <span class="bullet_point"></span>  Several pauses (e.g., pauses before nouns) were detected.</div><div class="signif_item">  <span class="bullet_point"></span>  Moderate energy level were observed in the voice (see Spectrogram highlighted in green).</div><div class="signif_item">  <span class="bullet_point"></span>  Control over vocal folds was limited, with slightly reduced pitch variation (see F0 curve).</div><div class="signif_item">  <span class="bullet_point"></span>  Tongue–lip coordination for phoneme and syllable production was natural.</div>
+                                        </div>
+                                    </div>
+                                    <div class="image-block entropy">
+                                        <img src="assets/images/skht_entropy.png">
+                                        <div class="signif_items acoustic_iterpretation">
+                                            <div class="signif_item">  <span class="bullet_point"></span>  Speech was rhythmic, with no flat or monotonous segments (see Entropy curve)</div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Consideration Section -->
+            <div class="container consideration-section">
+                <div class="vertical_box">
+                    <div class="banner">Consideration</div>
+                    <div class="footer">
+                      <p>
+                            Please be advised that the sensitivity of this system is not 100%. A more comprehensive
+                            evaluation should include the individual's mediacal history and additional cognitive assessments.
+                      </p>
+                      <div class="info_box border_full">
+                          <div>
+                              To reduce the risk of cognitive status, evidence-based studies suggested:
+                              <div><span class="bullet_point"></span>Having regular excercise</div>
+                              <div><span class="bullet_point"></span>Connecting with familty/community</div>
+                              <div><span class="bullet_point"></span>Limiting alcohol intake</div>
+                          </div>
+                      </div>
+                      <img src="assets/images/decoration.png" alt="Decoration" class="right-image">
+                    </div>
+                </div>
+            </div>
+
+            <script>
+
+                // Wait a moment for elements to exist
+                setTimeout(() => {
+                  const btn = document.querySelector('.pie_chart_btn');
+                  const info = document.querySelector('.pie_chart_info');
+
+                  btn.addEventListener('click', () => {
+                    if (info.style.display === 'none') {
+                      info.style.display = 'block';
+                      btn.textContent = '(Less Info)';
+                    } else {
+                      info.style.display = 'none';
+                      btn.textContent = '(More Info)';
+                    }
+                  });
+                }, 500); // Small delay to ensure DOM is ready
+                document.querySelectorAll('.banner').forEach(function(banner) {
+                    const expandIcon = banner.querySelector('.expand-icon');
+                    if (!expandIcon) return;
+
+                    const content = banner.nextElementSibling;
+
+                    // Initialize as collapsed
+                    content.classList.remove('expanded');
+                    expandIcon.textContent = '▼';
+
+                    banner.addEventListener('click', function() {
+                        const isExpanded = content.classList.toggle('expanded');
+                        expandIcon.textContent = isExpanded ? '▲' : '▼';
+                    });
+                });
+
+                // Child expandable sections
+                document.querySelectorAll('.child-banner').forEach(function(banner) {
+                    const icon = banner.querySelector('.expand-icon');
+                    const content = banner.nextElementSibling;
+
+                    // Initialize as collapsed
+                    content.classList.remove('expanded');
+                    icon.textContent = '▼';
+
+                    banner.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const isExpanded = content.classList.toggle('expanded');
+                        icon.textContent = isExpanded ? '▲' : '▼';
+                    });
+                });
+            </script>
+        </body>
+        </html>
+
+    

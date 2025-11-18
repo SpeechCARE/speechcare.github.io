@@ -1,0 +1,532 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #E5F1F3;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #1E3658;
+    padding: 70px 0 20px 0;
+}
+
+/* Layout Components */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 20px;
+}
+
+.vertical_box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+
+}
+
+.horizontal_box {
+    display: flex;
+    width: 100%;
+    gap: 5rem;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* Borders */
+.border_bottom {
+    border-bottom: 2px solid #1E3658;
+}
+
+.border_full {
+    border: 2px solid #1E3658;
+    border-radius: 4px;
+}
+
+.border_top {
+   border-top: 2px solid #1E3658;
+}
+
+/* Typography */
+.title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #1E3658;
+    margin-bottom: 10px;
+}
+
+.bold_txt {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+
+.banner {
+    width: 100%;
+    height: 45px;
+    background-color: #1E3658;
+    color: white;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 4px 4px 0 0;
+}
+.profile_row{
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 2rem;
+}
+
+.sig_factor_row{
+    align-items: center;
+    flex-wrap: nowrap;
+    margin-top: 2rem;
+}
+
+.patient_profile {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex: 1;
+}
+
+.patient_image img {
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.patient_info {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    font-size: 1.2rem;
+    color: #1E3658;
+}
+
+.info_line {
+    font-size: 1.2rem;
+    padding:0;
+    margin:0;
+}
+
+.bold_txt {
+    font-weight: bold;
+    margin-right: 6px;
+}
+
+
+.system_outcome_box {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+
+
+}
+
+.system_outcome_box .section_header{
+  margin-bottom:1.5rem;
+  border-bottom: 2px solid #7fa37f;
+  width: 190px;
+}
+
+
+.outcome_content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 2rem;
+}
+
+.model_info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    white-space: nowrap;
+    flex: 1;
+    font-size: 1.2rem;
+}
+
+
+
+.pie_chart img {
+    width: 260px;
+    height: 260px;
+}
+
+.pie_chart {
+   display: flex;
+   flex-direction: column;
+   gap: 2px;
+    align-items: center;
+    justify-content: center;
+}
+
+.pie_chart_title{
+  font-size: 0.9rem;
+  font-weight: 200;
+
+}
+
+.pie_chart_info {
+    display: none;
+    transition: opacity 0.5s ease-in-out; /* Smooth fade-in effect */
+    font-size: 0.9rem;
+    margin-top:1rem;
+}
+
+
+.pie_chart_btn {
+    color: #7fa37f;
+    font-weight: bold;
+    font-size:0.9rem;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.pie_chart_btn:hover {
+    text-decoration: underline;
+}
+
+/* Right Side Layout */
+.right_side {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+
+
+/* Section Titles */
+.section_header {
+    font-size: 1.4rem;
+    color: #1E3658;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* System Outcome */
+.system_info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.2rem;
+}
+
+/* Modality Contribution */
+.modality_contrib {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.signif_factors {
+    flex: 1;
+}
+
+.accent_color{
+
+    color:#350a29 !important;
+}
+
+.signif_items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.signif_item {
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.4;
+}
+
+.bullet_point {
+    display: inline-block;
+    width: 8px !important;
+    height: 8px !important;
+    background-color: #1E3658;
+    border-radius: 50%;
+    margin-right: 8px;
+    margin-top: 7px;
+    flex-shrink: 0;
+}
+
+.signif_item1 {
+  position: relative;
+  padding-left: 18px;   /* space for the bullet */
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.bullet_point1 {
+  position: absolute;
+  left: 0;
+  top: 12px;             /* adjust to vertically align bullet */
+  width: 8px;
+  height: 8px;
+  background-color: #1E3658;
+  border-radius: 50%;
+}
+
+/* Audio Box */
+.audio_box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Info Box */
+.info_box {
+    position: relative;
+    padding: 20px;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.box_title {
+    position: absolute;
+    top: -12px;
+    left: 15px;
+    color: #1E3658;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background-color: #E5F1F3;
+    padding: 0 8px;
+}
+
+.acoustic_iterpretation {
+    margin: 1rem;
+
+}
+
+/* Expandable Content */
+.collapsible-content {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.collapsible-content.expanded {
+    max-height: 2000px;
+    width: 100%;
+}
+
+.expand-icon {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+/* Links */
+.more_info a {
+    color: #1E3658;
+    text-decoration: none;
+    font-style: italic;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.more_info a:hover {
+    text-decoration: underline;
+}
+
+/* Consideration Section */
+.consideration p {
+    padding: 15px 0;
+    font-weight: 600;
+}
+.consideration-section {
+    position: relative; /* Enables absolute positioning inside it */
+}
+
+.consideration-section.banner{
+  margin-bottom:2rem;
+}
+
+.right-image {
+    position:absolute;
+    bottom:0;
+    right:0;
+    width: 400px;
+    height: auto;
+    opacity: 0.5; /* controls transparency */
+    pointer-events: none; /* makes sure it doesn’t block clicks */
+    z-index:-1;
+    transform: translateY(20%)
+
+}
+
+.footer{
+  margin-top:2rem;
+}
+
+.footer > *{
+  margin-top:1.2rem;
+}
+
+.footer> p{
+  width: 65% !important;
+}
+.footer > .border_full{
+  width: 65%!important;
+}
+
+/* Child expandable sections */
+.child-banner {
+    width: 100%;
+    height: 40px;
+    background-color: #7fa37f;
+    color: white;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    cursor: pointer;
+    user-select: none;
+    margin-top: 15px;
+    border-radius: 4px;
+}
+
+.child-content {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.child-content.expanded {
+    max-height: 2000px;
+}
+
+/* Module specific styles */
+.module-subsection {
+
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 2px solid #1E3658;
+    border-radius: 4px;
+}
+
+
+.module-subsection-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #1E3658;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Audio player styling */
+audio {
+    width: 100%;
+    max-width: 400px;
+}
+
+.module-subsection-content .signif_items .signif_item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.module-subsection-content .bullet_point {
+    display: inline-block;
+    min-width: 6px;  /* Reduced from 8px */
+    height: 6px;     /* Reduced from 8px */
+    background-color: #1E3658;
+    border-radius: 50%;
+    margin-right: 8px;
+    margin-top: 7px;  /* Adjusted for better vertical alignment */
+    flex-shrink: 0;   /* Prevents bullet from shrinking */
+}
+
+.module-subsection-content.vertical_box {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.image-block {
+    width: 100%;
+    position: relative;
+}
+
+.image-block img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* Subtitles */
+.subtitle {
+    background-color: white;
+    margin: 0;
+    padding: 6px 10px;
+    text-align: center;
+    font-size: 1.8 rem;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid #ccc;
+    color: #1E3658;
+}
+.category-header {
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+    color:#004d0c;
+}
+.item-key {
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+/* Sticky Back Button */
+.sticky-back {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #1E3658;
+    color: white;
+    padding: 10px 20px;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.back-button {
+    background-color: #7fa37f;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.back-button:hover {
+    background-color: #6a8f6a;
+}
