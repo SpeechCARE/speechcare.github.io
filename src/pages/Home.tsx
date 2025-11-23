@@ -2,6 +2,9 @@ import { ArrowRight, Brain, Activity, Database } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import heroBackground from "@/assets/hero-background.jpg";
+import aiCardBg from "@/assets/ai-card-bg.jpg";
+import healthcareCardBg from "@/assets/healthcare-card-bg.jpg";
+import dataCardBg from "@/assets/data-card-bg.jpg";
 
 const Home = () => {
   const highlights = [
@@ -9,16 +12,19 @@ const Home = () => {
       icon: Brain,
       title: "AI & Deep Learning",
       description: "Leveraging cutting-edge AI technologies to solve complex medical challenges.",
+      backgroundImage: aiCardBg,
     },
     {
       icon: Activity,
       title: "Healthcare Innovation",
       description: "Transforming patient care through intelligent medical informatics solutions.",
+      backgroundImage: healthcareCardBg,
     },
     {
       icon: Database,
       title: "Data-Driven Research",
       description: "Building robust models from comprehensive healthcare datasets.",
+      backgroundImage: dataCardBg,
     },
   ];
 
@@ -65,14 +71,21 @@ const Home = () => {
             {highlights.map((item, index) => (
               <div
                 key={index}
-                className="bg-card rounded-xl p-8 shadow-card hover:shadow-hover transition-all duration-300 hover:-translate-y-1 animate-fade-in"
+                className="relative rounded-xl p-8 shadow-card hover:shadow-hover transition-all duration-300 hover:-translate-y-1 animate-fade-in overflow-hidden"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="w-14 h-14 rounded-lg bg-gradient-primary flex items-center justify-center mb-6">
-                  <item.icon className="h-7 w-7 text-primary-foreground" />
+                <div 
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{ backgroundImage: `url(${item.backgroundImage})` }}
+                />
+                <div className="absolute inset-0 bg-card/90 backdrop-blur-sm" />
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-lg bg-gradient-primary flex items-center justify-center mb-6">
+                    <item.icon className="h-7 w-7 text-primary-foreground" />
+                  </div>
+                  <h3 className="text-xl font-heading font-semibold mb-3">{item.title}</h3>
+                  <p className="text-muted-foreground">{item.description}</p>
                 </div>
-                <h3 className="text-xl font-heading font-semibold mb-3">{item.title}</h3>
-                <p className="text-muted-foreground">{item.description}</p>
               </div>
             ))}
           </div>
