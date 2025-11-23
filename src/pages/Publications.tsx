@@ -1,52 +1,35 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ExternalLink } from "lucide-react";
 import { useState } from "react";
+import publicationsData from "@/data/publications.json";
 
 const Publications = () => {
-  const [openItems, setOpenItems] = useState<number[]>([]);
+  const [openItems, setOpenItems] = useState<string[]>([]);
 
-  const toggleItem = (index: number) => {
+  const toggleItem = (key: string) => {
     setOpenItems((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+      prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]
     );
   };
 
-  const publications = [
-    {
-      title: "Deep Learning Approaches for Early Alzheimer's Detection from Speech Patterns",
-      authors: "Smith, J., Johnson, A., & Williams, B.",
-      venue: "Journal of Medical Informatics",
-      year: 2024,
-      type: "Journal Article",
-      abstract: "This study presents novel deep learning architectures for detecting early signs of Alzheimer's disease through analysis of speech patterns. Our model achieves 92% accuracy in identifying subtle linguistic and acoustic markers associated with early-stage cognitive decline.",
-    },
-    {
-      title: "Multi-Modal Fusion for Improved Medical Image Diagnosis",
-      authors: "Johnson, A., Smith, J., & Davis, M.",
-      venue: "International Conference on Medical AI",
-      year: 2024,
-      type: "Conference Paper",
-      abstract: "We propose a novel multi-modal fusion framework that combines CT, MRI, and PET scan data to enhance diagnostic accuracy. Our approach demonstrates significant improvements over single-modality methods across multiple disease categories.",
-    },
-    {
-      title: "Attention-Based Models for Clinical Note Generation",
-      authors: "Williams, B., & Chen, L.",
-      venue: "arXiv preprint",
-      year: 2024,
-      type: "Preprint",
-      abstract: "This work introduces an attention-based transformer model for automated clinical note generation from patient-physician conversations. The model reduces documentation time while maintaining clinical accuracy and completeness.",
-    },
-    {
-      title: "Predictive Analytics for ICU Patient Outcomes Using EHR Data",
-      authors: "Davis, M., Johnson, A., & Lee, K.",
-      venue: "Journal of Healthcare Technology",
-      year: 2023,
-      type: "Journal Article",
-      abstract: "We develop machine learning models that leverage electronic health record data to predict ICU patient outcomes with high precision. Our approach identifies key risk factors and provides actionable insights for clinical decision-making.",
-    },
-  ];
+  // Sort function for reverse chronological order
+  const sortByDate = (a: typeof publicationsData[0], b: typeof publicationsData[0]) => {
+    if (a.year !== b.year) {
+      return b.year - a.year; // Newer year first
+    }
+    return (b.month || 0) - (a.month || 0); // If same year, newer month first
+  };
+
+  // Separate preprints from other publications
+  const preprints = [...publicationsData]
+    .filter((pub) => pub.type === "Preprint")
+    .sort(sortByDate);
+  
+  const otherPublications = [...publicationsData]
+    .filter((pub) => pub.type !== "Preprint")
+    .sort(sortByDate);
 
   return (
     <div className="min-h-screen py-20">
@@ -59,55 +42,149 @@ const Publications = () => {
             Our latest research papers, preprints, and conference proceedings in medical informatics and AI.
           </p>
 
-          <div className="space-y-4">
-            {publications.map((pub, index) => (
-              <Collapsible
-                key={index}
-                open={openItems.includes(index)}
-                onOpenChange={() => toggleItem(index)}
-              >
-                <Card
-                  className="shadow-card hover:shadow-hover transition-all duration-300 animate-fade-in"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <CollapsibleTrigger className="w-full text-left">
-                    <CardHeader>
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-2">
-                            <Badge variant="outline" className="text-xs">
-                              {pub.type}
-                            </Badge>
-                            <Badge variant="secondary" className="text-xs">
-                              {pub.year}
-                            </Badge>
-                          </div>
-                          <CardTitle className="text-xl font-heading mb-2">{pub.title}</CardTitle>
-                          <CardDescription className="text-sm">
-                            {pub.authors}
-                          </CardDescription>
-                          <p className="text-sm text-muted-foreground mt-1 italic">{pub.venue}</p>
-                        </div>
-                        <ChevronDown
-                          className={`h-5 w-5 text-muted-foreground transition-transform ${
-                            openItems.includes(index) ? "rotate-180" : ""
-                          }`}
-                        />
-                      </div>
-                    </CardHeader>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <CardContent>
-                      <div className="pt-4 border-t border-border">
-                        <h4 className="font-semibold text-sm mb-2">Abstract</h4>
-                        <p className="text-sm text-muted-foreground">{pub.abstract}</p>
-                      </div>
-                    </CardContent>
-                  </CollapsibleContent>
-                </Card>
-              </Collapsible>
-            ))}
-          </div>
+          {/* Preprints Section */}
+          {preprints.length > 0 && (
+            <div className="mb-12">
+              <h2 className="text-2xl md:text-3xl font-heading font-semibold mb-6">Preprints</h2>
+              <div className="space-y-4">
+                {preprints.map((pub, index) => {
+                  const itemKey = `preprint-${pub.title}-${pub.year}`;
+                  return (
+                    <Collapsible
+                      key={itemKey}
+                      open={openItems.includes(itemKey)}
+                      onOpenChange={() => toggleItem(itemKey)}
+                    >
+                      <Card
+                        className="shadow-card hover:shadow-hover transition-all duration-300 animate-fade-in"
+                        style={{ animationDelay: `${index * 0.1}s` }}
+                      >
+                        <CollapsibleTrigger className="w-full text-left">
+                          <CardHeader>
+                            <div className="flex items-start justify-between gap-4">
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-2">
+                                  <Badge variant="outline" className="text-xs">
+                                    {pub.type}
+                                  </Badge>
+                                  <Badge variant="secondary" className="text-xs">
+                                    {pub.month ? new Date(pub.year, pub.month - 1).toLocaleString('default', { month: 'long' }) : ''} {pub.year}
+                                  </Badge>
+                                </div>
+                                <CardTitle className="text-xl font-heading mb-2">{pub.title}</CardTitle>
+                                <CardDescription className="text-sm">
+                                  {pub.authors}
+                                </CardDescription>
+                                <p className="text-sm text-muted-foreground mt-1 italic">{pub.venue}</p>
+                              </div>
+                              <ChevronDown
+                                className={`h-5 w-5 text-muted-foreground transition-transform ${
+                                  openItems.includes(itemKey) ? "rotate-180" : ""
+                                }`}
+                              />
+                            </div>
+                          </CardHeader>
+                        </CollapsibleTrigger>
+                        <CollapsibleContent>
+                          <CardContent>
+                            <div className="pt-4 border-t border-border">
+                              <h4 className="font-semibold text-sm mb-2">Abstract</h4>
+                              <p className="text-sm text-muted-foreground">{pub.abstract}</p>
+                            </div>
+                            {pub.link && (
+                              <div className="mb-4">
+                                <a
+                                  href={pub.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+                                >
+                                  View Publication
+                                  <ExternalLink className="h-3 w-3" />
+                                </a>
+                              </div>
+                            )}
+                          </CardContent>
+                        </CollapsibleContent>
+                      </Card>
+                    </Collapsible>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Other Publications Section */}
+          {otherPublications.length > 0 && (
+            <div>
+              <h2 className="text-2xl md:text-3xl font-heading font-semibold mb-6">Publications</h2>
+              <div className="space-y-4">
+                {otherPublications.map((pub, index) => {
+                  const itemKey = `pub-${pub.title}-${pub.year}`;
+                  return (
+                    <Collapsible
+                      key={itemKey}
+                      open={openItems.includes(itemKey)}
+                      onOpenChange={() => toggleItem(itemKey)}
+                    >
+                      <Card
+                        className="shadow-card hover:shadow-hover transition-all duration-300 animate-fade-in"
+                        style={{ animationDelay: `${index * 0.1}s` }}
+                      >
+                        <CollapsibleTrigger className="w-full text-left">
+                          <CardHeader>
+                            <div className="flex items-start justify-between gap-4">
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-2">
+                                  <Badge variant="outline" className="text-xs">
+                                    {pub.type}
+                                  </Badge>
+                                  <Badge variant="secondary" className="text-xs">
+                                    {pub.month ? new Date(pub.year, pub.month - 1).toLocaleString('default', { month: 'long' }) : ''} {pub.year}
+                                  </Badge>
+                                </div>
+                                <CardTitle className="text-xl font-heading mb-2">{pub.title}</CardTitle>
+                                <CardDescription className="text-sm">
+                                  {pub.authors}
+                                </CardDescription>
+                                <p className="text-sm text-muted-foreground mt-1 italic">{pub.venue}</p>
+                              </div>
+                              <ChevronDown
+                                className={`h-5 w-5 text-muted-foreground transition-transform ${
+                                  openItems.includes(itemKey) ? "rotate-180" : ""
+                                }`}
+                              />
+                            </div>
+                          </CardHeader>
+                        </CollapsibleTrigger>
+                        <CollapsibleContent>
+                          <CardContent>
+                            <div className="pt-4 border-t border-border">
+                              <h4 className="font-semibold text-sm mb-2">Abstract</h4>
+                              <p className="text-sm text-muted-foreground">{pub.abstract}</p>
+                            </div>
+                            {pub.link && (
+                              <div className="mb-4">
+                                <a
+                                  href={pub.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+                                >
+                                  View Publication
+                                  <ExternalLink className="h-3 w-3" />
+                                </a>
+                              </div>
+                            )}
+                          </CardContent>
+                        </CollapsibleContent>
+                      </Card>
+                    </Collapsible>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

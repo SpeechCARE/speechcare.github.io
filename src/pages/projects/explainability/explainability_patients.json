@@ -1,0 +1,499 @@
+[
+  {
+    "id": "dbxv",
+    "name": "Emily J.",
+    "condition": "ADRD",
+    "fullName": "Emily Johnson",
+    "age": 72,
+    "gender": "Female",
+    "assessmentDate": "2024-01-15",
+    "image": "/src/pages/projects/explainability/images/irxs.jpeg",
+    "pieChart": "/src/pages/projects/explainability/images/dbxv_piechart.png",
+    "systemConfidence": "94.0%",
+    "significantFactors": [
+      "The voice was almost unstable with strong evidence of flat or monotonous segments.",
+      "The speaker's speech is somewhat disorganized, with abrupt transitions between ideas.",
+      "The patient is severely isolated and often relies on neighbors for occasional transportation assistance.",
+      "The patient has been diagnosed with recent falls or high fall risk."
+    ],
+    "clinical": {
+      "physiological": [
+        { "key": "Diabetes Diagnosis", "value": "Diabetes with complications" },
+        { "key": "Congestive Heart Failure", "value": "Yes" },
+        { "key": "Recent Falls or High Fall Risk", "value": "Yes" },
+        { "key": "General Frailty Indicator", "value": "Yes" },
+        { "key": "Sleep Disturbances", "value": "Yes" }
+      ],
+      "psychological": [
+        { "key": "Mental Conditions Diagnosed", "value": "Anxiety, Depression, ADHD" }
+      ]
+    },
+    "labTests": [
+      { "key": "Interleukin-6 (IL-6)", "value": "8.2 pg/mL" },
+      { "key": "Monocyte Chemoattractant Protein-1 (MCP-1)", "value": "620 pg/mL" },
+      { "key": "Fibrinogen", "value": "460 mg/dL" },
+      { "key": "Aβ42", "value": "320 pg/mL" },
+      { "key": "NfL", "value": "13 pg/mL" },
+      { "key": "Tau", "value": "480 pg/mL" },
+      { "key": "Aβ42/Aβ40", "value": "0.035" },
+      { "key": "Apolipoprotein B (ApoB)", "value": "105 mg/dL" },
+      { "key": "Fasting Glucose", "value": "230 mg/dL" },
+      { "key": "Low-Density Lipoprotein (LDL)", "value": "186 mg/dL" },
+      { "key": "Albuminuria", "value": "35 mg/g creatinine" }
+    ],
+    "sdoh": "The patient is Severely isolated and often relies on neighbors for occasional transportation assistance, which may be contributing to feelings of loneliness. Additionally, the patient Often skips meals due to lack of food, indicating a need for nutritional support. The patient's Education Level is No formal education, which may impact their ability to manage their health effectively. The patient's chief complaint is pain due to congestive heart failure, which is affecting their ability to carry out daily activities, and they also have stage 3 pressure ulcers, which require ongoing care and monitoring. Furthermore, the patient's mental health symptoms, including anxiety, depression, and ADHD, appear to be exacerbated by their physical condition and significant financial strain.",
+    "audioUrl": "/src/pages/projects/explainability/audios/dbxv.mp3",
+    "linguistic": {
+      "transcription": "I mean, out of the jar. And he's given his little sister something. I don't know what it is. And one of the girls is washing the dishes and drying them. And the cookie jar is out there. So that's pretty nice. The little boy's up on the footstool. I mean, up on the, what do you call that stool? That's too big for a footstool. See the figure. He's up there getting a, what's he getting down? Cookie jar. See, he's getting the cookie jar down, giving it to his sister. What is she doing?",
+      "interpretations": [
+        {
+          "title": "Lexical Richness",
+          "text": "The speaker's vocabulary is restricted, as evidenced by the use of vague words (\"something\", \"what's he getting down?\"). This feature may indicate word-finding issues or lack of vocabulary diversity, contributing to the model's prediction of cognitive impairment."
+        },
+        {
+          "title": "Semantic Coherence",
+          "text": "The speaker's references are sometimes vague (\"he's given his little sister something\"), and ideas are not always clearly connected. This feature may indicate disorganized thinking or unclear meaning, contributing to the model's prediction of cognitive impairment."
+        },
+        {
+          "title": "Difficulty with Spatial Reasoning and Visualization",
+          "text": "The speaker has trouble describing the location of objects (\"the cookie jar is out there\", \"he's up there getting a...\"), which may indicate difficulty with spatial reasoning and visualization, contributing to the model's prediction of cognitive impairment."
+        },
+        {
+          "title": "Impaired Executive Function",
+          "text": "The speaker's speech is somewhat disorganized, with abrupt transitions between ideas (\"And one of the girls is washing the dishes... The little boy's up on the footstool\"). This feature may indicate poor sequencing or impaired executive function, contributing to the model's prediction of cognitive impairment."
+        }
+      ]
+    },
+    "acoustic": {
+      "waveform": {
+        "image": "/src/pages/projects/explainability/images/dbxv_saliency.png",
+        "interpretations": [
+          "The voice was almost unstable (standard deviation of Shimmer was relatively high)."
+        ]
+      },
+      "spectrogram": {
+        "image": "/src/pages/projects/explainability/images/dbxv_spectrogram.png",
+        "interpretations": [
+          "Several pauses (e.g., pauses before nouns) were detected.",
+          "Moderate energy level were observed in the voice (see Spectrogram highlighted in green).",
+          "Control over vocal folds was limited, with slightly reduced pitch variation (see F0 curve).",
+          "Tongue–lip coordination for phoneme and syllable production was limited."
+        ]
+      },
+      "entropy": {
+        "image": "/src/pages/projects/explainability/images/dbxv_entropy.png",
+        "interpretations": [
+          "Speech was non-rhythmic, with strong evidence of flat or monotonous segments (see Entropy curve)"
+        ]
+      }
+    }
+  },
+  {
+    "id": "qnvo",
+    "name": "Sofia C.",
+    "condition": "MCI",
+    "fullName": "Sofia Chen",
+    "age": 72,
+    "gender": "Female",
+    "assessmentDate": "2024-01-18",
+    "image": "/src/pages/projects/explainability/images/qnvo.jpeg",
+    "pieChart": "/src/pages/projects/explainability/images/qnvo_piechart.png",
+    "systemConfidence": "71.0%",
+    "significantFactors": [
+      "The voice was almost unstable with a relatively high standard deviation of Shimmer.",
+      "The speaker's speech is disorganized, with ideas not fully developed and a lack of clear sequencing.",
+      "The patient reports memory difficulties and experiences difficulty focusing.",
+      "The patient has been diagnosed with anxiety, depression, and PTSD."
+    ],
+    "clinical": {
+      "physiological": [
+        { "key": "Myocardial Infarction (Heart Attack)", "value": "Yes" },
+        { "key": "Congestive Heart Failure", "value": "Yes" },
+        { "key": "General Frailty Indicator", "value": "Yes" },
+        { "key": "Dyspnea Severity (Shortness of Breath)", "value": "At rest" },
+        { "key": "Recent Weight Loss", "value": "Severe (>10%)" }
+      ],
+      "psychological": [
+        { "key": "Mental Conditions Diagnosed", "value": "Anxiety, Depression, PTSD" }
+      ]
+    },
+    "labTests": [
+      { "key": "Interleukin-6 (IL-6)", "value": "5.8 pg/mL" },
+      { "key": "NfL", "value": "12 pg/mL" },
+      { "key": "Tau", "value": "350 pg/mL" },
+      { "key": "Aβ42/Aβ40", "value": "0.04" },
+      { "key": "Apolipoprotein B (ApoB)", "value": "92 mg/dL" },
+      { "key": "Systolic Blood Pressure (SBP)", "value": "166 mmHg" },
+      { "key": "Diastolic Blood Pressure (DBP)", "value": "92 mmHg" },
+      { "key": "Ankle-Brachial Index (ABI)", "value": "0.6" }
+    ],
+    "sdoh": "The patient has a history of Alcohol Use as an Alcoholic and reports a Sedentary lifestyle is not applicable, however the patient's physical activity level is Light. The patient's chief complaint is memory difficulties, which she attributes to her ongoing mental health struggles, including anxiety, depression, and PTSD. Additionally, she reports weight loss and mentions feeling \"foggy\" at times, particularly when trying to recall information, and experiences difficulty focusing.",
+    "audioUrl": "/src/pages/projects/explainability/audios/qnvo.mp3",
+    "linguistic": {
+      "transcription": "from the cookie jar and he's going to fall off the stool and the sink and the bath and the kitchen is overflowing and the mother is drying the dishes and I see the backyard through the window and what else? The cookie jar, boy and a girl and it's on the top shelf and he's going to fall off that stool and what else? The mom's going to slip on the water if she doesn't be careful. And what else do you want me to tell you? Do you want me to describe everything on that that I see? Oh, that's it, I think. She's drying the dish. Yes, I can. Okay, so the",
+      "interpretations": [
+        {
+          "title": "Disfluencies and Repetition",
+          "text": "The speaker exhibits some disfluencies, with a moderate Speech Rate and a high Consecutive Repeated Clauses Count, as seen in the repeated questions (\"what else?\", \"do you want me to describe everything on that that I see?\", \"what else do you want me to tell you?\")."
+        },
+        {
+          "title": "Difficulty with Spatial Reasoning and Visualization",
+          "text": "The speaker struggles to describe the scene, using vague references (\"the kitchen is overflowing\", \"the backyard through the window\") and having trouble with spatial relationships (\"he's going to fall off the stool\")."
+        },
+        {
+          "title": "Impaired Executive Function",
+          "text": "The speaker's speech is disorganized, with ideas not fully developed (\"the mom's going to slip on the water if she doesn't be careful\", \"she's drying the dish\") and a lack of clear sequencing."
+        },
+        {
+          "title": "Semantic Coherence",
+          "text": "The speaker's narrative is somewhat disorganized, with ideas not clearly connected (\"the cookie jar, boy and a girl and it's on the top shelf\", \"the sink and the bath\")."
+        }
+      ]
+    },
+    "acoustic": {
+      "waveform": {
+        "image": "/src/pages/projects/explainability/images/qnvo_saliency.png",
+        "interpretations": [
+          "The voice was almost unstable (standard deviation of Shimmer was relatively high)."
+        ]
+      },
+      "spectrogram": {
+        "image": "/src/pages/projects/explainability/images/qnvo_spectrogram.png",
+        "interpretations": [
+          "Few pauses (e.g., pauses before nouns) were detected.",
+          "High energy level were observed in the voice (see Spectrogram highlighted in green).",
+          "Control over vocal folds was limited, with slightly reduced pitch variation (see F0 curve).",
+          "Tongue–lip coordination for phoneme and syllable production was limited."
+        ]
+      },
+      "entropy": {
+        "image": "/src/pages/projects/explainability/images/qnvo_entropy.png",
+        "interpretations": [
+          "Speech was rhythmic, with no flat or monotonous segments (see Entropy curve)"
+        ]
+      }
+    }
+  },
+  {
+    "id": "qbce",
+    "name": "James A.",
+    "condition": "Control",
+    "fullName": "James Anderson",
+    "age": 62,
+    "gender": "Male",
+    "assessmentDate": "2024-01-20",
+    "image": "/src/pages/projects/explainability/images/qbce.jpeg",
+    "pieChart": "/src/pages/projects/explainability/images/qbce_piechart.png",
+    "systemConfidence": "71.0%",
+    "significantFactors": [
+      "The patient's voice had low energy levels.",
+      "The speaker had no significant difficulties with spatial reasoning or visualization.",
+      "The patient experiences trouble sleeping.",
+      "The patient has been diagnosed with anxiety."
+    ],
+    "clinical": {
+      "physiological": [
+        { "key": "General Frailty Indicator", "value": "Yes" },
+        { "key": "Sleep Disturbances", "value": "Yes" }
+      ],
+      "psychological": [
+        { "key": "Mental Conditions Diagnosed", "value": "Anxiety" }
+      ]
+    },
+    "labTests": [
+      { "key": "Interleukin-6 (IL-6)", "value": "6.3 pg/mL" },
+      { "key": "Monocyte Chemoattractant Protein-1 (MCP-1)", "value": "410 pg/mL" }
+    ],
+    "sdoh": "The patient's Social Determinants of Health (SDoH) items indicate that she is Mildly isolated, which may contribute to her overall sense of fatigue and discomfort. Additionally, her Inconsistent meals due to nutrition and food insecurity may be affecting her energy levels. In terms of her clinical presentation, the patient reports trouble sleeping and experiencing occasional headaches, which may be related to her underlying mild COPD/asthma and general frailty. Her symptoms have contributed to an overall sense of fatigue and discomfort, particularly in the mornings. Further evaluation of her sleep patterns and headache etiology is recommended to address these concerns.",
+    "audioUrl": "/src/pages/projects/explainability/audios/qbce.mp3",
+    "linguistic": {
+      "transcription": "And there's a picture. The mother is washing the dishes, but not very attentively, aallowing the sink to overflow onto the floor. As she is drying a dish, kids are trying to get into the cookie jar. They have managed to get into it. The boy is standing on a stool, which is in the process of falling over while he's trying to hand the cookie to his younger sister, who is reaching for it. The window is open, overlooking the garden. The wind is blowing slightly. It is sunken. It's ruffling the curtains. The boy",
+      "interpretations": [
+        {
+          "title": "Lexical Richness",
+          "text": "The speaker's vocabulary is diverse, with no significant issues with word-finding or overuse of vague words, as seen in the use of words like \"attentively\", \"overflow\", and \"ruffling\"."
+        },
+        {
+          "title": "Syntactic Complexity",
+          "text": "The speaker's sentence structure is varied and complex, with no significant simplification or grammatical errors, as seen in the sentence \"The mother is washing the dishes, but not very attentively, allowing the sink to overflow onto the floor.\""
+        },
+        {
+          "title": "Semantic Coherence",
+          "text": "The speaker's description is clear and well-organized, with no significant difficulties with referencing the visual scene or conveying meaning, as seen in the description of the children trying to get into the cookie jar and the mother's distraction."
+        },
+        {
+          "title": "Difficulty with Spatial Reasoning and Visualization",
+          "text": "The speaker accurately describes the spatial relationships between objects in the scene, such as the stool falling over and the curtains being ruffled by the wind, with no significant difficulties with spatial reasoning or visualization."
+        }
+      ]
+    },
+    "acoustic": {
+      "waveform": {
+        "image": "/src/pages/projects/explainability/images/qbce_saliency.png",
+        "interpretations": [
+          "The voice was almost stable (standard deviation of Shimmer was relatively low)."
+        ]
+      },
+      "spectrogram": {
+        "image": "/src/pages/projects/explainability/images/qbce_spectrogram.png",
+        "interpretations": [
+          "Few pauses (e.g., pauses before nouns) were detected.",
+          "Low energy level were observed in the voice (see Spectrogram highlighted in green).",
+          "Control over vocal folds was relatively acceptable, with natural pitch modulation (see F0 curve).",
+          "Tongue–lip coordination for phoneme and syllable production was natural."
+        ]
+      },
+      "entropy": {
+        "image": "/src/pages/projects/explainability/images/qbce_entropy.png",
+        "interpretations": [
+          "Speech was relatively rhythmic, with minimal flat or monotonous segments (see Entropy curve)"
+        ]
+      }
+    }
+  },
+  {
+    "id": "skht",
+    "name": "Martin J.",
+    "condition": "ADRD",
+    "fullName": "Martin Jones",
+    "age": 86,
+    "gender": "Male",
+    "assessmentDate": "2024-01-22",
+    "image": "/src/pages/projects/explainability/images/skht.jpeg",
+    "pieChart": "/src/pages/projects/explainability/images/skht_piechart.png",
+    "systemConfidence": "94.0%",
+    "significantFactors": [
+      "The voice was almost stable, but control over vocal folds was limited, with slightly reduced pitch variation.",
+      "The speaker's speech is somewhat disorganized, with incomplete ideas and abrupt topic shifts, indicating impaired executive function.",
+      "The patient is severely isolated, with limited social support, which may be contributing to his depressive symptoms and cognitive decline.",
+      "The patient has a history of recent falls or high fall risk, which is a physiological indicator of potential cognitive impairment."
+    ],
+    "clinical": {
+      "physiological": [
+        { "key": "Diabetes Diagnosis", "value": "Diabetes with complications" },
+        { "key": "Congestive Heart Failure", "value": "Yes" },
+        { "key": "Recent Falls or High Fall Risk", "value": "Yes" },
+        { "key": "General Frailty Indicator", "value": "Yes" },
+        { "key": "Sleep Disturbances", "value": "Yes" }
+      ],
+      "psychological": [
+        { "key": "Mental Conditions Diagnosed", "value": "Anxiety, Depression, ADHD" }
+      ]
+    },
+    "labTests": [
+      { "key": "Interleukin-6 (IL-6)", "value": "8.2 pg/mL" },
+      { "key": "Monocyte Chemoattractant Protein-1 (MCP-1)", "value": "620 pg/mL" },
+      { "key": "Fibrinogen", "value": "460 mg/dL" },
+      { "key": "Aβ42", "value": "320 pg/mL" },
+      { "key": "NfL", "value": "13 pg/mL" },
+      { "key": "Tau", "value": "480 pg/mL" },
+      { "key": "Aβ42/Aβ40", "value": "0.035" },
+      { "key": "Apolipoprotein B (ApoB)", "value": "105 mg/dL" },
+      { "key": "Fasting Glucose", "value": "230 mg/dL" },
+      { "key": "Low-Density Lipoprotein (LDL)", "value": "186 mg/dL" },
+      { "key": "Albuminuria", "value": "35 mg/g creatinine" }
+    ],
+    "sdoh": "The patient is Severely isolated, with limited social support, and often relies on others for assistance, which may be contributing to his depressive symptoms. He also experiences Financial Strain, which is impacting his mental health and ability to access prescribed medications, occasionally missing doses due to cost or availability. Additionally, the patient's chief complaint is pain due to congestive heart failure, affecting his daily activities, and he has stage 3 pressure ulcers, requiring ongoing care and monitoring. A multidisciplinary approach is necessary to address his physical symptoms, particularly pain and wound care, as well as his mental health needs, which are exacerbated by his physical condition and financial stress.",
+    "audioUrl": "/src/pages/projects/explainability/audios/skht.mp3",
+    "linguistic": {
+      "transcription": "up on this tip ladder, and she's asking him to bring some of this down or whatever it was, a jar or whatever it is, so it doesn't break. There's a mother over here. She's watching them. She has that break in her hand, and it looks like a very strong break. She's looking real good at it, a jar or whatever. She's touching, giving a little touch of her mouth, all of that stuff that's there. And it looks like he's going to bring some of that down,",
+      "interpretations": [
+        {
+          "title": "Syntactic Complexity",
+          "text": "The speaker's sentence structure is relatively simple, with a lack of complex grammar or varied sentence lengths, as seen in the text: \"up on this tip ladder, and she's asking him to bring some of this down or whatever it was, a jar or whatever it is\"."
+        },
+        {
+          "title": "Semantic Coherence",
+          "text": "The speaker's description is somewhat disorganized, with vague references (\"it\", \"that break\") and unclear meaning (\"all of that stuff that's there\"), as seen in the text: \"She's looking real good at it, a jar or whatever. She's touching, giving a little touch of her mouth, all of that stuff that's there\"."
+        },
+        {
+          "title": "Difficulty with Spatial Reasoning and Visualization",
+          "text": "The speaker struggles to describe the scene, using vague spatial references (\"up on this tip ladder,\" \"over here\"), as seen in the text: \"up on this tip ladder, and she's asking him to bring some of this down or whatever it was\"."
+        },
+        {
+          "title": "Impaired Executive Function",
+          "text": "The speaker's speech is somewhat disorganized, with incomplete ideas (\"so it doesn't break\") and abrupt topic shifts (\"And it looks like he's going to bring some of that down\"), as seen in the text: \"so it doesn't break. There's a mother over here. She's watching them\"."
+        }
+      ]
+    },
+    "acoustic": {
+      "waveform": {
+        "image": "/src/pages/projects/explainability/images/skht_saliency.png",
+        "interpretations": [
+          "The voice was almost stable (standard deviation of Shimmer was relatively low)."
+        ]
+      },
+      "spectrogram": {
+        "image": "/src/pages/projects/explainability/images/skht_spectrogram.png",
+        "interpretations": [
+          "Several pauses (e.g., pauses before nouns) were detected.",
+          "Moderate energy level were observed in the voice (see Spectrogram highlighted in green).",
+          "Control over vocal folds was limited, with slightly reduced pitch variation (see F0 curve).",
+          "Tongue–lip coordination for phoneme and syllable production was natural."
+        ]
+      },
+      "entropy": {
+        "image": "/src/pages/projects/explainability/images/skht_entropy.png",
+        "interpretations": [
+          "Speech was rhythmic, with no flat or monotonous segments (see Entropy curve)"
+        ]
+      }
+    }
+  },
+  {
+    "id": "yrwz",
+    "name": "Margaret L.",
+    "condition": "MCI",
+    "fullName": "Margaret Lee",
+    "age": 74,
+    "gender": "Female",
+    "assessmentDate": "2024-01-25",
+    "image": "/src/pages/projects/explainability/images/yrwz.jpeg",
+    "pieChart": "/src/pages/projects/explainability/images/yrwz_piechart.png",
+    "systemConfidence": "77.0%",
+    "significantFactors": [
+      "Speech was less rhythmic, with some evidence of flat or monotonous segments.",
+      "The speaker seems to have trouble describing the spatial relationships between objects.",
+      "The patient often requires written reminders for appointments and tasks and has mildly isolated social interactions.",
+      "The patient has mild to moderate memory problems."
+    ],
+    "clinical": {
+      "physiological": [
+        { "key": "Recent Weight Loss", "value": "Mild (3–5%)" },
+        { "key": "General Frailty Indicator", "value": "Mild" },
+        { "key": "Sleep Disturbances", "value": "Occasional insomnia" },
+        { "key": "Dyspnea Severity (Shortness of Breath)", "value": "With exertion only" }
+      ],
+      "psychological": [
+        { "key": "Depression Severity (PHQ-9 Category)", "value": "Mild (5–9)" }
+      ]
+    },
+    "labTests": [
+      { "key": "Interleukin-6 (IL-6)", "value": "4.2 pg/mL" },
+      { "key": "Fibrinogen", "value": "360 mg/dL" },
+      { "key": "NfL", "value": "19 pg/mL" },
+      { "key": "Tau", "value": "380 pg/mL" },
+      { "key": "Aβ42/Aβ40", "value": "0.045" },
+      { "key": "Apolipoprotein B (ApoB)", "value": "96 mg/dL" },
+      { "key": "Systolic Blood Pressure (SBP)", "value": "148 mmHg" },
+      { "key": "Fasting Glucose", "value": "101 mg/dL" },
+      { "key": "Ankle-Brachial Index (ABI)", "value": "0.9" }
+    ],
+    "sdoh": "The patient is a 74-year-old woman who presents with gradually progressive mild memory difficulties and occasional word-finding hesitation over the past 18 months, with no disorientation or significant personality change, however, she often requires written reminders for appointments and tasks, and her family notes subtle repetition in conversation, she also has Mildly isolated social interactions.",
+    "audioUrl": "/assets/audio/yrwz.mp3",
+    "linguistic": {
+      "transcription": "The water is overflowing. The poor kid is on a ladder that's going over. He's trying to reach something in the closet. Um, I'll make it larger. Okay, so let's see. The girl is trying to hand her, what is it saying? Cookie jar. He's trying to hand her a cookie. Okay, so he's got the cabinet open. He's on the stool. The stool is falling backwards. Mom is at the sink, washing a dish, totally unaware that the water is overflowing into the floor. Anything else that you want me to?",
+      "interpretations": [
+        {
+          "title": "Difficulty with Spatial Reasoning and Visualization",
+          "text": "The speaker seems to have trouble describing the spatial relationships between objects, such as \"The stool is falling backwards... Mom is at the sink...\". This suggests difficulties with spatial reasoning and visualization."
+        },
+        {
+          "title": "Impaired Executive Function",
+          "text": "The speaker's speech is mostly organized and on-topic, but with some attempts to provide additional information (\"Anything else that you want me to?\") and a slight jump in topics (\"Let's see...\"). This suggests some potential disorganization and self-awareness of cognitive limitations."
+        },
+        {
+          "title": "Disfluencies and Repetition",
+          "text": "The speaker uses fillers (\"um\") and repeats some phrases (\"Okay, so...\"), which may indicate some difficulty with fluent speech."
+        },
+        {
+          "title": "Semantic Coherence",
+          "text": "The speaker's description is mostly coherent, but with some vague phrases (\"He's trying to reach something in the closet\") and a low Definite Articles Ratio, which may suggest some vagueness in reference."
+        }
+      ]
+    },
+    "acoustic": {
+      "waveform": {
+        "image": "/assets/images/yrwz_saliency.png",
+        "interpretations": [
+          "The voice was almost stable (standard deviation of Shimmer was relatively low)."
+        ]
+      },
+      "spectrogram": {
+        "image": "/assets/images/yrwz_spectrogram.png",
+        "interpretations": [
+          "Few pauses (e.g., pauses before nouns) were detected.",
+          "High energy level were observed in the voice (see Spectrogram highlighted in green).",
+          "Control over vocal folds was limited, with slightly reduced pitch variation (see F0 curve).",
+          "Tongue–lip coordination for phoneme and syllable production was natural."
+        ]
+      },
+      "entropy": {
+        "image": "/assets/images/yrwz_entropy.png",
+        "interpretations": [
+          "Speech was less rhythmic, with some evidence of flat or monotonous segments (see Entropy curve)"
+        ]
+      }
+    }
+  },
+  {
+    "id": "dpmk",
+    "name": "David M.",
+    "condition": "Control",
+    "fullName": "David Martinez",
+    "age": 65,
+    "gender": "Male",
+    "assessmentDate": "2024-01-28",
+    "image": "/src/pages/projects/explainability/images/dpmk.jpeg",
+    "pieChart": "/src/pages/projects/explainability/images/dpmk_piechart.png",
+    "systemConfidence": "87.0%",
+    "significantFactors": [
+      "Low energy level was observed in the voice.",
+      "The speaker demonstrates a good vocabulary diversity, as seen in the use of various words.",
+      "The patient reports feeling energetic, sleeping well, and maintaining a balanced diet and regular exercise routine.",
+      "The patient has a Body Mass Index (BMI) of 23.7."
+    ],
+    "clinical": {
+      "physiological": []
+    },
+    "labTests": [
+      { "key": "Fibrinogen", "value": "305 mg/dL" }
+    ],
+    "sdoh": "Based on the provided SDoH items and clinical notes, here is the generated clinical report: The patient does not exhibit any concerning Social Determinants of Health (SDoH) items that match the threatening values. However, it is essential to note that the patient's overall health status is excellent, with no evidence of inflammation, insulin resistance, or organ dysfunction. The patient reports feeling energetic, sleeping well, and maintaining a balanced diet and regular exercise routine, which suggests a low risk for cognitive impairments. No imminent threats or negative points were identified in the clinical note. Note: Since none of the SDoH items matched the threatening values, there are no bolded values in the report. The tone and structure are maintained as per the guidelines, and the report is concise and clear.",
+    "audioUrl": "/assets/audio/dpmk.mp3",
+    "linguistic": {
+      "transcription": "The sink running over. The child on the stools tipping over, getting cookies out of the cupboard. Little girls reaching for the cookies. The lady's washing dishes in front of the sink. You can see the outside of the home through the window. Sidewalk appears to be setting in a kitchen. Just a couple of dishes on the counter, curtains on the windows. Little boy's wearing shorts. Lady has an apron on. The water's spilling out of the sink onto the floor.",
+      "interpretations": [
+        {
+          "title": "Lexical Richness",
+          "text": "The speaker demonstrates a good vocabulary diversity, as seen in the use of various words such as \"cupboard\", \"curtains\", and \"apron\"."
+        },
+        {
+          "title": "Semantic Coherence",
+          "text": "The text demonstrates clear and organized ideas, as evident in the logical sequence of events described, such as \"The child on the stools tipping over, getting cookies out of the cupboard\" and \"The lady's washing dishes in front of the sink\"."
+        },
+        {
+          "title": "Difficulty with Spatial Reasoning and Visualization",
+          "text": "The speaker is able to describe the spatial relationships between objects in the scene, such as \"You can see the outside of the home through the window\" and \"Sidewalk appears to be setting in a kitchen\"."
+        },
+        {
+          "title": "Impaired Executive Function",
+          "text": "The text does not exhibit disorganized or off-topic speech, and the speaker is able to sequence their ideas in a logical manner, as seen in the cohesive description of the scene."
+        }
+      ]
+    },
+    "acoustic": {
+      "waveform": {
+        "image": "/assets/images/dpmk_saliency.png",
+        "interpretations": [
+          "The voice was almost stable (standard deviation of Shimmer was relatively low)."
+        ]
+      },
+      "spectrogram": {
+        "image": "/assets/images/dpmk_spectrogram.png",
+        "interpretations": [
+          "No pauses (e.g., pauses before nouns) were detected.",
+          "Low energy level were observed in the voice (see Spectrogram highlighted in green).",
+          "Control over vocal folds was limited, with slightly reduced pitch variation (see F0 curve).",
+          "Tongue–lip coordination for phoneme and syllable production was limited."
+        ]
+      },
+      "entropy": {
+        "image": "/assets/images/dpmk_entropy.png",
+        "interpretations": [
+          "Speech was less rhythmic, with some evidence of flat or monotonous segments (see Entropy curve)"
+        ]
+      }
+    }
+  }
+]

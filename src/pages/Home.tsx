@@ -45,7 +45,7 @@ const Home = () => {
                 AI & Medical Informatics
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+            <p className="text-lg md:text-xl text-muted-foreground mb-8 animate-fade-in text-gray-600" style={{ animationDelay: "0.1s" }}>
               SpeechCARE is a research team dedicated to developing innovative AI and deep learning
               solutions that transform medical informatics and improve patient outcomes.
             </p>
@@ -78,13 +78,13 @@ const Home = () => {
                   className="absolute inset-0 bg-cover bg-center"
                   style={{ backgroundImage: `url(${item.backgroundImage})` }}
                 />
-                <div className="absolute inset-0 bg-card/90 backdrop-blur-sm" />
+                <div className="absolute inset-0 bg-card/60 backdrop-blur-sm" />
                 <div className="relative z-10">
-                  <div className="w-14 h-14 rounded-lg bg-gradient-primary flex items-center justify-center mb-6">
+                  <div className="w-14 h-14 rounded-lg bg-gradient-primary flex items-center justify-center mb-2">
                     <item.icon className="h-7 w-7 text-primary-foreground" />
                   </div>
-                  <h3 className="text-xl font-heading font-semibold mb-3">{item.title}</h3>
-                  <p className="text-muted-foreground">{item.description}</p>
+                  <h3 className="text-2xl font-heading font-semibold mb-3">{item.title}</h3>
+                  <p className="text-foreground">{item.description}</p>
                 </div>
               </div>
             ))}

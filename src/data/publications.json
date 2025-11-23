@@ -1,0 +1,43 @@
+[
+  {
+    "title": "Deep Learning Approaches for Early Alzheimer's Detection from Speech Patterns",
+    "authors": "Smith, J., Johnson, A., & Williams, B.",
+    "venue": "Journal of Medical Informatics",
+    "year": 2024,
+    "month": 3,
+    "type": "Journal Article",
+    "link": "https://example.com/journal/medical-informatics",
+    "abstract": "This study presents novel deep learning architectures for detecting early signs of Alzheimer's disease through analysis of speech patterns. Our model achieves 92% accuracy in identifying subtle linguistic and acoustic markers associated with early-stage cognitive decline."
+  },
+  {
+    "title": "Multi-Modal Fusion for Improved Medical Image Diagnosis",
+    "authors": "Johnson, A., Smith, J., & Davis, M.",
+    "venue": "International Conference on Medical AI",
+    "year": 2024,
+    "month": 6,
+    "type": "Conference Paper",
+    "link": "https://example.com/conference/medical-ai",
+    "abstract": "We propose a novel multi-modal fusion framework that combines CT, MRI, and PET scan data to enhance diagnostic accuracy. Our approach demonstrates significant improvements over single-modality methods across multiple disease categories."
+  },
+  {
+    "title": "Attention-Based Models for Clinical Note Generation",
+    "authors": "Williams, B., & Chen, L.",
+    "venue": "arXiv preprint",
+    "year": 2024,
+    "month": 9,
+    "type": "Preprint",
+    "link": "https://arxiv.org/abs/2024.xxxxx",
+    "abstract": "This work introduces an attention-based transformer model for automated clinical note generation from patient-physician conversations. The model reduces documentation time while maintaining clinical accuracy and completeness."
+  },
+  {
+    "title": "Predictive Analytics for ICU Patient Outcomes Using EHR Data",
+    "authors": "Davis, M., Johnson, A., & Lee, K.",
+    "venue": "Journal of Healthcare Technology",
+    "year": 2023,
+    "month": 11,
+    "type": "Journal Article",
+    "link": "https://example.com/journal/healthcare-technology",
+    "abstract": "We develop machine learning models that leverage electronic health record data to predict ICU patient outcomes with high precision. Our approach identifies key risk factors and provides actionable insights for clinical decision-making."
+  }
+]
+

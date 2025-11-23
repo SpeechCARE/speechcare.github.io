@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Dr. Maryam Zolnoori",
+        "image": "maryam.jpg",
+        "role": "Director of SpeechCARE Lab",
+        "expertise": ["Medical Informatics", "Deep Learning", "Healthcare AI"],
+        "bio": "Leading researcher with 15+ years of experience in medical AI and clinical informatics.",
+        "email": "maryam.zolnoori@gmail.com"
+    },
+    {
+        "name": "Ali Zolnour",
+        "image": "ali.jpg",
+        "role": "Research Scientist",
+        "expertise": ["Medical Informatics", "Deep Learning", "Healthcare AI"],
+        "bio": "Ali is a research scientist with a passion for applying deep learning to medical informatics and healthcare AI.",
+        "email": "ali.zolnour@gmail.com"
+    },
+    {
+        "name": "Sina Rashidi",
+        "image": "sina.jpg",
+        "role": "Research Scientist",
+        "expertise": ["NLP", "Speech Processing", "Clinical NLP"],
+        "bio": "Sina is a research scientist with a passion for applying natural language processing to healthcare applications and clinical text analysis.",
+        "email": "sina.rashidi@gmail.com"
+    },
+    {
+        "name": "Yasaman Haghbin",
+        "image": "yasaman.jpg",
+        "role": "Research Scientist",
+        "expertise": ["NLP", "Speech Processing", "Clinical NLP"],
+        "bio": "Yasaman is a research scientist with a passion for applying natural language processing to healthcare applications and clinical text analysis.",
+        "email": "yasaman.haghbin@gmail.com"
+    }
+]

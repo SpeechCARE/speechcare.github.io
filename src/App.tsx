@@ -7,10 +7,13 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
+import ProjectDetail from "./pages/projects/ProjectDetail";
 import Publications from "./pages/Publications";
 import Members from "./pages/Members";
 import Join from "./pages/Join";
 import NotFound from "./pages/NotFound";
+import ExplainabilityDemo from "./pages/projects/explainability/ExplainabilityDemo";
+import PatientReport from "./pages/projects/explainability/PatientReport";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +29,9 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/projects" element={<Projects />} />
+              <Route path="/projects/:slug" element={<ProjectDetail />} />
+              <Route path="/projects/explainability/demo" element={<ExplainabilityDemo />} />
+              <Route path="/projects/explainability/demo/:patientId" element={<PatientReport />} />
               <Route path="/publications" element={<Publications />} />
               <Route path="/members" element={<Members />} />
               <Route path="/join" element={<Join />} />

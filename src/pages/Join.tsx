@@ -1,12 +1,11 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Mail, GraduationCap, Briefcase, Users } from "lucide-react";
+import { Mail } from "lucide-react";
 
 const Join = () => {
   const positions = [
     {
       title: "PhD Positions",
-      icon: GraduationCap,
       description: "Full-time doctoral research positions for candidates interested in medical informatics and AI.",
       requirements: [
         "Master's degree in Computer Science, Biomedical Engineering, or related field",
@@ -17,7 +16,6 @@ const Join = () => {
     },
     {
       title: "Postdoctoral Researchers",
-      icon: Briefcase,
       description: "Opportunities for recent PhD graduates to conduct cutting-edge research in medical AI.",
       requirements: [
         "PhD in relevant field (completed or near completion)",
@@ -28,7 +26,6 @@ const Join = () => {
     },
     {
       title: "Visiting Researchers",
-      icon: Users,
       description: "Short-term collaboration opportunities for established researchers and faculty.",
       requirements: [
         "Active research program in related areas",
@@ -59,15 +56,8 @@ const Join = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <CardHeader>
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-primary flex items-center justify-center flex-shrink-0">
-                      <position.icon className="h-6 w-6 text-primary-foreground" />
-                    </div>
-                    <div className="flex-1">
-                      <CardTitle className="text-2xl font-heading mb-2">{position.title}</CardTitle>
-                      <CardDescription className="text-base">{position.description}</CardDescription>
-                    </div>
-                  </div>
+                  <CardTitle className="text-2xl font-heading mb-2">{position.title}</CardTitle>
+                  <CardDescription className="text-base">{position.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <h4 className="font-semibold mb-3">Requirements & Qualifications</h4>

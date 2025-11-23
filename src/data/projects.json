@@ -1,0 +1,28 @@
+[
+  {
+    "title": "Explainable transformer-based models for Alzheimers's disease detection",
+    "slug": "explainability",
+    "description": "Developing explainability solutions for transformer-based models to detect Alzheimers's disease from speech and text data.",
+    "tags": ["ExplainableAI", "Transformer Models", "Alzheimers's Disease"],
+    "status": "Active"
+  },
+  {
+    "title": "Speech Pattern Analysis for Neurological Disorders",
+    "description": "Using advanced NLP and speech recognition to identify early markers of neurological conditions through voice analysis.",
+    "tags": ["NLP", "Speech Recognition", "Neurology"],
+    "status": "Completed"
+  },
+  {
+    "title": "Predictive Healthcare Analytics",
+    "description": "Building machine learning models to predict patient outcomes and optimize treatment pathways using EHR data.",
+    "tags": ["Machine Learning", "EHR", "Predictive Analytics"],
+    "status": "Active"
+  },
+  {
+    "title": "Multi-Modal Patient Monitoring System",
+    "description": "Integrating diverse data sources to create comprehensive patient monitoring solutions for ICU environments.",
+    "tags": ["IoT", "Real-time Analytics", "Critical Care"],
+    "status": "In Development"
+  }
+]
+

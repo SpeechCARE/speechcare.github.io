@@ -1,33 +1,20 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
+import projectsData from "@/data/projects.json";
 
 const Projects = () => {
-  const projects = [
-    {
-      title: "AI-Powered Diagnostic Assistant",
-      description: "Developing deep learning models to assist clinicians in early disease detection through medical imaging analysis.",
-      tags: ["Deep Learning", "Medical Imaging", "Computer Vision"],
-      status: "Active",
-    },
-    {
-      title: "Speech Pattern Analysis for Neurological Disorders",
-      description: "Using advanced NLP and speech recognition to identify early markers of neurological conditions through voice analysis.",
-      tags: ["NLP", "Speech Recognition", "Neurology"],
-      status: "Active",
-    },
-    {
-      title: "Predictive Healthcare Analytics",
-      description: "Building machine learning models to predict patient outcomes and optimize treatment pathways using EHR data.",
-      tags: ["Machine Learning", "EHR", "Predictive Analytics"],
-      status: "Active",
-    },
-    {
-      title: "Multi-Modal Patient Monitoring System",
-      description: "Integrating diverse data sources to create comprehensive patient monitoring solutions for ICU environments.",
-      tags: ["IoT", "Real-time Analytics", "Critical Care"],
-      status: "In Development",
-    },
-  ];
+  const statusPriority: Record<string, number> = {
+    "Active": 1,
+    "In Development": 2,
+    "Completed": 3,
+  };
+
+  const projects = [...projectsData].sort((a, b) => {
+    const priorityA = statusPriority[a.status] || 999;
+    const priorityB = statusPriority[b.status] || 999;
+    return priorityA - priorityB;
+  });
 
   return (
     <div className="min-h-screen py-20">
@@ -49,7 +36,18 @@ const Projects = () => {
               >
                 <CardHeader>
                   <div className="flex items-start justify-between mb-2">
-                    <CardTitle className="text-2xl font-heading">{project.title}</CardTitle>
+                    <CardTitle className="text-2xl font-heading">
+                      {project.slug ? (
+                        <Link
+                          to={`/projects/${project.slug}`}
+                          className="hover:text-primary transition-colors"
+                        >
+                          {project.title}
+                        </Link>
+                      ) : (
+                        project.title
+                      )}
+                    </CardTitle>
                     <Badge variant={project.status === "Active" ? "default" : "secondary"}>
                       {project.status}
                     </Badge>
