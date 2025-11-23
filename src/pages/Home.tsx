@@ -1,6 +1,7 @@
 import { ArrowRight, Brain, Activity, Database } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import heroBackground from "@/assets/hero-background.jpg";
 
 const Home = () => {
   const highlights = [
@@ -24,8 +25,13 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative gradient-hero py-20 md:py-32">
-        <div className="container mx-auto px-4 sm:px-6">
+      <section className="relative py-20 md:py-32 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${heroBackground})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/90" />
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6 animate-fade-in">
               Advancing Healthcare Through
