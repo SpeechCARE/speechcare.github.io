@@ -263,7 +263,66 @@ const PatientReport = () => {
                       {/* Transcription */}
                       <div className="border-2 border-[#1E3658] rounded-lg p-4">
                         <div className="bg-[#E5F1F3] p-4 rounded">
-                          <p className="text-sm leading-relaxed">{patient.linguistic?.transcription || "No transcription available."}</p>
+                          {(patient.linguistic as any)?.tokens ? (
+                            <div className="text-sm leading-relaxed">
+                              {(() => {
+                                const tokens = (patient.linguistic as any).tokens;
+                                const maxVal =
+                                  Math.max(...tokens.map((t: any) => Math.abs(t.value))) || 1;
+                                
+                                // Color scheme based on condition
+                                const getColors = (condition: string) => {
+                                  switch (condition) {
+                                    case "ADRD":
+                                      return {
+                                        positive: "171, 105, 212", // Purple
+                                        negative: "230, 242, 244", // Light blue/background
+                                      };
+                                    case "MCI":
+                                      return {
+                                        positive: "255, 140, 0", // Orange
+                                        negative: "255, 237, 213", // Light orange
+                                      };
+                                    case "Control":
+                                      return {
+                                        positive: "76, 175, 80", // Green
+                                        negative: "200, 230, 201", // Light green
+                                      };
+                                    default:
+                                      return {
+                                        positive: "171, 105, 212", // Default to purple
+                                        negative: "230, 242, 244",
+                                      };
+                                  }
+                                };
+
+                                const colors = getColors(patient.condition);
+                                
+                                return tokens.map((token: any, index: number) => {
+                                  const opacity = (Math.abs(token.value) / maxVal) * 2;
+                                  const backgroundColor =
+                                    token.value > 0
+                                      ? `rgba(${colors.positive}, ${opacity})`
+                                      : `rgba(${colors.negative}, ${opacity})`;
+
+                                  return (
+                                    <span
+                                      key={index}
+                                      style={{ backgroundColor }}
+                                      className="rounded px-0.5 inline-block"
+                                      title={`SHAP Value: ${token.value}`}
+                                    >
+                                      {token.text}
+                                    </span>
+                                  );
+                                });
+                              })()}
+                            </div>
+                          ) : (
+                            <p className="text-sm leading-relaxed">
+                              {patient.linguistic?.transcription || "No transcription available."}
+                            </p>
+                          )}
                         </div>
                       </div>
 
