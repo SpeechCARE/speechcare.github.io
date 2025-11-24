@@ -2,10 +2,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ChevronDown, ExternalLink } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import publicationsData from "@/data/publications.json";
 
 const Publications = () => {
+  useEffect(() => {
+    document.title = "Publications - SpeechCARE Lab";
+  }, []);
   const [openItems, setOpenItems] = useState<string[]>([]);
 
   const toggleItem = (key: string) => {

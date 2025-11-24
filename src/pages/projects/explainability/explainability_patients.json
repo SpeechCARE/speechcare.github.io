@@ -1379,7 +1379,7 @@
     "gender": "Male",
     "assessmentDate": "2024-01-20",
     "image": "/src/pages/projects/explainability/images/qbce.jpeg",
-    "pieChart": "/src/pages/projects/explainability/images/qbce_piechart.png",
+    "pieChart": "/src/pages/projects/explainability/images/qbce_pie_chart.png",
     "systemConfidence": "71.0%",
     "significantFactors": [
       "The patient's voice had low energy levels.",
@@ -2009,7 +2009,7 @@
     "age": 86,
     "gender": "Male",
     "assessmentDate": "2024-01-22",
-    "image": "/src/pages/projects/explainability/images/skht.jpeg",
+    "image": "/src/pages/projects/explainability/images/saiw.png",
     "pieChart": "/src/pages/projects/explainability/images/skht_piechart.png",
     "systemConfidence": "94.0%",
     "significantFactors": [
@@ -2604,8 +2604,8 @@
     "age": 74,
     "gender": "Female",
     "assessmentDate": "2024-01-25",
-    "image": "/src/pages/projects/explainability/images/yrwz.jpeg",
-    "pieChart": "/src/pages/projects/explainability/images/yrwz_piechart.png",
+    "image": "/src/pages/projects/explainability/images/yrwz.png",
+    "pieChart": "/src/pages/projects/explainability/images/yrwz_pie_chart.png",
     "systemConfidence": "77.0%",
     "significantFactors": [
       "Speech was less rhythmic, with some evidence of flat or monotonous segments.",
@@ -3268,7 +3268,7 @@
     "age": 65,
     "gender": "Male",
     "assessmentDate": "2024-01-28",
-    "image": "/src/pages/projects/explainability/images/dpmk.jpeg",
+    "image": "/src/pages/projects/explainability/images/ovko.png",
     "pieChart": "/src/pages/projects/explainability/images/dpmk_piechart.png",
     "systemConfidence": "87.0%",
     "significantFactors": [

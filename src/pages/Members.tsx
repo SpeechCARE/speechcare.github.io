@@ -2,8 +2,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Mail, Linkedin, Github } from "lucide-react";
 import membersData from "@/data/members.json";
+import { useEffect } from "react";
 
 const Members = () => {
+  useEffect(() => {
+    document.title = "Members - SpeechCARE Lab";
+  }, []);
   const members = [...membersData];
 
   // Helper function to get image URL

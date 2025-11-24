@@ -3,8 +3,12 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import patientsData from "./explainability_patients.json";
+import { useEffect } from "react";
 
 const ExplainabilityDemo = () => {
+  useEffect(() => {
+    document.title = "Explainability Demo - SpeechCARE Lab";
+  }, []);
   const navigate = useNavigate();
 
   return (

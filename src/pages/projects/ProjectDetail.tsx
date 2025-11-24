@@ -5,13 +5,21 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import projectsData from "@/data/projects.json";
 import NotFound from "../NotFound";
-
+import { useEffect } from "react";
 // Import individual project pages
 import ExplainableModels from "./explainability/ExplainableModels";
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const project = projectsData.find((p) => p.slug === slug);
+
+  useEffect(() => {
+    if (project) {
+      document.title = `${project.title} - SpeechCARE Lab`;
+    } else {
+      document.title = "Project Detail - SpeechCARE Lab";
+    }
+  }, [project]);
 
   if (!project) {
     return <NotFound />;

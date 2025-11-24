@@ -3,9 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft } from "lucide-react";
 import patientsData from "./explainability_patients.json";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const PatientReport = () => {
+  useEffect(() => {
+    document.title = "Patient Report - SpeechCARE Lab";
+  }, []);
   const { patientId } = useParams<{ patientId: string }>();
   const navigate = useNavigate();
   const patient = patientsData.find((p) => p.id === patientId);
@@ -261,6 +264,9 @@ const PatientReport = () => {
                   >
                     <div className="p-4 space-y-4">
                       {/* Transcription */}
+                      <h3 className="text-lg font-bold text-[#1E3658] mb-2">Transcription</h3>
+                      <p className="text-sm text-gray-600 mb-2">The transcription of the audio is shown below. Words are highlighted based on their SHAP value. <br />Greater SHAP value = Richer highlight color = More important for the prediction</p>
+                      
                       <div className="border-2 border-[#1E3658] rounded-lg p-4">
                         <div className="bg-[#E5F1F3] p-4 rounded">
                           {(patient.linguistic as any)?.tokens ? (
@@ -327,6 +333,7 @@ const PatientReport = () => {
                       </div>
 
                       {/* Linguistic Interpretation */}
+                      <h3 className="text-lg font-bold text-[#1E3658] mb-2">Linguistic Interpretation</h3>
                       <div className="border-2 border-[#1E3658] rounded-lg p-4">
                         <div className="space-y-3">
                           {(patient.linguistic?.interpretations || []).map((interpretation, index) => (

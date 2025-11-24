@@ -2,8 +2,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import projectsData from "@/data/projects.json";
+import { useEffect } from "react";
 
 const Projects = () => {
+  useEffect(() => {
+    document.title = "Projects - SpeechCARE Lab";
+  }, []);
   const statusPriority: Record<string, number> = {
     "Active": 1,
     "In Development": 2,

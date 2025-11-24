@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ArrowRight, Brain, Activity, Database } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -7,6 +8,9 @@ import healthcareCardBg from "@/assets/healthcare-card-bg.jpg";
 import dataCardBg from "@/assets/data-card-bg.jpg";
 
 const Home = () => {
+  useEffect(() => {
+    document.title = "Home - SpeechCARE Lab";
+  }, []);
   const highlights = [
     {
       icon: Brain,

@@ -1,8 +1,12 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react";
+import { useEffect } from "react";
 
 const Join = () => {
+  useEffect(() => {
+    document.title = "Join Us - SpeechCARE Lab";
+  }, []);
   const positions = [
     {
       title: "PhD Positions",
