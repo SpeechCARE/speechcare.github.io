@@ -1,4 +1,5 @@
 import { Mail, Github, Linkedin } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const Footer = () => {
   return (
@@ -8,7 +9,7 @@ const Footer = () => {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center">
-                <img src="/src/assets/logo.png" alt="SpeechCARE Logo" className="w-10 h-10" />
+                <img src={logo} alt="SpeechCARE Logo" className="w-10 h-10" />
               </div>
               <span className="font-heading font-bold text-xl">SpeechCARE</span>
             </div>
