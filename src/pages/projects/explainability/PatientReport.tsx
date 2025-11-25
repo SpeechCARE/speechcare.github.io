@@ -5,26 +5,28 @@ import { Card } from "@/components/ui/card";
 import { ArrowLeft } from "lucide-react";
 import patientsData from "./explainability_patients.json";
 
-// Helper function to get image URL from JSON paths
-const getImageUrl = (path: string | undefined): string => {
-  if (!path) return "";
-  // Convert /src/pages/projects/explainability/images/... to relative path
-  if (path.startsWith("/src/pages/projects/explainability/")) {
-    const relativePath = path.replace("/src/pages/projects/explainability/", "");
-    return new URL(`./${relativePath}`, import.meta.url).href;
+// Import all images and audio files using Vite's glob import
+const images = import.meta.glob('./images/*', { eager: true, as: 'url' });
+const audios = import.meta.glob('./audios/*', { eager: true, as: 'url' });
+
+// Helper function to get the correct asset path
+const getAssetPath = (path: string): string => {
+  if (!path) return '';
+  
+  // Extract filename from path
+  const filename = path.split('/').pop();
+  if (!filename) return '';
+  
+  // Check if it's an image or audio
+  if (path.includes('/images/')) {
+    const imageKey = `./images/${filename}`;
+    return images[imageKey] || '';
+  } else if (path.includes('/audios/')) {
+    const audioKey = `./audios/${filename}`;
+    return audios[audioKey] || '';
   }
-  // Handle /assets/images/... paths (some entries use this format)
-  if (path.startsWith("/assets/images/")) {
-    const relativePath = path.replace("/assets/images/", "images/");
-    return new URL(`./${relativePath}`, import.meta.url).href;
-  }
-  // Handle /src/pages/projects/explainability/audios/... for audio files
-  if (path.startsWith("/src/pages/projects/explainability/audios/")) {
-    const relativePath = path.replace("/src/pages/projects/explainability/", "");
-    return new URL(`./${relativePath}`, import.meta.url).href;
-  }
-  // Fallback: return as-is if path doesn't match expected patterns
-  return path;
+  
+  return '';
 };
 
 const PatientReport = () => {
@@ -74,7 +76,7 @@ const PatientReport = () => {
               <div className="flex flex-col items-center lg:w-1/4 w-full gap-3">
                 <div className="flex-shrink-0 mb-2">
                   <img
-                    src={getImageUrl(patient.image)}
+                    src={getAssetPath(patient.image)}
                     alt={patient.name}
                     className="w-40 h-40 rounded-full object-cover border-4 border-[#1E3658]"
                   />
@@ -119,7 +121,7 @@ const PatientReport = () => {
                   <div className="flex flex-col items-center gap-2 w-1/2">
                     {(patient as any).pieChart ? (
                       <img
-                        src={getImageUrl((patient as any).pieChart)}
+                        src={getAssetPath((patient as any).pieChart)}
                         alt="Modality Contribution Pie Chart"
                         className="w-60 h-60 object-contain"
                       />
@@ -181,7 +183,7 @@ const PatientReport = () => {
                       height: '40px'
                     }}
                   >
-                    <source src={getImageUrl(patient.audioUrl)} type="audio/mpeg" />
+                    <source src={getAssetPath(patient.audioUrl)} type="audio/mpeg" />
                     Your browser does not support the audio element.
                   </audio>
                 </div>
@@ -425,7 +427,7 @@ const PatientReport = () => {
                           </span>
                           <div className="mt-4">
                             <img
-                              src={getImageUrl(patient.acoustic.waveform.image)}
+                              src={getAssetPath(patient.acoustic.waveform.image)}
                               alt="Waveform"
                               className="w-full mb-4"
                             />
@@ -449,7 +451,7 @@ const PatientReport = () => {
                           </span>
                           <div className="mt-4">
                             <img
-                              src={getImageUrl(patient.acoustic.spectrogram.image)}
+                              src={getAssetPath(patient.acoustic.spectrogram.image)}
                               alt="Spectrogram"
                               className="w-full mb-4"
                             />
@@ -473,7 +475,7 @@ const PatientReport = () => {
                           </span>
                           <div className="mt-4">
                             <img
-                              src={getImageUrl(patient.acoustic.entropy.image)}
+                              src={getAssetPath(patient.acoustic.entropy.image)}
                               alt="Entropy"
                               className="w-full mb-4"
                             />
