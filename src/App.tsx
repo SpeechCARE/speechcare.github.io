@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -29,12 +29,32 @@ const ScrollToTop = () => {
   return null;
 };
 
+// Handle redirect from 404.html for GitHub Pages
+const RedirectHandler = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const redirect = params.get('redirect');
+    if (redirect) {
+      // Decode and navigate to the original path
+      const decodedPath = decodeURIComponent(redirect);
+      // Remove the redirect query parameter from URL
+      navigate(decodedPath, { replace: true });
+    }
+  }, [navigate, location.search]);
+
+  return null;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <RedirectHandler />
         <ScrollToTop />
         <div className="flex flex-col min-h-screen">
           <Navbar />
