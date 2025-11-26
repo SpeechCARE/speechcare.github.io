@@ -26,7 +26,7 @@ const Navbar = () => {
             <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center">
               <img src={logo} alt="SpeechCARE Logo" className="w-10 h-10" />
             </div>
-            <span className="font-heading font-bold text-xl">SpeechCARE</span>
+            <span className="font-heading font-bold text-2xl">SpeechCARE</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -35,7 +35,7 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                className={`px-4 py-2 rounded-md text-normal font-medium transition-colors ${
                   isActive(link.path)
                     ? "bg-primary text-primary-foreground"
                     : "text-foreground hover:bg-muted"
