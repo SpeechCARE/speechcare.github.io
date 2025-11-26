@@ -94,7 +94,7 @@ const Publications = () => {
   };
 
   return (
-    <div className="min-h-screen py-20 lg:-ml-40">
+    <div className="min-h-screen py-20 lg:-ml-60">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
 
@@ -119,13 +119,13 @@ const Publications = () => {
               order-last
               w-full
               mt-12
-              lg:sticky lg:right-8 lg:top-32 lg:w-[420px]
-              xl:w-[620px] mt-16
-              2xl:w-[760px]
+              lg:sticky lg:right-8 lg:top-32 lg:w-[400px]
+              xl:w-[600px] mt-16
+              2xl:w-[700px]
             ">
-              <div className="min-h-[300px] bg-white rounded-xl p-6 shadow-md space-y-6 md:p-8">
+              <div className="min-h-[300px] bg-white rounded-xl p-6 shadow-md space-y-6">
                 {selectedPub?.title && (
-                  <h2 className="text-xl md:text-2xl font-semibold">{selectedPub.title}</h2>
+                  <h2 className="text-lg md:text-xl font-semibold">{selectedPub.title}</h2>
                 )}
 
                 {selectedPub?.image && (
