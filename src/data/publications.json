@@ -63,6 +63,30 @@
     "challenge": "…",
     "solution": "…",
     "result": "…"
+  },
+  {
+    "title": "Multimodal Attention Fusion of Speech and EHR Data for Early Detection of Cognitive Decline in Home Healthcare",
+    "authors": "Yasaman Haghbin*, Sina Rashidi*, Margaret McDonald, Maryam Zolnoori",
+    "venue": "ICASSP 2026",
+    "year": 2026,
+    "month": 4,
+    "type": "Under Review",
+    "image": "/images/publications/BIMS.svg",
+    "challenge": "…",
+    "solution": "…",
+    "result": "…"
+  },
+  {
+    "title": "Leveraging Text-To-Speech and Voice Conversion as Data Augmentation for Alzheimer's Disease Detection from Spontaneous Speech",
+    "authors": "Sina Rashidi, Yasaman Haghbin, Hossein AzadMaleki, Ali Zolnour, Maryam Zolnoori",
+    "venue": "ICASSP 2026",
+    "year": 2026,
+    "month": 4,
+    "type": "Under Review",
+    "image": "/images/publications/SpeechCURA.svg",
+    "challenge": "…",
+    "solution": "…",
+    "result": "…"
   }
 ]
 

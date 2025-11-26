@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Special Recognition Award",
+    "description": "Awarded for outstanding scientific contribution and significant innovation in leveraging speech-based AI for early cognitive impairment detection."
+  },
+  {
+    "title": "Explainability Award",
+    "description": "Recognized for developing transparent and interpretable modeling techniques, enabling clinicians to understand how AI-driven predictions are generated."
+  },
+  {
+    "title": "Code Cleaning & Reproducibility Award",
+    "description": "Awarded for delivering high-quality, well-structured, reproducible, and well-documented code across the entire submission pipeline."
+  }
+]
