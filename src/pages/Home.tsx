@@ -54,13 +54,13 @@ const Home = () => {
               solutions that transform medical informatics and improve patient outcomes.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              <Button asChild size="lg" className="group  text-lg">
+              <Button asChild size="lg" className="group">
                 <Link to="/projects">
                   Explore Our Research
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="text-lg">
+              <Button asChild size="lg" variant="outline">
                 <Link to="/join">Join Our Team</Link>
               </Button>
             </div>

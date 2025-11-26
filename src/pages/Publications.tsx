@@ -94,7 +94,7 @@ const Publications = () => {
   };
 
   return (
-    <div className="min-h-screen py-20 lg:-ml-80">
+    <div className="min-h-screen py-20 lg:-ml-40">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
 
