@@ -16,27 +16,25 @@ const Publications = () => {
     return (b.month || 0) - (a.month || 0);
   };
 
-  /** NEW SECTIONS **/
-  const preprints = publicationsData
-    .filter((pub) => pub.type === "Preprint")
+  /** UPDATED SECTIONS — NO PREPRINT **/
+  const underReview = publicationsData
+    .filter((pub) => pub.type === "Under Review")
     .sort(sortByDate);
 
   const inPrep = publicationsData
-    .filter((pub) => pub.type === "In Preparation" || pub.type === "Under Review")
+    .filter((pub) => pub.type === "In Preparation")
     .sort(sortByDate);
 
-  const otherPublications = publicationsData
-    .filter((pub) =>
-      pub.type !== "Preprint" &&
-      pub.type !== "In Preparation" &&
-      pub.type !== "Under Review"
+  const publications = publicationsData
+    .filter(
+      (pub) =>
+        pub.type !== "In Preparation" &&
+        pub.type !== "Under Review"
     )
     .sort(sortByDate);
 
   useEffect(() => {
-    const firstPub =
-      preprints[0] || otherPublications[0] || inPrep[0] || null;
-
+    const firstPub = publications[0] || underReview[0] || inPrep[0] || null;
     if (firstPub) setSelectedPub(firstPub);
   }, []);
 
@@ -62,13 +60,22 @@ const Publications = () => {
                     <div className="flex items-center gap-2 mb-2">
                       <Badge variant="outline" className="text-xs">{pub.type}</Badge>
                       <Badge variant="secondary" className="text-xs">
-                        {pub.month ? new Date(pub.year, pub.month - 1).toLocaleString("default", { month: "long" }) : ""} {pub.year}
+                        {pub.month
+                          ? new Date(pub.year, pub.month - 1).toLocaleString("default", {
+                              month: "long",
+                            })
+                          : ""}{" "}
+                        {pub.year}
                       </Badge>
                     </div>
 
-                    <CardTitle className="text-xl font-heading mb-2">{pub.title}</CardTitle>
+                    <CardTitle className="text-xl font-heading mb-2">
+                      {pub.title}
+                    </CardTitle>
                     <CardDescription className="text-sm">{pub.authors}</CardDescription>
-                    <p className="text-sm text-muted-foreground mt-1 italic">{pub.venue}</p>
+                    <p className="text-sm text-muted-foreground mt-1 italic">
+                      {pub.venue}
+                    </p>
                   </div>
                 </div>
               </CardHeader>
@@ -98,31 +105,33 @@ const Publications = () => {
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
 
-          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">Publications</h1>
+          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
+            Publications
+          </h1>
           <p className="text-lg text-muted-foreground mb-12">
-            Our latest research papers, preprints, and conference proceedings.
+            Our latest research papers and conference proceedings.
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
             {/* LEFT PANEL */}
             <div className="lg:col-span-2 space-y-12">
-
-              <Section title="Preprints" items={preprints} />
-              <Section title="Publications" items={otherPublications} />
-              <Section title="In Preparation / Under Review" items={inPrep} />
-
+              <Section title="Publications" items={publications} />
+              <Section title="Under Review" items={underReview} />
+              <Section title="In Preparation" items={inPrep} />
             </div>
 
             {/* RIGHT PREVIEW */}
-            <div className="
+            <div
+              className="
               order-last
               w-full
               mt-12
               lg:sticky lg:right-8 lg:top-32 lg:w-[400px]
               xl:w-[600px] mt-16
               2xl:w-[700px]
-            ">
+            "
+            >
               <div className="min-h-[300px] bg-white rounded-xl p-6 shadow-md space-y-6">
                 {selectedPub?.title && (
                   <h2 className="text-lg md:text-xl font-semibold">{selectedPub.title}</h2>

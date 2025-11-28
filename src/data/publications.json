@@ -28,25 +28,12 @@
   {
     "title": "Speech-Based Cognitive Screening: A Systematic Evaluation of LLM Adaptation Strategies",
     "authors": "Fatemeh Taherinezhad, Mohamad Javad Momeni Nezhad, Sepehr Karimi, Sina Rashidi, Ali Zolnour, Maryam Dadkhah, Yasaman Haghbin, Hossein AzadMaleki, Maryam Zolnoori",
-    "venue": "arXiv preprint",
+    "venue": "JMIR",
     "year": 2025,
     "month": 8,
-    "type": "Preprint",
+    "type": "Under Review",
     "link": "https://arxiv.org/abs/2509.03525",
     "image": "/images/publications/CDS.png",
-    "challenge": "…",
-    "solution": "…",
-    "result": "…"
-  },
-  {
-    "title": "National Institute on Aging PREPARE Challenge: Early Detection of Cognitive Impairment Using Speech -- The SpeechCARE Solution",
-    "authors": "Maryam Zolnoori, Hossein Azadmaleki, Yasaman Haghbin, Ali Zolnour, Mohammad Javad Momeni Nezhad, Sina Rashidi, Mehdi Naserian, Elyas Esmaeili, Sepehr Karimi Arpanahi",
-    "venue": "arXiv preprint",
-    "year": 2025,
-    "month": 11,
-    "type": "Preprint",
-    "link": "https://arxiv.org/abs/2511.08132",
-    "image": "/images/publications/SpeechCARE_model.jpg",
     "challenge": "…",
     "solution": "…",
     "result": "…"
@@ -84,6 +71,16 @@
     "month": 4,
     "type": "Under Review",
     "image": "/images/publications/SpeechCURA.svg",
+    "challenge": "…",
+    "solution": "…",
+    "result": "…"
+  },
+    {
+    "title": "Explainability",
+    "authors": "Maryam Zolnoori",
+    "year": 2026,
+    "type": "In Preparation",
+    "image": "",
     "challenge": "…",
     "solution": "…",
     "result": "…"
