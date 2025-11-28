@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, X } from "lucide-react";
+import { ExternalLink, X, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import publicationsData from "@/data/publications.json";
 
@@ -11,6 +11,7 @@ const Publications = () => {
 
   const [selectedPub, setSelectedPub] = useState<any>(null);
   const [zoomImage, setZoomImage] = useState<string | null>(null);
+  const [imageLoading, setImageLoading] = useState(false);
 
   const sortByDate = (a: any, b: any) => {
     if (a.year !== b.year) return b.year - a.year;
@@ -29,6 +30,31 @@ const Publications = () => {
     .filter((pub) => pub.type !== "In Preparation" && pub.type !== "Under Review")
     .sort(sortByDate);
 
+  // Handle publication selection with loading state
+  const handlePublicationClick = (pub: any) => {
+    setSelectedPub(null); // Clear previous publication
+    setImageLoading(true); // Show loading state
+    
+    // Small delay to ensure state updates
+    setTimeout(() => {
+      setSelectedPub(pub);
+    }, 0);
+  };
+
+  // Handle image load completion
+  const handleImageLoad = () => {
+    setImageLoading(false);
+  };
+
+  // Reset loading state when selectedPub changes
+  useEffect(() => {
+    if (selectedPub?.image) {
+      setImageLoading(true);
+    } else {
+      setImageLoading(false);
+    }
+  }, [selectedPub]);
+
   // 🔥 PRELOAD ALL IMAGES ONCE AFTER MOUNT
   useEffect(() => {
     const allPubs = [...publications, ...underReview, ...inPrep];
@@ -36,7 +62,7 @@ const Publications = () => {
     allPubs.forEach((pub) => {
       if (pub.image) {
         const img = new Image();
-        img.src = pub.image; // or add a versioned URL if you use that
+        img.src = pub.image;
       }
     });
   }, [publications, underReview, inPrep]);
@@ -55,7 +81,7 @@ const Publications = () => {
             <Card
               key={pub.title + pub.year}
               className="shadow-card hover:shadow-hover transition-all duration-300 cursor-pointer p-4"
-              onClick={() => setSelectedPub(pub)}
+              onClick={() => handlePublicationClick(pub)}
             >
               <CardHeader className="p-0 mb-2">
                 <div className="flex items-start gap-4">
@@ -154,12 +180,22 @@ const Publications = () => {
                     </h2>
 
                     {selectedPub?.image && (
-                      <img
-                        src={selectedPub.image}
-                        alt="Preview"
-                        className="w-full max-h-[50vh] object-contain mx-auto cursor-zoom-in"
-                        onClick={() => setZoomImage(selectedPub.image)}
-                      />
+                      <div className="relative w-full max-h-[50vh] flex items-center justify-center">
+                        {imageLoading && (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                          </div>
+                        )}
+                        <img
+                          src={selectedPub.image}
+                          alt="Preview"
+                          className={`w-full max-h-[50vh] object-contain mx-auto cursor-zoom-in transition-opacity duration-200 ${
+                            imageLoading ? 'opacity-0' : 'opacity-100'
+                          }`}
+                          onClick={() => !imageLoading && setZoomImage(selectedPub.image)}
+                          onLoad={handleImageLoad}
+                        />
+                      </div>
                     )}
 
                     {selectedPub?.challenge && (
