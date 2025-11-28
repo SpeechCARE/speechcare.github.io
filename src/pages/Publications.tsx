@@ -10,8 +10,6 @@ const Publications = () => {
   }, []);
 
   const [selectedPub, setSelectedPub] = useState<any>(null);
-
-  // NEW: Zoom overlay state
   const [zoomImage, setZoomImage] = useState<string | null>(null);
 
   const sortByDate = (a: any, b: any) => {
@@ -19,7 +17,6 @@ const Publications = () => {
     return (b.month || 0) - (a.month || 0);
   };
 
-  /** SECTIONS — NO PREPRINT **/
   const underReview = publicationsData
     .filter((pub) => pub.type === "Under Review")
     .sort(sortByDate);
@@ -29,16 +26,20 @@ const Publications = () => {
     .sort(sortByDate);
 
   const publications = publicationsData
-    .filter(
-      (pub) => pub.type !== "In Preparation" && pub.type !== "Under Review"
-    )
+    .filter((pub) => pub.type !== "In Preparation" && pub.type !== "Under Review")
     .sort(sortByDate);
 
-  // ❌ REMOVE auto-selecting first publication
-  // useEffect(() => {
-  //   const firstPub = publications[0] || underReview[0] || inPrep[0] || null;
-  //   if (firstPub) setSelectedPub(firstPub);
-  // }, []);
+  // 🔥 PRELOAD ALL IMAGES ONCE AFTER MOUNT
+  useEffect(() => {
+    const allPubs = [...publications, ...underReview, ...inPrep];
+
+    allPubs.forEach((pub) => {
+      if (pub.image) {
+        const img = new Image();
+        img.src = pub.image; // or add a versioned URL if you use that
+      }
+    });
+  }, [publications, underReview, inPrep]);
 
   const Section = ({ title, items }: any) => {
     if (items.length === 0) return null;
@@ -106,7 +107,6 @@ const Publications = () => {
     <div className="min-h-screen py-20 lg:-ml-60">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
-
           <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
             Publications
           </h1>
@@ -115,7 +115,6 @@ const Publications = () => {
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-
             {/* LEFT PANEL */}
             <div className="lg:col-span-2 space-y-12">
               <Section title="Publications" items={publications} />
@@ -126,38 +125,37 @@ const Publications = () => {
             {/* RIGHT PREVIEW PANEL */}
             <div
               className="
-              order-last
-              w-full
-              mt-12
-              lg:sticky lg:right-8 lg:top-32 lg:w-[400px]
-              xl:w-[600px] mt-16
-              2xl:w-[700px]
-            "
+                order-last
+                w-full
+                mt-12
+                lg:sticky lg:right-8 lg:top-32 lg:w-[400px]
+                xl:w-[600px] mt-16
+                2xl:w-[700px]
+              "
             >
               <div className="min-h-[300px] bg-white rounded-xl p-6 shadow-md space-y-6 text-center">
-
-                {/* DEFAULT PREVIEW — Only when nothing selected */}
                 {!selectedPub && (
-                  <div className="space-y-4">
+                  <div className="space-y-4 opacity-70">
                     <img
-                      src="/images/publications/defualt.jpeg" 
+                      src="/default-preview.png"
                       alt="Default preview"
                       className="w-full max-h-[40vh] object-contain mx-auto"
                     />
-                    <p className="">
+                    <p className="text-sm text-muted-foreground italic">
                       Click on any publication to view details.
                     </p>
                   </div>
                 )}
 
-                {/* SELECTED PUBLICATION PREVIEW */}
                 {selectedPub && (
                   <>
-                    <h2 className="text-lg md:text-xl font-semibold">{selectedPub.title}</h2>
+                    <h2 className="text-lg md:text-xl font-semibold">
+                      {selectedPub.title}
+                    </h2>
 
                     {selectedPub?.image && (
                       <img
-                        src={`${selectedPub.image}?v=${Date.now()}`}
+                        src={selectedPub.image}
                         alt="Preview"
                         className="w-full max-h-[50vh] object-contain mx-auto cursor-zoom-in"
                         onClick={() => setZoomImage(selectedPub.image)}
@@ -186,10 +184,8 @@ const Publications = () => {
                     )}
                   </>
                 )}
-
               </div>
             </div>
-
           </div>
         </div>
       </div>
