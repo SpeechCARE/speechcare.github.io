@@ -157,7 +157,7 @@ const Publications = () => {
 
                     {selectedPub?.image && (
                       <img
-                        src={selectedPub.image}
+                        src={`${selectedPub.image}?v=${Date.now()}`}
                         alt="Preview"
                         className="w-full max-h-[50vh] object-contain mx-auto cursor-zoom-in"
                         onClick={() => setZoomImage(selectedPub.image)}
