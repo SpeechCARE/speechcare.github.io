@@ -8,36 +8,16 @@ const Join = () => {
     document.title = "Join Us - SpeechCARE Lab";
   }, []);
   const positions = [
-    {
-      title: "PhD Positions",
-      description: "Full-time doctoral research positions for candidates interested in medical informatics and AI.",
-      requirements: [
-        "Master's degree in Computer Science, Biomedical Engineering, or related field",
-        "Strong background in machine learning or deep learning",
-        "Experience with Python and relevant ML frameworks",
-        "Interest in healthcare applications",
-      ],
-    },
-    {
-      title: "Postdoctoral Researchers",
-      description: "Opportunities for recent PhD graduates to conduct cutting-edge research in medical AI.",
-      requirements: [
-        "PhD in relevant field (completed or near completion)",
-        "Publication record in top-tier venues",
-        "Expertise in AI/ML with healthcare applications",
-        "Strong research independence and collaboration skills",
-      ],
-    },
-    {
-      title: "Visiting Researchers",
-      description: "Short-term collaboration opportunities for established researchers and faculty.",
-      requirements: [
-        "Active research program in related areas",
-        "Proven track record of publications",
-        "Interest in collaborative research",
-        "Typical duration: 3-12 months",
-      ],
-    },
+    // {
+    //   title: "PhD Positions",
+    //   description: "Full-time doctoral research positions for candidates interested in medical informatics and AI.",
+    //   requirements: [
+    //     "Master's degree in Computer Science, Biomedical Engineering, or related field",
+    //     "Strong background in machine learning or deep learning",
+    //     "Experience with Python and relevant ML frameworks",
+    //     "Interest in healthcare applications",
+    //   ],
+    // },
   ];
 
   return (
