@@ -163,7 +163,7 @@ const Publications = () => {
                 {!selectedPub && (
                   <div className="space-y-4 opacity-70">
                     <img
-                      src="/default-preview.png"
+                      src="/images/publications/defualt.jpeg"
                       alt="Default preview"
                       className="w-full max-h-[40vh] object-contain mx-auto"
                     />
