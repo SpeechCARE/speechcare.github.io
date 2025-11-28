@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import publicationsData from "@/data/publications.json";
 
@@ -11,12 +11,15 @@ const Publications = () => {
 
   const [selectedPub, setSelectedPub] = useState<any>(null);
 
+  // NEW: Zoom overlay state
+  const [zoomImage, setZoomImage] = useState<string | null>(null);
+
   const sortByDate = (a: any, b: any) => {
     if (a.year !== b.year) return b.year - a.year;
     return (b.month || 0) - (a.month || 0);
   };
 
-  /** UPDATED SECTIONS — NO PREPRINT **/
+  /** SECTIONS — NO PREPRINT **/
   const underReview = publicationsData
     .filter((pub) => pub.type === "Under Review")
     .sort(sortByDate);
@@ -27,16 +30,15 @@ const Publications = () => {
 
   const publications = publicationsData
     .filter(
-      (pub) =>
-        pub.type !== "In Preparation" &&
-        pub.type !== "Under Review"
+      (pub) => pub.type !== "In Preparation" && pub.type !== "Under Review"
     )
     .sort(sortByDate);
 
-  useEffect(() => {
-    const firstPub = publications[0] || underReview[0] || inPrep[0] || null;
-    if (firstPub) setSelectedPub(firstPub);
-  }, []);
+  // ❌ REMOVE auto-selecting first publication
+  // useEffect(() => {
+  //   const firstPub = publications[0] || underReview[0] || inPrep[0] || null;
+  //   if (firstPub) setSelectedPub(firstPub);
+  // }, []);
 
   const Section = ({ title, items }: any) => {
     if (items.length === 0) return null;
@@ -121,7 +123,7 @@ const Publications = () => {
               <Section title="In Preparation" items={inPrep} />
             </div>
 
-            {/* RIGHT PREVIEW */}
+            {/* RIGHT PREVIEW PANEL */}
             <div
               className="
               order-last
@@ -132,45 +134,90 @@ const Publications = () => {
               2xl:w-[700px]
             "
             >
-              <div className="min-h-[300px] bg-white rounded-xl p-6 shadow-md space-y-6">
-                {selectedPub?.title && (
-                  <h2 className="text-lg md:text-xl font-semibold">{selectedPub.title}</h2>
-                )}
+              <div className="min-h-[300px] bg-white rounded-xl p-6 shadow-md space-y-6 text-center">
 
-                {selectedPub?.image && (
-                  <img
-                    src={selectedPub.image}
-                    alt="Preview"
-                    className="w-full max-h-[50vh] object-contain mx-auto"
-                  />
-                )}
-
-                {selectedPub?.challenge && (
-                  <div>
-                    <h3 className="text-lg font-semibold mb-1">Challenge</h3>
-                    <p className="text-sm text-muted-foreground">{selectedPub.challenge}</p>
+                {/* DEFAULT PREVIEW — Only when nothing selected */}
+                {!selectedPub && (
+                  <div className="space-y-4">
+                    <img
+                      src="/images/publications/defualt.jpeg" 
+                      alt="Default preview"
+                      className="w-full max-h-[40vh] object-contain mx-auto"
+                    />
+                    <p className="">
+                      Click on any publication to view details.
+                    </p>
                   </div>
                 )}
 
-                {selectedPub?.solution && (
-                  <div>
-                    <h3 className="text-lg font-semibold mb-1">Solution</h3>
-                    <p className="text-sm text-muted-foreground">{selectedPub.solution}</p>
-                  </div>
+                {/* SELECTED PUBLICATION PREVIEW */}
+                {selectedPub && (
+                  <>
+                    <h2 className="text-lg md:text-xl font-semibold">{selectedPub.title}</h2>
+
+                    {selectedPub?.image && (
+                      <img
+                        src={selectedPub.image}
+                        alt="Preview"
+                        className="w-full max-h-[50vh] object-contain mx-auto cursor-zoom-in"
+                        onClick={() => setZoomImage(selectedPub.image)}
+                      />
+                    )}
+
+                    {selectedPub?.challenge && (
+                      <div className="text-left">
+                        <h3 className="text-lg font-semibold mb-1">Challenge</h3>
+                        <p className="text-sm text-muted-foreground">{selectedPub.challenge}</p>
+                      </div>
+                    )}
+
+                    {selectedPub?.solution && (
+                      <div className="text-left">
+                        <h3 className="text-lg font-semibold mb-1">Solution</h3>
+                        <p className="text-sm text-muted-foreground">{selectedPub.solution}</p>
+                      </div>
+                    )}
+
+                    {selectedPub?.result && (
+                      <div className="text-left">
+                        <h3 className="text-lg font-semibold mb-1">Result</h3>
+                        <p className="text-sm text-muted-foreground">{selectedPub.result}</p>
+                      </div>
+                    )}
+                  </>
                 )}
 
-                {selectedPub?.result && (
-                  <div>
-                    <h3 className="text-lg font-semibold mb-1">Result</h3>
-                    <p className="text-sm text-muted-foreground">{selectedPub.result}</p>
-                  </div>
-                )}
               </div>
             </div>
 
           </div>
         </div>
       </div>
+
+      {/* FULLSCREEN ZOOM OVERLAY */}
+      {zoomImage && (
+        <div
+          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50"
+          onClick={() => setZoomImage(null)}
+        >
+          <button
+            className="absolute top-6 right-6 text-white hover:text-gray-300"
+            onClick={(e) => {
+              e.stopPropagation();
+              setZoomImage(null);
+            }}
+          >
+            <X className="w-8 h-8" />
+          </button>
+
+          <img
+            src={zoomImage}
+            alt="Zoomed Image"
+            className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-lg"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 };
