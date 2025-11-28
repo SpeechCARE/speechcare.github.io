@@ -161,11 +161,20 @@ const Publications = () => {
             >
               <div className="min-h-[300px] bg-white rounded-xl p-6 shadow-md space-y-6 text-center">
                 {!selectedPub && (
-                  <div className="space-y-4 opacity-70">
+                  <div className="space-y-4">
+                    {imageLoading && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                      </div>
+                    )}
                     <img
                       src="/images/publications/defualt.jpeg"
                       alt="Default preview"
-                      className="w-full max-h-[40vh] object-contain mx-auto"
+                      className={`w-full max-h-[50vh] object-contain mx-auto cursor-zoom-in transition-opacity duration-200 ${
+                        imageLoading ? 'opacity-0' : 'opacity-100'
+                      }`}
+                      onClick={() => !imageLoading && setZoomImage(selectedPub.image)}
+                      onLoad={handleImageLoad}
                     />
                     <p className="text-sm text-muted-foreground italic">
                       Click on any publication to view details.
