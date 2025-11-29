@@ -128,7 +128,7 @@ const Publications = () => {
   };
 
   return (
-    <div className="min-h-screen py-20 lg:-ml-60">
+    <div className="min-h-screen py-20 ml-2 xl:-ml-60">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
@@ -150,14 +150,16 @@ const Publications = () => {
             <div
               className="
                 order-last
-                w-full
+                min-w-[350px] lg:min-w-[350px] xl:min-w-[600px]
                 mt-12
-                lg:sticky lg:right-8 lg:top-32 lg:w-[400px]
-                xl:w-[600px] mt-16
-                2xl:w-[700px]
+                sticky lg:top-28   /* instead of fixed */
+                lg:h-[90vh]           /* fixed height */
+                overflow-y-auto       /* scroll inside */
+                pr-2                  /* avoid scrollbar overlap */
               "
             >
               <div className="min-h-[300px] bg-white rounded-xl p-6 shadow-md space-y-6 text-center">
+
                 {!selectedPub && (
                   <div className="space-y-4">
                     <img
@@ -178,17 +180,17 @@ const Publications = () => {
                     </h2>
 
                     {selectedPub?.image && (
-                      <div className="relative w-full max-h-[50vh] flex items-center justify-center">
+                      <div className="relative w-full mb-4">
                         {imageLoading && (
-                          <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="absolute inset-0 flex items-center justify-center bg-white/50">
                             <Loader2 className="w-8 h-8 animate-spin text-primary" />
                           </div>
                         )}
                         <img
                           src={selectedPub.image}
                           alt="Preview"
-                          className={`w-full max-h-[50vh] object-contain mx-auto cursor-zoom-in transition-opacity duration-200 ${
-                            imageLoading ? 'opacity-0' : 'opacity-100'
+                          className={`w-full max-h-[40vh] object-contain mx-auto cursor-zoom-in transition-opacity duration-200 ${
+                            imageLoading ? "opacity-0" : "opacity-100"
                           }`}
                           onClick={() => !imageLoading && setZoomImage(selectedPub.image)}
                           onLoad={handleImageLoad}
@@ -218,8 +220,10 @@ const Publications = () => {
                     )}
                   </>
                 )}
+
               </div>
             </div>
+
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-card border-t border-border mt-20">
       <div className="container mx-auto px-4 sm:px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center">
@@ -44,7 +44,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
+          {/* <div>
             <h3 className="font-heading font-semibold mb-4">Connect</h3>
             <div className="flex space-x-4">
               <a
@@ -76,8 +76,8 @@ const Footer = () => {
             <p className="text-muted-foreground text-sm mt-4">
               contact@speechcare.org
             </p>
-          </div>
-        </div>
+          </div>*/}
+        </div> 
 
         <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
           <p>© {new Date().getFullYear()} SpeechCARE Research Team. All rights reserved.</p>
