@@ -261,9 +261,13 @@ const PatientReport = () => {
                   <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 font-semibold text-[#1E3658] rounded-lg">
                     Social Determinants of Health (SDOH)
                   </span>
-                  <div className="mt-4">
-                    <p>{patient.sdoh || "No SDOH data available."}</p>
-                  </div>
+                    <div className="mt-4">
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: patient.sdoh || "No SDOH data available.",
+                        }}
+                      />
+                    </div>
                 </div>
               </div>
             </div>
