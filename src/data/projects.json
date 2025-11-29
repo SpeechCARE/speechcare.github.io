@@ -7,21 +7,16 @@
     "status": "Active"
   },
   {
-    "title": "Speech Pattern Analysis for Neurological Disorders",
-    "description": "Using advanced NLP and speech recognition to identify early markers of neurological conditions through voice analysis.",
-    "tags": ["NLP", "Speech Recognition", "Neurology"],
-    "status": "Completed"
+    "title": "LLM-Driven Knowledge Graph Framework for Personalized Cognitive-Impairment Care",
+    "slug": "risk factor",
+    "description": "An evidence-based, explainable AI system that unifies dispersed patient data into a validated knowledge graph to extract risk factors and generate individualized, guideline-aligned care plans.",
+    "tags": ["LLM", "Knowledge Graph", "RAG", "Care Planning"],
+    "status": "In Development"
   },
   {
-    "title": "Predictive Healthcare Analytics",
-    "description": "Building machine learning models to predict patient outcomes and optimize treatment pathways using EHR data.",
-    "tags": ["Machine Learning", "EHR", "Predictive Analytics"],
-    "status": "Active"
-  },
-  {
-    "title": "Multi-Modal Patient Monitoring System",
-    "description": "Integrating diverse data sources to create comprehensive patient monitoring solutions for ICU environments.",
-    "tags": ["IoT", "Real-time Analytics", "Critical Care"],
+    "title": "Multimodal Video and Speech Data Collection for Cognitive Assessment",
+    "description": "This project collects high-quality multimodal data—including video-based gaze and gait patterns, as well as spoken-language samples such as scripted sentence reading—to support advanced analysis of human behavior, mobility, and speech characteristics for clinical or AI research applications.",
+    "tags": ["Multimodal Data", "Speech Data", "Cognitive Research"],
     "status": "In Development"
   }
 ]

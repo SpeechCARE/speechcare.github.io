@@ -8,6 +8,7 @@ import NotFound from "../NotFound";
 import { useEffect } from "react";
 // Import individual project pages
 import ExplainableModels from "./explainability/ExplainableModels";
+import RiskFactorModule from "./riskFactor/RiskFactorModule"
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -28,6 +29,7 @@ const ProjectDetail = () => {
   // Route to specific project pages based on slug
   const projectPages: Record<string, React.ComponentType> = {
     "explainability": ExplainableModels,
+    "risk factor": RiskFactorModule
   };
 
   const ProjectPage = projectPages[slug || ""];

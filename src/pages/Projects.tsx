@@ -42,7 +42,7 @@ const Projects = () => {
                 >
                   <CardHeader>
                     <div className="flex items-start justify-between mb-2">
-                      <CardTitle className="text-2xl font-heading group-hover:text-primary transition-colors">
+                      <CardTitle className="text-xl font-heading group-hover:text-primary transition-colors w-4/5">
                         {project.title}
                       </CardTitle>
                       <Badge variant={project.status === "Active" ? "default" : "secondary"}>
