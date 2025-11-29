@@ -19,16 +19,22 @@
         "name": "Sina Rashidi",
         "image": "sina.jpg",
         "role": "Research Scientist",
-        "expertise": ["NLP", "Speech Processing", "Clinical NLP"],
+        "expertise": ["Speech Processing", "NLP", "Clinical NLP"],
         "bio": "Sina is a research scientist with a passion for applying natural language processing to healthcare applications and clinical text analysis.",
         "email": "sina.rashidi@gmail.com"
     },
     {
         "name": "Yasaman Haghbin",
-        "image": "yasaman.jpg",
+        "image": "Yasaman.jpeg",
         "role": "Research Scientist",
-        "expertise": ["NLP", "Speech Processing", "Clinical NLP"],
-        "bio": "Yasaman is a research scientist with a passion for applying natural language processing to healthcare applications and clinical text analysis.",
-        "email": "yasaman.haghbin@gmail.com"
+        "expertise": ["Speech Processing", "Clinical NLP", "Generative AI"],
+        "bio": "Yasaman is a machine learning researcher with a passion for applying natural language processing, speech processing and generative AI to healthcare"
+    },
+    {
+        "name": "Fatemeh Taherinezhad",
+        "image": "Fatemeh.JPG",
+        "role": "Research Scientist",
+        "expertise": ["Human-centered Technologies", "NLP", "Healthcare"],
+        "bio": "Fatemeh is an AI researcher passionate about developing human-centered technologies that leverage language, speech, and generative models to improve healthcare."
     }
 ]
