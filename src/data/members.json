@@ -1,18 +1,18 @@
 [
     {
         "name": "Dr. Maryam Zolnoori",
-        "image": "maryam.jpg",
+        "image": "Dr_zolnoori.jpg",
         "role": "Director of SpeechCARE Lab",
-        "expertise": ["Medical Informatics", "Deep Learning", "Healthcare AI"],
-        "bio": "Leading researcher with 15+ years of experience in medical AI and clinical informatics.",
+        "expertise": ["Medical Informatics", "Health Sciences", "Healthcare AI"],
+        "bio": "Maryam Zolnoori, PhD, is an Assistant Professor of Health Sciences Research in the School of Nursing. She received her PhD in health sciences-clinical Informatics from the University of Wisconsin-Milwaukee.",
         "email": "maryam.zolnoori@gmail.com"
     },
     {
         "name": "Ali Zolnour",
-        "image": "ali.jpg",
+        "image": "Ali.jpg",
         "role": "Research Scientist",
-        "expertise": ["Medical Informatics", "Deep Learning", "Healthcare AI"],
-        "bio": "Ali is a research scientist with a passion for applying deep learning to medical informatics and healthcare AI.",
+        "expertise": ["NLP", "Speech Analysis", "Cognitive Science"],
+        "bio": "Ali is a researcher in artificial intelligence specializing in natural language processing, speech analysis, and AI applications in cognitive science.",
         "email": "ali.zolnour@gmail.com"
     },
     {
