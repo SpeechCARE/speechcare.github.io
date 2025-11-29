@@ -123,7 +123,7 @@ const PatientReport = () => {
                       <img
                         src={getAssetPath((patient as any).pieChart)}
                         alt="Modality Contribution Pie Chart"
-                        className="w-60 h-60 object-contain"
+                        className="w-60 h-60 object-cover"
                       />
                     ) : (
                       <div className="w-60 h-60 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-xs text-center px-2">
@@ -174,7 +174,7 @@ const PatientReport = () => {
             <Card className="bg-white border-2 border-[#1E3658] rounded-lg p-6 flex-1">
               <h2 className="text-xl font-bold text-[#1E3658] mb-4">Listen to the audio!</h2>
               {patient.audioUrl && (
-                <div className="bg-[#E5F1F3] rounded-lg p-4 border-2 border-[#1E3658]">
+                <div className="rounded-lg p-4 border-2 border-[#1E3658]">
                   <audio 
                     controls 
                     className="w-full"
@@ -210,7 +210,7 @@ const PatientReport = () => {
               <div className="p-6 space-y-6">
                 {/* Clinical and Functional Overview */}
                 <div className="border-2 border-[#1E3658] rounded-lg p-5 relative">
-                  <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 font-semibold text-[#1E3658] rounded-lg">
+                  <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 py-1 font-semibold text-[#1E3658] rounded-lg">
                     Clinical and Functional Overview
                   </span>
                   <div className="mt-4 space-y-3">
@@ -241,7 +241,7 @@ const PatientReport = () => {
 
                 {/* Lab Tests */}
                 <div className="border-2 border-[#1E3658] rounded-lg p-5 relative">
-                  <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 font-semibold text-[#1E3658] rounded-lg">
+                  <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 py-1 font-semibold text-[#1E3658] rounded-lg">
                     Lab Tests
                   </span>
                   <div className="mt-4 space-y-2">
@@ -258,7 +258,7 @@ const PatientReport = () => {
 
                 {/* Social Determinants of Health */}
                 <div className="border-2 border-[#1E3658] rounded-lg p-5 relative">
-                  <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 font-semibold text-[#1E3658] rounded-lg">
+                  <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 py-1 font-semibold text-[#1E3658] rounded-lg">
                     Social Determinants of Health (SDOH)
                   </span>
                     <div className="mt-4">
@@ -306,17 +306,17 @@ const PatientReport = () => {
                       isLinguisticExpanded ? "max-h-[5000px]" : "max-h-0"
                     }`}
                   >
-                    <div className="p-4 space-y-4">
+                    <div className="p-4 space-y-5">
                       {/* Transcription */}
                       <p className="text-sm text-gray-600 mb-2">The transcription of the audio is shown below. Words are highlighted based on their SHAP value. <br />Greater SHAP value = Richer highlight color = More important for the prediction</p>
                       
-                      <div className="border-2 border-[#1E3658] rounded-lg p-5 relative">
-                        <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 font-semibold text-[#1E3658] rounded-lg">
+                      <div className="border-2 border-[#1E3658] rounded-lg p-2 relative">
+                        <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 py-1 font-semibold text-[#1E3658] rounded-lg">
                           Transcription
                         </span>
-                        <div className="mt-4 bg-[#E5F1F3] p-4 rounded">
+                        <div className="mt-1 p-4 rounded">
                           {(patient.linguistic as any)?.tokens ? (
-                            <div className="text-sm leading-relaxed">
+                            <div className="text-sm leading-relaxed space-y-2">
                               {(() => {
                                 const tokens = (patient.linguistic as any).tokens;
                                 const maxVal =
@@ -380,7 +380,7 @@ const PatientReport = () => {
 
                       {/* Linguistic Interpretation */}
                       <div className="border-2 border-[#1E3658] rounded-lg p-5 relative">
-                        <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 font-semibold text-[#1E3658] rounded-lg">
+                        <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 py-1 font-semibold text-[#1E3658] rounded-lg">
                           Linguistic Interpretation
                         </span>
                         <div className="mt-4 space-y-3">
@@ -426,7 +426,7 @@ const PatientReport = () => {
                       {/* Waveform */}
                       {patient.acoustic?.waveform && (
                         <div className="border-2 border-[#1E3658] rounded-lg p-5 relative">
-                          <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 font-semibold text-[#1E3658] rounded-lg">
+                          <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 py-1 font-semibold text-[#1E3658] rounded-lg">
                             Waveform
                           </span>
                           <div className="mt-4">
@@ -450,7 +450,7 @@ const PatientReport = () => {
                       {/* Spectrogram */}
                       {patient.acoustic?.spectrogram && (
                         <div className="border-2 border-[#1E3658] rounded-lg p-5 relative">
-                          <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 font-semibold text-[#1E3658] rounded-lg">
+                          <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 py-1 font-semibold text-[#1E3658] rounded-lg">
                             Spectrogram
                           </span>
                           <div className="mt-4">
@@ -474,7 +474,7 @@ const PatientReport = () => {
                       {/* Entropy */}
                       {patient.acoustic?.entropy && (
                         <div className="border-2 border-[#1E3658] rounded-lg p-5 relative">
-                          <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 font-semibold text-[#1E3658] rounded-lg">
+                          <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 py-1 font-semibold text-[#1E3658] rounded-lg">
                             Entropy
                           </span>
                           <div className="mt-4">
@@ -503,7 +503,7 @@ const PatientReport = () => {
 
           {/* Consideration Section */}
           <Card className="bg-white border-2 border-[#1E3658] rounded-lg mb-6">
-            <div className="bg-[#1E3658] text-white text-xl font-semibold py-3 px-4 rounded-t-lg">
+            <div className="bg-[#1E3658] text-white text-xl font-semibold py-3 px-4 rounded-t-sm">
               Consideration
             </div>
             <div className="p-6 space-y-4">
@@ -513,7 +513,7 @@ const PatientReport = () => {
                 assessments.
               </p>
               <div className="border-2 border-[#1E3658] rounded-lg p-5 relative">
-                <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 font-semibold text-[#1E3658] rounded-lg">
+                <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 py-1 font-semibold text-[#1E3658] rounded-lg">
                   Recommendations
                 </span>
                 <div className="mt-4 space-y-2">
