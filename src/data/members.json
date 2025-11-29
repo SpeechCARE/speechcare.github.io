@@ -36,5 +36,12 @@
         "role": "Research Scientist",
         "expertise": ["Human-centered Technologies", "NLP", "Healthcare"],
         "bio": "Fatemeh is an AI researcher passionate about developing human-centered technologies that leverage language, speech, and generative models to improve healthcare."
+    },
+        {
+        "name": "Pouria Fathi",
+        "image": "Pouria.jpeg",
+        "role": "Research Scientist",
+        "expertise": ["LLMs", "RAG robustness", "Agentic AI development"],
+        "bio": "Pouria is an AI Engineer and M.Sc. candidate specializing in LLMs, RAG robustness, and agentic AI development. I’m deeply interested in problem-solving and building reliable, high-quality AI systems that work in real-world settings."
     }
 ]
