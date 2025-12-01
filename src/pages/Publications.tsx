@@ -200,16 +200,16 @@ const Publications = () => {
                     {selectedPub?.challenge && (
                       <div className="text-left">
                         <h3 className="text-lg font-semibold mb-1">Challenge</h3>
-                        <p className="text-sm text-muted-foreground text-justify">
+                        <div className="text-sm text-muted-foreground text-justify">
                           {selectedPub.challenge}
-                        </p>
+                        </div>
                       </div>
                     )}
 
                     {selectedPub?.solution && (
                       <div className="text-left">
                         <h3 className="text-lg font-semibold mb-1">Solution</h3>
-                          <div className="text-sm text-muted-foreground text-justify"                        
+                          <div className="text-sm text-muted-foreground text-justify [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mt-1"                        
                           dangerouslySetInnerHTML={{
                           __html: selectedPub.solution
                         }}></div>
@@ -219,7 +219,7 @@ const Publications = () => {
                     {selectedPub?.result && (
                       <div className="text-left">
                         <h3 className="text-lg font-semibold mb-1">Result</h3>
-                          <div className="text-sm text-muted-foreground text-justify"                        
+                          <div className="text-sm text-muted-foreground text-justify  [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mt-1"                        
                           dangerouslySetInnerHTML={{
                           __html: selectedPub.result
                         }}></div>
