@@ -8,9 +8,9 @@
     "type": "Journal Article",
     "link": "https://www.nature.com/articles/s41746-025-02026-x",
     "image": "/images/publications/speechCARE.png",
-    "challenge": "Diagnosing speech impairments early is difficult due to limited datasets.",
-    "solution": "We propose an AI-assisted acoustic analysis pipeline.",
-    "result": "Achieved 92% early-screening accuracy."
+    "challenge": "Early detection of cognitive impairment from speech is difficult because available datasets are small, noisy, multilingual, and collected from inconsistent speech tasks. Traditional acoustic features and general-purpose models often fail to capture subtle linguistic and acoustic cues needed to identify Mild Cognitive Impairment (MCI) and Alzheimer’s disease.",
+    "solution": "SpeechCARE introduces a dynamic multimodal transformer pipeline that integrates: <ul class='list-disc pl-5'><li>Advanced preprocessing (LLM-based noise/anomaly detection, speech-task identification, ASR transcription). </li> <li>Multimodal modeling combining acoustic (mHuBERT), linguistic (mGTE), and demographic features.</li> <li>A novel Adaptive Gating Fusion (AGF) mechanism that weights modalities differently depending on the speech task.</li></ul> This architecture captures long-range speech patterns and adapts across languages and task types.",
+    "result": "72.11% average F1-score and 86.83% AUC on the NIA PREPARE test set (English, Spanish, Mandarin). <ul class='list-disc pl-5'> <li>Improved MCI detection through threshold optimization. </li> <li>Top-tier performance in the NIA challenge, earning special recognition. <li>Strong external generalization:<ul class='list-disc pl-5'><li>85.08% F1-score on ADReSSo 2021.</li><li>92.67% AUC / 85.47% F1-score when fine-tuned on Mandarin (Chou Corpus).</li></ul></li></ul>"
   },
   {
     "title": "LLMCARE: early detection of cognitive impairment via transformer models enhanced by LLM-generated synthetic data",

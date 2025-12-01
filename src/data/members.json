@@ -37,7 +37,14 @@
         "expertise": ["Human-centered Technologies", "NLP", "Healthcare"],
         "bio": "Fatemeh is an AI researcher passionate about developing human-centered technologies that leverage language, speech, and generative models to improve healthcare."
     },
-        {
+    {
+        "name": "Mohammad Javad Momeni Nezhad",
+        "image": "MJ.jpg",
+        "role": "Research Scientist",
+        "expertise": ["NLP", "LLM", "RAG Systems"],
+        "bio": "Mohammad Javad is an enthusiastic AI engineer working with large language models, speech processing, and RAG-based agent systems. He develops practical AI solutions for healthcare and e-commerce domains."
+    },
+    {
         "name": "Pouria Fathi",
         "image": "Pouria.jpeg",
         "role": "Research Scientist",

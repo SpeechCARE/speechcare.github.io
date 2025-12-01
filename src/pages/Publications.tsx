@@ -149,11 +149,10 @@ const Publications = () => {
             {/* RIGHT PREVIEW PANEL */}
             <div
               className="
-                order-last
                 min-w-[350px] lg:min-w-[350px] xl:min-w-[600px]
                 mt-12
                 sticky lg:top-28   /* instead of fixed */
-                lg:h-[90vh]           /* fixed height */
+                h-[75vh]           /* fixed height */
                 overflow-y-auto       /* scroll inside */
                 pr-2                  /* avoid scrollbar overlap */
               "
@@ -201,21 +200,29 @@ const Publications = () => {
                     {selectedPub?.challenge && (
                       <div className="text-left">
                         <h3 className="text-lg font-semibold mb-1">Challenge</h3>
-                        <p className="text-sm text-muted-foreground">{selectedPub.challenge}</p>
+                        <p className="text-sm text-muted-foreground text-justify">
+                          {selectedPub.challenge}
+                        </p>
                       </div>
                     )}
 
                     {selectedPub?.solution && (
                       <div className="text-left">
                         <h3 className="text-lg font-semibold mb-1">Solution</h3>
-                        <p className="text-sm text-muted-foreground">{selectedPub.solution}</p>
+                          <div className="text-sm text-muted-foreground text-justify"                        
+                          dangerouslySetInnerHTML={{
+                          __html: selectedPub.solution
+                        }}></div>
                       </div>
                     )}
 
                     {selectedPub?.result && (
                       <div className="text-left">
                         <h3 className="text-lg font-semibold mb-1">Result</h3>
-                        <p className="text-sm text-muted-foreground">{selectedPub.result}</p>
+                          <div className="text-sm text-muted-foreground text-justify"                        
+                          dangerouslySetInnerHTML={{
+                          __html: selectedPub.result
+                        }}></div>
                       </div>
                     )}
                   </>
