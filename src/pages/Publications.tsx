@@ -200,9 +200,10 @@ const Publications = () => {
                     {selectedPub?.challenge && (
                       <div className="text-left">
                         <h3 className="text-lg font-semibold mb-1">Challenge</h3>
-                        <div className="text-sm text-muted-foreground text-justify">
-                          {selectedPub.challenge}
-                        </div>
+                          <div className="text-sm text-muted-foreground text-justify [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mt-1"                        
+                          dangerouslySetInnerHTML={{
+                          __html: selectedPub.challenge
+                        }}></div>
                       </div>
                     )}
 

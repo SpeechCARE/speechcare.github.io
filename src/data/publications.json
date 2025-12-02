@@ -26,6 +26,30 @@
     "result": "LLMCARE achieved:<ul> <li><strong>ADReSSo 2021:</strong> F1 = <strong>83.32 ± 2.78</strong>, AUC = <strong>89.48 ± 4.40</strong> using the fusion model.</li> <li><strong>Delaware MCI Cohort:</strong> F1 = <strong>72.82</strong>, AUC = <strong>69.57</strong> with 1× MedAlpaca-7B augmentation.</li> <li><strong>Augmentation effects:</strong> MedAlpaca-7B improved performance up to 2× synthetic data (peak F1 ≈ <strong>85.7</strong>).</li> <li><strong>Transformer evaluation:</strong> BERT achieved the highest F1 (82.76 ± 4.51) among general-purpose models.</li> <li><strong>External LLM benchmark:</strong> LLaMA, GPT-4o, and Phi-4 multimodal models show strong viability for dementia detection.</li> </ul> Overall, LLMCARE demonstrates that combining transformer models, handcrafted linguistic features, and aligned LLM-generated narratives yields strong and generalizable performance for early-stage cognitive impairment screening."
   },
   {
+    "title": "SpeechDETECT: An Explainable Automated Speech Processing Pipeline for Early Detection of Neurological and Health Changes",
+    "authors": "Maryam Zolnoori, Elyas Esmaeili, Mehdi Naserian, Ali Zolnour, Sina Rashidi, Tahoura Morovati, Hossein Azadmaleki, James M Noble, Margaret V McDonald",
+    "venue": "Health Information Science and Systems",
+    "year": 2025,
+    "month": 10,
+    "type": "Journal Article",
+    "image": "/images/publications/speechDETECT.jpg",
+    "challenge": "Early cognitive impairment remains widely underdiagnosed, particularly in community and underserved settings. While biomarkers such as MRI and CSF offer high accuracy, they are costly and inaccessible for  large-scale screening. Existing speech-based pipelines rely on limited handcrafted features or black-box  models, lack clinical interpretability, and struggle to generalize across diverse speech tasks and short real-world recordings.",
+    "solution": "SpeechDETECT is a fully automated and explainable speech-processing pipeline designed to capture fine-grained acoustic and temporal markers of cognitive impairment. The system integrates: <ul> <li>Noise reduction and amplitude normalization for robust preprocessing.</li> <li>An eight-domain voice-analysis framework covering frequency, spectral, voice quality, loudness, complexity, rhythm, fluency, and production dynamics.</li> <li>50 ms segment-level acoustic extraction plus temporal features computed using WhisperX and phoneme-level alignment.</li> <li>Feature selection via JMIM, LASSO, LassoNet, and PCA to avoid overfitting.</li> <li>Machine learning classifiers with SHAP explainability to identify clinically meaningful vocal markers.</li> </ul> The pipeline was evaluated on both the structured DementiaBank Pitt dataset and the multi-task NIA PREPARE Phase 2 dataset.",
+    "result": "SpeechDETECT achieved strong and interpretable prediction performance: <ul> <li><strong>Pitt test set:</strong> F1 = <strong>0.81</strong>, AUC = <strong>0.80</strong>, outperforming six major acoustic toolkits.</li> <li><strong>PREPARE test set:</strong> F1 ≈ <strong>0.67</strong>, AUC = <strong>0.70</strong>, showing good generalizability across diverse short recordings.</li> <li><strong>Cumulative gains:</strong> Top 40% of ranked participants captured ~70% of impaired cases in Pitt and ~63% in PREPARE.</li> <li><strong>Explainability (SHAP):</strong> Key predictive markers included hesitation rate, pause ratio, spectral flattening (MFCC/LTAS), jitter, shimmer, NHR, and reduced utterance complexity.</li> </ul> These findings demonstrate that SpeechDETECT provides accurate, interpretable, and scalable speech-based screening for early cognitive impairment."
+  },
+  {
+    "title": "TransformerCARE: A Novel Speech Analysis Pipeline Using Transformer-Based Models and Audio Augmentation Techniques for Cognitive Impairment Detection",
+    "authors": "Hossein Azadmaleki, Ali Zolnour, Sina Rashidi, James M. Noble, Julia Hirschberg, Elyas Esmaeili, Tahoura Morovati, Maryam Zolnoori",
+    "venue": "International Journal of Medical Informatics",
+    "year": 2025,
+    "month": 10,
+    "type": "Journal Article",
+    "image": "",
+    "challenge": "Early cognitive impairment remains hard to detect because more than half of dementia cases go undiagnosed until late stages. Existing biomarkers such as MRI and CSF are costly and invasive, while current speech pipelines rely on hand-crafted features or small deep-learning models that miss subtle acoustic cues. Transformer models offer promise but struggle with long audio recordings, limited datasets, and computational constraints.",
+    "solution": "TransformerCARE is a transformer-based speech analysis pipeline designed for scalable early detection of cognitive impairment. The system integrates: <ul> <li><strong>Preprocessing</strong> with noise reduction and normalization.</li> <li><strong>Speech segmentation</strong> optimized at 14-second segments with 25% overlap.</li> <li><strong>Advanced transformer models</strong> (Wav2vec2, HuBERT, WavLM, DistilHuBERT) with fine-tuning.</li> <li><strong>Embed-based aggregation</strong> for richer subject-level representations.</li> <li><strong>Audio augmentation</strong> using pitch shifting, noise injection, time shifting, and frequency masking—preserving critical acoustic cues.</li> <li><strong>Provider–patient interaction speech</strong> to capture real communication cues during tasks.</li> </ul> This unified pipeline enhances contextual speech modeling and improves model generalizability.",
+    "result": "TransformerCARE achieved strong and clinically meaningful performance: <ul> <li><strong>Baseline (HuBERT):</strong> AUC = <strong>81.80</strong>, F1 = <strong>79.31</strong>.</li> <li><strong>Frequency masking augmentation:</strong> AUC = <strong>86.11</strong>, F1 = <strong>84.63</strong> (≈5% improvement).</li> <li><strong>Provider speech effect:</strong> Removing provider speech reduces performance by ~2.3%.</li> <li><strong>Cross-validation robustness:</strong> AUC = <strong>84.8–93.9</strong>, F1 = <strong>83.5–90.1</strong> across folds.</li> <li><strong>Error analysis:</strong> Misclassified subjects show deviations in pause length, jitter, entropy, and speech rate.</li> </ul> These findings demonstrate that TransformerCARE provides a high-performing, scalable, and noninvasive tool for early cognitive impairment screening."
+  },
+  {
     "title": "Speech-Based Cognitive Screening: A Systematic Evaluation of LLM Adaptation Strategies",
     "authors": "Fatemeh Taherinezhad, Mohamad Javad Momeni Nezhad, Sepehr Karimi, Sina Rashidi, Ali Zolnour, Maryam Dadkhah, Yasaman Haghbin, Hossein AzadMaleki, Maryam Zolnoori",
     "venue": "JMIR",
@@ -33,7 +57,7 @@
     "month": 8,
     "type": "Under Review",
     "link": "https://arxiv.org/abs/2509.03525",
-    "image": "/images/publications/CDS.png",
+    "image": "/images/publications/LLM.png",
     "challenge": "…",
     "solution": "…",
     "result": "…"
@@ -46,10 +70,10 @@
     "month": 12,
     "type": "Journal Article",
     "link": "",
-    "image": "",
-    "challenge": "…",
-    "solution": "…",
-    "result": "…"
+    "image": "/images/publications/Phone_Call.jpg",
+    "challenge": "Older adults receiving home healthcare face high rates of undiagnosed mild cognitive impairment (MCI)—over 60% of early symptoms go unrecognized because: <ul><li>Early cognitive changes (e.g., slowed speech, memory lapses) are rarely documented in EHRs.</li> <li>Existing EHR-based risk models show only moderate sensitivity.</li> <li>In-person cognitive testing is burdensome, resource-intensive, and often infeasible in diverse home-care settings.</li></ul> This results in missed opportunities for early intervention among underserved, multimorbid, aging populations.",
+    "solution": "This study developed a speech-based screening algorithm that analyzes brief, semi-structured follow-up phone calls between home-health patients and nurses. The system integrates: <ul> <li><strong>Acoustic biomarkers</strong> capturing pauses, pitch variability, prosody, fluency, and rhythm.</li> <li><strong>Linguistic features</strong> from transformer models (BERT) reflecting semantic and syntactic disorganization.</li> <li><strong>Structured EHR variables (OASIS)</strong> describing comorbidities, function, and utilization patterns.</li> <li><strong>Multimodal machine-learning fusion</strong> combining speech and clinical data to enhance predictive accuracy.</li> </ul> This approach leverages routine communication already present in home healthcare, enabling scalable, low-burden cognitive surveillance.",
+    "result": "The study evaluated 114 participants and found: <ul> <li><strong>Follow-up call speech alone:</strong> AUC = <strong>81.09</strong>, with the highest sensitivity (92.31%).</li> <li><strong>CDR interview speech:</strong> AUC = <strong>80.67</strong>, with the highest specificity (93.33%).</li> <li><strong>OASIS clinical data alone:</strong> AUC = <strong>78.53</strong>.</li> <li><strong>Multimodal (OASIS + follow-up speech):</strong> AUC = <strong>91.03</strong>, F1 = <strong>81.48</strong>, the best-performing model.</li> </ul> Combining routine follow-up call speech with structured EHR data yields a powerful screening tool for early detection of cognitive impairment in home healthcare."
   },
   {
     "title": "Multimodal Attention Fusion of Speech and EHR Data for Early Detection of Cognitive Decline in Home Healthcare",
@@ -58,10 +82,10 @@
     "year": 2026,
     "month": 4,
     "type": "Under Review",
-    "image": "/images/publications/BIMS.svg",
-    "challenge": "…",
-    "solution": "…",
-    "result": "…"
+    "image": "/images/publications/BIMS.jpg",
+    "challenge": "Early cognitive decline is frequently missed in home healthcare because early symptoms are rarely captured in EHRs, existing EHR-based models show only moderate performance, and most prior speech studies rely on structured laboratory tasks that do not reflect subtle, real-world decline. Natural patient–nurse speech, although rich with cognitive information, has been underused and never fully integrated with EHR data.",
+    "solution": "This study introduces a multimodal attention-based fusion framework that integrates: <ul> <li><strong>Structured EHR variables</strong> capturing clinical, functional, demographic, and behavioral data.</li> <li><strong>Check-in phone call speech</strong> providing semi-structured acoustic and linguistic cues.</li> <li><strong>Patient–nurse verbal communication</strong> offering rich, naturalistic indicators of cognitive function.</li> <li><strong>SpeechDETECT acoustic features</strong> reflecting prosody, rhythm, voice quality, and clarity.</li> <li><strong>Transformer-based linguistic embeddings</strong> (BERT, ClinicalBERT, BioMedBERT) capturing semantic and syntactic anomalies.</li> <li><strong>Attention-based bottleneck fusion</strong> to efficiently combine cross-modal information.</li></ul> This framework provides a scalable, minimally invasive method for early cognitive impairment detection.",
+    "result": "Evaluation on 175 participants showed strong, stepwise gains when speech data were added:<ul><li><strong>EHR only:</strong> AUC = <strong>0.74</strong>, F1 = <strong>58.22</strong>.</li><li><strong>EHR + first check-in call:</strong> AUC = <strong>0.76</strong>, F1 = <strong>63.80</strong>.</li><li><strong>EHR + one patient–nurse conversation:</strong> AUC = <strong>0.93</strong>, F1 = <strong>80.78</strong>.</li><li><strong>EHR + two patient–nurse conversations:</strong> AUC = <strong>0.94</strong>, F1 = <strong>84.91</strong>.</li><li><strong>Best model (EHR + first check-in call + both conversations):</strong> AUC = <strong>0.98</strong>, F1 = <strong>90.51</strong>.</li></ul>Natural speech—especially patient–nurse conversations—provided the strongest predictive signal, while EHR data added complementary clinical context. This multimodal method offers a powerful, non-invasive tool for early cognitive decline detection in home healthcare."
   },
   {
     "title": "Leveraging Text-To-Speech and Voice Conversion as Data Augmentation for Alzheimer's Disease Detection from Spontaneous Speech",
@@ -70,10 +94,10 @@
     "year": 2026,
     "month": 4,
     "type": "Under Review",
-    "image": "/images/publications/SpeechCURA.svg",
-    "challenge": "…",
-    "solution": "…",
-    "result": "…"
+    "image": "/images/publications/SpeechCURA.jpg",
+    "challenge": "Alzheimer’s disease detection from speech is limited by scarce patient audio data, which restricts model training and weakens generalizability. This scarcity arises because: Collecting clinical speech is difficult due to privacy constraints, clinician burden, and inconsistent recording environments. Existing speech datasets (e.g., DementiaBank, ADReSSo) are small and lack demographic and acoustic diversity, reducing robustness. Conventional augmentation (e.g., SpecAugment) introduces limited variability, altering acoustics but not linguistic cues. These limitations hinder the development of accurate, clinically deployable ADRD screening models.",
+    "solution": "This study introduces two generative pipelines that expand both acoustic and linguistic diversity: <ul> <li><strong>Text-to-Speech (TTS) pipeline:</strong> Fine-tuned LLaMA-3.1-8B and medGemma-27B models generate diagnosis-specific synthetic transcripts, which are converted to audio using SparkTTS with diagnosis-matched speaker embeddings.</li> <li><strong>Voice Conversion (VC) pipeline:</strong> Uses OpenVoice to convert each real speaker’s voice into another speaker’s profile while preserving linguistic content, increasing acoustic diversity.</li> <li><strong>Model evaluation:</strong> Both pipelines are tested with SpeechCARE-AGF (multimodal) and SpeechCARE-Whisper (acoustic-only) transformer architectures.</li></ul> Together, these pipelines create rich, clinically relevant synthetic speech to strengthen model training.",
+    "result": "Generative augmentation consistently improved diagnostic performance: <ul> <li><strong>Baseline (SpeechCARE-Whisper):</strong> Micro-F1 = <strong>80.2</strong>, ADRD-F1 = <strong>82.9</strong>.</li> <li><strong>TTS augmentation (best overall):</strong> Micro-F1 = <strong>90.1</strong>, ADRD-F1 = <strong>90.4</strong>, achieving state-of-the-art performance on spontaneous speech.</li> <li><strong>Voice conversion:</strong> Micro-F1 = <strong>90.1</strong>, ADRD-F1 = <strong>90.1</strong>.</li> <li><strong>SpecAugment:</strong> mixed impact—beneficial for Whisper but reduced AGF performance.</li> </ul> These findings show that generative synthesis adds meaningful acoustic and linguistic variation, outperforming conventional augmentations and enabling more accurate, robust Alzheimer’s detection."
   },
   {
     "title": "Explainability",
