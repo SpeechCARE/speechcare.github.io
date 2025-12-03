@@ -1,12 +1,23 @@
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import { useTheme } from "next-themes";
 import logo from "@/assets/logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // Avoid hydration mismatch by only rendering after mount
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isDark = mounted && resolvedTheme === "dark";
 
   const links = [
     { name: "Home", path: "/" },
@@ -45,6 +56,21 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
+            {/* Theme Toggle */}
+            <div className="flex items-center space-x-2 ml-4 pl-4 border-l border-border">
+              {mounted && (
+                <>
+                  <Sun className="h-4 w-4 text-foreground/70" />
+                  <Switch
+                    checked={isDark}
+                    onCheckedChange={(checked) => {
+                      setTheme(checked ? "dark" : "light");
+                    }}
+                  />
+                  <Moon className="h-4 w-4 text-foreground/70" />
+                </>
+              )}
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -75,6 +101,24 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
+            {/* Mobile Theme Toggle */}
+            {mounted && (
+              <div className="flex items-center justify-between px-4 py-2">
+                <div className="flex items-center space-x-2">
+                  <Sun className="h-4 w-4 text-foreground/70" />
+                  <span className="text-sm font-medium text-foreground">Theme</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Switch
+                    checked={isDark}
+                    onCheckedChange={(checked) => {
+                      setTheme(checked ? "dark" : "light");
+                    }}
+                  />
+                  <Moon className="h-4 w-4 text-foreground/70" />
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>

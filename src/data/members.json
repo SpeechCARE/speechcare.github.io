@@ -19,7 +19,7 @@
         "name": "Sina Rashidi",
         "image": "sina.jpg",
         "role": "Research Scientist",
-        "expertise": ["Speech Processing", "NLP", "Clinical NLP"],
+        "expertise": ["Speech Processing", "NLP", "Generative AI", "Multi-Modal LLMs"],
         "bio": "Sina is a research scientist with a passion for applying natural language processing to healthcare applications and clinical text analysis.",
         "email": "sina.rashidi@gmail.com"
     },

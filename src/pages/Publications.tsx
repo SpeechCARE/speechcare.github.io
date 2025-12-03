@@ -157,7 +157,7 @@ const Publications = () => {
                 pr-2                  /* avoid scrollbar overlap */
               "
             >
-              <div className="min-h-[300px] bg-white rounded-xl p-6 shadow-md space-y-6 text-center">
+              <div className="min-h-[300px] bg-card rounded-xl p-6 shadow-md space-y-6 text-center">
 
                 {!selectedPub && (
                   <div className="space-y-4">
@@ -181,7 +181,7 @@ const Publications = () => {
                     {selectedPub?.image && (
                       <div className="relative w-full mb-4">
                         {imageLoading && (
-                          <div className="absolute inset-0 flex items-center justify-center bg-white/50">
+                          <div className="absolute inset-0 flex items-center justify-center bg-background/50">
                             <Loader2 className="w-8 h-8 animate-spin text-primary" />
                           </div>
                         )}
