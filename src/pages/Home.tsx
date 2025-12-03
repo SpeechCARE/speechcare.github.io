@@ -84,7 +84,7 @@ const Home = () => {
                 <div className="absolute inset-0 bg-card/60 backdrop-blur-sm" />
                 <div className="relative z-10">
                   <div className="w-14 h-14 rounded-lg bg-gradient-primary flex items-center justify-center mb-2">
-                    <item.icon className="h-7 w-7 text-primary-foreground" />
+                    <item.icon className="h-7 w-7 text-white" />
                   </div>
                   <h3 className="text-2xl font-heading font-semibold mb-3">{item.title}</h3>
                   <p className="text-foreground">{item.description}</p>
