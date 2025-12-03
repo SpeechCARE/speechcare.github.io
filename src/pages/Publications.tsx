@@ -1,8 +1,11 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { ExternalLink, X, Loader2, ChevronRight, Info, Target, Lightbulb, TrendingUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import publicationsData from "@/data/publications.json";
+
+const LG_BREAKPOINT = 1024; // Tailwind's lg breakpoint
 
 const Publications = () => {
   useEffect(() => {
@@ -12,6 +15,7 @@ const Publications = () => {
   const [selectedPub, setSelectedPub] = useState<any>(null);
   const [zoomImage, setZoomImage] = useState<string | null>(null);
   const [imageLoading, setImageLoading] = useState(false);
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
   const sortByDate = (a: any, b: any) => {
     if (a.year !== b.year) return b.year - a.year;
@@ -39,6 +43,114 @@ const Publications = () => {
     setSelectedPub(pub);
   };
 
+  // Preview content component (reusable for both desktop and mobile)
+  const PreviewContent = ({ pub }: { pub: any }) => (
+    <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
+      {/* Publication Title */}
+      <div>
+        <h2 className="text-xl font-heading font-semibold mb-3 leading-tight">
+          {pub.title}
+        </h2>
+        <div className="flex flex-wrap items-center gap-2 mb-3">
+          <Badge variant="outline" className="text-xs">
+            {pub.type}
+          </Badge>
+          <Badge variant="secondary" className="text-xs">
+            {pub.month
+              ? new Date(pub.year, pub.month - 1).toLocaleString("default", {
+                  month: "long",
+                })
+              : ""}{" "}
+            {pub.year}
+          </Badge>
+        </div>
+        {pub.link && (
+          <a
+            href={pub.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm text-primary hover:underline font-medium"
+          >
+            View Full Publication <ExternalLink className="h-4 w-4" />
+          </a>
+        )}
+      </div>
+
+      {/* Publication Image */}
+      {pub?.image && (
+        <div className="relative w-full rounded-lg overflow-hidden border border-border bg-muted/30">
+          {imageLoading && (
+            <div className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm z-10">
+              <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            </div>
+          )}
+          <img
+            src={pub.image}
+            alt={pub.title}
+            className={`w-full max-h-[50vh] object-contain mx-auto cursor-zoom-in transition-opacity duration-300 ${
+              imageLoading ? "opacity-0" : "opacity-100"
+            }`}
+            onClick={() => !imageLoading && setZoomImage(pub.image)}
+            onLoad={handleImageLoad}
+          />
+          {!imageLoading && (
+            <div className="absolute bottom-2 right-2 bg-black/50 text-white text-xs px-2 py-1 rounded backdrop-blur-sm">
+              Click to zoom
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Challenge Section */}
+      {pub?.challenge && (
+        <div className="text-left space-y-2">
+          <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
+            <Target className="h-5 w-5 text-primary" />
+            Challenge
+          </h3>
+          <div 
+            className="text-sm text-muted-foreground text-justify leading-relaxed [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1 [&_li]:mt-1.5 [&_p]:mb-2"
+            dangerouslySetInnerHTML={{
+              __html: pub.challenge
+            }}
+          />
+        </div>
+      )}
+
+      {/* Solution Section */}
+      {pub?.solution && (
+        <div className="text-left space-y-2">
+          <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
+            <Lightbulb className="h-5 w-5 text-primary" />
+            Solution
+          </h3>
+          <div 
+            className="text-sm text-muted-foreground text-justify leading-relaxed [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1 [&_li]:mt-1.5 [&_p]:mb-2"
+            dangerouslySetInnerHTML={{
+              __html: pub.solution
+            }}
+          />
+        </div>
+      )}
+
+      {/* Result Section */}
+      {pub?.result && (
+        <div className="text-left space-y-2">
+          <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
+            <TrendingUp className="h-5 w-5 text-primary" />
+            Result
+          </h3>
+          <div 
+            className="text-sm text-muted-foreground text-justify leading-relaxed [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1 [&_li]:mt-1.5 [&_p]:mb-2"
+            dangerouslySetInnerHTML={{
+              __html: pub.result
+            }}
+          />
+        </div>
+      )}
+    </div>
+  );
+
   // Handle image load completion
   const handleImageLoad = () => {
     setImageLoading(false);
@@ -52,6 +164,17 @@ const Publications = () => {
       setImageLoading(false);
     }
   }, [selectedPub]);
+
+  // Track screen size for responsive behavior
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobileOrTablet(window.innerWidth < LG_BREAKPOINT);
+    };
+    
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   // 🔥 PRELOAD ALL IMAGES ONCE AFTER MOUNT
   useEffect(() => {
@@ -161,8 +284,8 @@ const Publications = () => {
               <Section title="In Preparation" items={inPrep} />
             </div>
 
-            {/* RIGHT PREVIEW PANEL */}
-            <div className="lg:col-span-2 mt-[4.5rem]">
+            {/* RIGHT PREVIEW PANEL - Desktop Only */}
+            <div className="hidden lg:block lg:col-span-2 mt-[4.5rem]">
               <div className="sticky top-20">
                 <div className="w-full bg-card border border-border rounded-xl shadow-lg overflow-hidden transition-all duration-300">
                   {/* Preview Header */}
@@ -178,7 +301,6 @@ const Publications = () => {
 
                   {/* Preview Content */}
                   <div className="p-4 max-h-[calc(100vh-12rem)] overflow-y-auto">
-
                     {!selectedPub && (
                       <div className="flex flex-col items-center justify-center py-12 px-4 text-center space-y-4">
                         <div className="w-20 h-20 rounded-full bg-muted flex items-center justify-center">
@@ -197,118 +319,30 @@ const Publications = () => {
                       </div>
                     )}
 
-                    {selectedPub && (
-                      <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
-                        {/* Publication Title */}
-                        <div>
-                          <h2 className="text-xl font-heading font-semibold mb-3 leading-tight">
-                            {selectedPub.title}
-                          </h2>
-                          <div className="flex flex-wrap items-center gap-2 mb-3">
-                            <Badge variant="outline" className="text-xs">
-                              {selectedPub.type}
-                            </Badge>
-                            <Badge variant="secondary" className="text-xs">
-                              {selectedPub.month
-                                ? new Date(selectedPub.year, selectedPub.month - 1).toLocaleString("default", {
-                                    month: "long",
-                                  })
-                                : ""}{" "}
-                              {selectedPub.year}
-                            </Badge>
-                          </div>
-                          {selectedPub.link && (
-                            <a
-                              href={selectedPub.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 text-sm text-primary hover:underline font-medium"
-                            >
-                              View Full Publication <ExternalLink className="h-4 w-4" />
-                            </a>
-                          )}
-                        </div>
-
-                        {/* Publication Image */}
-                        {selectedPub?.image && (
-                          <div className="relative w-full rounded-lg overflow-hidden border border-border bg-muted/30">
-                            {imageLoading && (
-                              <div className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm z-10">
-                                <Loader2 className="w-8 h-8 animate-spin text-primary" />
-                              </div>
-                            )}
-                            <img
-                              src={selectedPub.image}
-                              alt={selectedPub.title}
-                              className={`w-full max-h-[50vh] object-contain mx-auto cursor-zoom-in transition-opacity duration-300 ${
-                                imageLoading ? "opacity-0" : "opacity-100"
-                              }`}
-                              onClick={() => !imageLoading && setZoomImage(selectedPub.image)}
-                              onLoad={handleImageLoad}
-                            />
-                            {!imageLoading && (
-                              <div className="absolute bottom-2 right-2 bg-black/50 text-white text-xs px-2 py-1 rounded backdrop-blur-sm">
-                                Click to zoom
-                              </div>
-                            )}
-                          </div>
-                        )}
-
-                        {/* Challenge Section */}
-                        {selectedPub?.challenge && (
-                          <div className="text-left space-y-2">
-                            <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-                              <Target className="h-5 w-5 text-primary" />
-                              Challenge
-                            </h3>
-                            <div 
-                              className="text-sm text-muted-foreground text-justify leading-relaxed [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1 [&_li]:mt-1.5 [&_p]:mb-2"
-                              dangerouslySetInnerHTML={{
-                                __html: selectedPub.challenge
-                              }}
-                            />
-                          </div>
-                        )}
-
-                        {/* Solution Section */}
-                        {selectedPub?.solution && (
-                          <div className="text-left space-y-2">
-                            <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-                              <Lightbulb className="h-5 w-5 text-primary" />
-                              Solution
-                            </h3>
-                            <div 
-                              className="text-sm text-muted-foreground text-justify leading-relaxed [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1 [&_li]:mt-1.5 [&_p]:mb-2"
-                              dangerouslySetInnerHTML={{
-                                __html: selectedPub.solution
-                              }}
-                            />
-                          </div>
-                        )}
-
-                        {/* Result Section */}
-                        {selectedPub?.result && (
-                          <div className="text-left space-y-2">
-                            <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-                              <TrendingUp className="h-5 w-5 text-primary" />
-                              Result
-                            </h3>
-                            <div 
-                              className="text-sm text-muted-foreground text-justify leading-relaxed [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1 [&_li]:mt-1.5 [&_p]:mb-2"
-                              dangerouslySetInnerHTML={{
-                                __html: selectedPub.result
-                              }}
-                            />
-                          </div>
-                        )}
-                      </div>
-                    )}
+                    {selectedPub && <PreviewContent pub={selectedPub} />}
                   </div>
                 </div>
               </div>
             </div>
 
           </div>
+
+          {/* MOBILE/TABLET SHEET - Shows preview in a drawer */}
+          {isMobileOrTablet && (
+            <Sheet open={!!selectedPub} onOpenChange={(open) => !open && setSelectedPub(null)}>
+              <SheetContent side="right" className="w-full sm:max-w-lg overflow-y-auto">
+                <SheetHeader>
+                  <SheetTitle className="flex items-center gap-2">
+                    <Info className="h-5 w-5 text-primary" />
+                    Publication Details
+                  </SheetTitle>
+                </SheetHeader>
+                <div className="mt-6">
+                  {selectedPub && <PreviewContent pub={selectedPub} />}
+                </div>
+              </SheetContent>
+            </Sheet>
+          )}
         </div>
       </div>
 
