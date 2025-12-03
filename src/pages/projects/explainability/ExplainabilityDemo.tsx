@@ -12,7 +12,7 @@ const ExplainabilityDemo = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-[#E5F1F3] py-8">
+    <div className="min-h-screen bg-background py-8">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <Button variant="default" asChild className="mb-6 -mt-4">
@@ -23,18 +23,20 @@ const ExplainabilityDemo = () => {
           </Button>
 
           <div className="space-y-6">
-            {/* Banner */}
-            <div className="bg-[#1E3658] text-white text-xl font-semibold py-3 px-4 rounded-md text-center">
-              SpeechCARE Explainability Framework Demonstration
+            {/* Title */}
+            <div className="text-center mb-20 md:mb-28">
+              <h1 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
+                SpeechCARE Explainability Framework Demonstration
+              </h1>
             </div>
 
-            {/* Welcome Text */}
-            <div className="text-center space-y-2">
-              <h2 className="text-2xl font-heading font-semibold text-[#1E3658]">
+            {/* Guide Section */}
+            <div className="border-l-4 border-primary pl-6 py-4 bg-muted/30 rounded-r-lg space-y-3">
+              <h2 className="text-2xl font-heading font-semibold text-foreground">
                 Select a Patient
               </h2>
-              <p className="text-lg text-[#1E3658]">
-                Choose from the available patient assessment reports below.
+              <p className="text-base text-muted-foreground">
+                Choose from the available patient assessment reports below. (The cognitive status of the patient is shown in the parentheses.)
               </p>
             </div>
 
@@ -43,14 +45,14 @@ const ExplainabilityDemo = () => {
               {patientsData.map((patient) => (
                 <Card
                   key={patient.id}
-                  className="bg-white border-2 border-[#1E3658] rounded-lg p-5 text-center transition-all hover:transform hover:-translate-y-1 hover:shadow-lg cursor-pointer"
+                  className="bg-card border-2 border-border rounded-lg p-5 text-center transition-all hover:transform hover:-translate-y-1 hover:shadow-lg cursor-pointer"
                   onClick={() => navigate(`/projects/explainability/demo/${patient.id}`)}
                 >
-                  <div className="text-2xl font-bold text-[#1E3658] mb-3">
+                  <div className="text-2xl font-bold text-foreground mb-3">
                     {patient.name} ({patient.condition})
                   </div>
                   <Button
-                    className="w-full bg-[#7fa37f] hover:bg-[#6a8f6a] text-white font-semibold py-3 px-6 rounded"
+                    className="w-full bg-[#3A4558] hover:bg-[#2D3748] text-white font-semibold py-3 px-6 rounded dark:bg-[#4A5568] dark:hover:bg-[#5A6578]"
                     onClick={(e) => {
                       e.stopPropagation();
                       navigate(`/projects/explainability/demo/${patient.id}`);

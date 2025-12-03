@@ -41,10 +41,40 @@ const PatientReport = () => {
   const [isLinguisticExpanded, setIsLinguisticExpanded] = useState(false);
   const [isAcousticExpanded, setIsAcousticExpanded] = useState(false);
   const [showPieChartInfo, setShowPieChartInfo] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(
+    document.documentElement.classList.contains('dark')
+  );
+
+  // Monitor dark mode changes
+  useEffect(() => {
+    const checkDarkMode = () => {
+      setIsDarkMode(document.documentElement.classList.contains('dark'));
+    };
+
+    // Check on mount and when class changes
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+
+    // Also listen to media query changes (for system preference)
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleMediaChange = () => {
+      // Small delay to let the class update
+      setTimeout(checkDarkMode, 10);
+    };
+    mediaQuery.addEventListener('change', handleMediaChange);
+
+    return () => {
+      observer.disconnect();
+      mediaQuery.removeEventListener('change', handleMediaChange);
+    };
+  }, []);
 
   if (!patient) {
     return (
-      <div className="min-h-screen bg-[#E5F1F3] py-8">
+      <div className="min-h-screen bg-background py-8">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-6xl mx-auto">
             <p className="text-center text-xl">Patient not found</p>
@@ -58,7 +88,7 @@ const PatientReport = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#E5F1F3] py-8">
+    <div className="min-h-screen bg-background py-8">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           {/* Back Button */}
@@ -70,7 +100,7 @@ const PatientReport = () => {
           </Button>
 
           {/* Patient Profile and System Outcome Section */}
-          <Card className="bg-white border-2 border-[#1E3658] rounded-lg p-6 mb-6 border-b-2 border-[#1E3658]">
+          <Card className="bg-card border-2 border-border rounded-lg p-6 mb-6">
             <div className="flex flex-col lg:flex-row gap-6 items-center">
               {/* Patient Profile */}
               <div className="flex flex-col items-center lg:w-1/4 w-full gap-3">
@@ -78,44 +108,44 @@ const PatientReport = () => {
                   <img
                     src={getAssetPath(patient.image)}
                     alt={patient.name}
-                    className="w-40 h-40 rounded-full object-cover border-4 border-[#1E3658]"
+                    className="w-40 h-40 rounded-full object-cover border-4 border-primary"
                   />
                 </div>
                 <div className="flex-1 space-y-2 text-md w-full">
                   <div>
-                    <span className="font-bold text-[#1E3658]">Name:</span> {patient.name}
+                    <span className="font-bold text-foreground">Name:</span> <span className="text-foreground/90">{patient.name}</span>
                   </div>
                   <div>
-                    <span className="font-bold text-[#1E3658]">Gender:</span> {patient.gender}
+                    <span className="font-bold text-foreground">Gender:</span> <span className="text-foreground/90">{patient.gender}</span>
                   </div>
                   <div>
-                    <span className="font-bold text-[#1E3658]">Age:</span> {patient.age}
+                    <span className="font-bold text-foreground">Age:</span> <span className="text-foreground/90">{patient.age}</span>
                   </div>
                   <div>
-                    <span className="font-bold text-[#1E3658]">Primary Language:</span> English
+                    <span className="font-bold text-foreground">Primary Language:</span> <span className="text-foreground/90">English</span>
                   </div>
                 </div>
               </div>
 
               {/* Vertical Divider */}
-              <div className="hidden lg:block h-80 border-l-2 border-[#1E3658] mx-4"></div>
+              <div className="hidden lg:block h-80 border-l-2 border-border mx-4"></div>
 
               {/* System Outcome Section */}
               <div className="lg:w-3/4 w-full">
                 <div className="flex justify-center">
-                  <h2 className="text-2xl font-bold text-[#1E3658] mb-4 border-b-2 border-[#7fa37f] w-48 pb-2 text-center">
+                  <h2 className="text-2xl font-bold text-foreground mb-4 border-b-2 border-[#3A4558] dark:border-[#4A5568] w-48 pb-2 text-center">
                     System Outcome
                   </h2>
                 </div>
                 <div className="flex md:flex-row gap-8 items-center">
                   <div className="flex flex-col items-start gap-2 w-1/3">
                     <div>
-                      <span className="font-bold text-[#350a29]">Cognitive Status:</span>{" "}
-                      <span className="font-bold">{patient.condition}</span>
+                      <span className="font-bold text-foreground">Cognitive Status:</span>{" "}
+                      <span className="font-bold text-foreground">{patient.condition}</span>
                     </div>
                     <div>
-                      <span className="font-bold text-[#350a29]">System Confidence:</span>{" "}
-                      <span className="font-bold">{patient.systemConfidence || "94.0%"}</span>
+                      <span className="font-bold text-foreground">System Confidence:</span>{" "}
+                      <span className="font-bold text-foreground">{patient.systemConfidence || "94.0%"}</span>
                     </div>
                   </div>
                   <div className="flex flex-col items-center gap-2 w-1/2">
@@ -126,19 +156,19 @@ const PatientReport = () => {
                         className="w-60 h-60 object-cover"
                       />
                     ) : (
-                      <div className="w-60 h-60 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-xs text-center px-2">
+                      <div className="w-60 h-60 bg-muted rounded-full flex items-center justify-center text-muted-foreground text-xs text-center px-2">
                         Pie Chart Placeholder
                       </div>
                     )}
-                    <div className="text-sm text-gray-600 text-center mt-2">
+                    <div className="text-sm text-muted-foreground text-center mt-2">
                       <span className="font-bold">Modality Contribution of Speech & Demographic</span>
                     </div>
                   </div>
                 </div>
-                {/* <div className="mt-4 text-sm text-gray-600 text-center">
+                {/* <div className="mt-4 text-sm text-muted-foreground text-center">
                   <button
                     onClick={() => setShowPieChartInfo(!showPieChartInfo)}
-                    className="text-[#7fa37f] font-bold text-sm hover:underline"
+                    className="text-primary font-bold text-sm hover:underline"
                   >
                     {showPieChartInfo ? "Less Info" : "More Info"}
                   </button>
@@ -159,27 +189,27 @@ const PatientReport = () => {
 
           {/* Significant Factors and Audio Section */}
           <div className="flex flex-col md:flex-row gap-6 mb-6">
-            <Card className="bg-white border-2 border-[#1E3658] rounded-lg p-6 flex-1">
-              <h2 className="text-xl font-bold text-[#1E3658] mb-4">Significant Factors</h2>
+            <Card className="bg-card border-2 border-border rounded-lg p-6 flex-1">
+              <h2 className="text-xl font-bold text-foreground mb-4">Significant Factors</h2>
               <ul className="space-y-3">
                 {(patient.significantFactors || []).map((factor, index) => (
                   <li key={index} className="flex items-start">
-                    <span className="w-2 h-2 bg-[#1E3658] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span>{factor}</span>
+                    <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <span className="text-foreground/90">{factor}</span>
                   </li>
                 ))}
               </ul>
             </Card>
 
-            <Card className="bg-white border-2 border-[#1E3658] rounded-lg p-6 flex-1">
-              <h2 className="text-xl font-bold text-[#1E3658] mb-4">Listen to the audio!</h2>
+            <Card className="bg-card border-2 border-border rounded-lg p-6 flex-1">
+              <h2 className="text-xl font-bold text-foreground mb-4">Listen to the audio!</h2>
               {patient.audioUrl && (
-                <div className="rounded-lg p-4 border-2 border-[#1E3658]">
+                <div className="rounded-lg p-4 border-2 border-border">
                   <audio 
                     controls 
                     className="w-full"
                     style={{
-                      accentColor: '#1E3658',
+                      accentColor: 'hsl(var(--primary))',
                       height: '40px'
                     }}
                   >
@@ -191,93 +221,11 @@ const PatientReport = () => {
             </Card>
           </div>
 
-          {/* Patient Health Assessment Section */}
-          <Card className="bg-white border-2 border-[#1E3658] rounded-lg mb-6 overflow-hidden">
-            <button
-              onClick={() => setIsHealthExpanded(!isHealthExpanded)}
-              className="w-full bg-[#1E3658] text-white text-xl font-semibold py-3 px-4 flex justify-between items-center hover:bg-[#1a2d47] transition-colors"
-            >
-              Patient Health Assessment
-              <span className={`transform transition-transform ${isHealthExpanded ? "rotate-180" : ""}`}>
-                ▼
-              </span>
-            </button>
-            <div
-              className={`overflow-hidden transition-all duration-300 ${
-                isHealthExpanded ? "max-h-[5000px]" : "max-h-0"
-              }`}
-            >
-              <div className="p-6 space-y-6">
-                {/* Clinical and Functional Overview */}
-                <div className="border-2 border-[#1E3658] rounded-lg p-5 relative">
-                  <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 py-1 font-semibold text-[#1E3658] rounded-lg">
-                    Clinical and Functional Overview
-                  </span>
-                  <div className="mt-4 space-y-3">
-                    <div className="font-bold text-[#004d0c] mt-4">Physiological</div>
-                    <div className="space-y-2">
-                      {(patient.clinical?.physiological || []).map((item, index) => (
-                        <div key={index} className="flex items-start">
-                          <span className="w-2 h-2 bg-[#1E3658] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                          <span>
-                            <span className="font-semibold">{item.key}:</span> {item.value}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="font-bold text-[#004d0c] mt-4">Psychological and Behavioral</div>
-                    <div className="space-y-2">
-                      {(patient.clinical?.psychological || []).map((item, index) => (
-                        <div key={index} className="flex items-start">
-                          <span className="w-2 h-2 bg-[#1E3658] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                          <span>
-                            <span className="font-semibold">{item.key}:</span> {item.value}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Lab Tests */}
-                <div className="border-2 border-[#1E3658] rounded-lg p-5 relative">
-                  <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 py-1 font-semibold text-[#1E3658] rounded-lg">
-                    Lab Tests
-                  </span>
-                  <div className="mt-4 space-y-2">
-                    {(patient.labTests || []).map((test, index) => (
-                      <div key={index} className="flex items-start">
-                        <span className="w-2 h-2 bg-[#1E3658] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span>
-                          <span className="font-semibold">{test.key}:</span> {test.value}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Social Determinants of Health */}
-                <div className="border-2 border-[#1E3658] rounded-lg p-5 relative">
-                  <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 py-1 font-semibold text-[#1E3658] rounded-lg">
-                    Social Determinants of Health (SDOH)
-                  </span>
-                    <div className="mt-4">
-                      <p
-                        dangerouslySetInnerHTML={{
-                          __html: patient.sdoh || "No SDOH data available.",
-                        }}
-                      />
-                    </div>
-                </div>
-              </div>
-            </div>
-          </Card>
-
           {/* Speech Explainability Section */}
-          <Card className="bg-white border-2 border-[#1E3658] rounded-lg mb-6 overflow-hidden">
+          <Card className="bg-card border-2 border-border rounded-lg mb-6 overflow-hidden">
             <button
               onClick={() => setIsSpeechExpanded(!isSpeechExpanded)}
-              className="w-full bg-[#1E3658] text-white text-xl font-semibold py-3 px-4 flex justify-between items-center hover:bg-[#1a2d47] transition-colors"
+              className="w-full bg-primary text-primary-foreground text-xl font-semibold py-3 px-4 flex justify-between items-center hover:bg-primary/90 transition-colors"
             >
               Speech Explainability
               <span className={`transform transition-transform ${isSpeechExpanded ? "rotate-180" : ""}`}>
@@ -291,10 +239,10 @@ const PatientReport = () => {
             >
               <div className="p-6 space-y-4">
                 {/* Linguistic Module */}
-                <div className="border-2 border-[#7fa37f] rounded-lg overflow-hidden">
+                <div className="border-2 border-[#3A4558] dark:border-[#4A5568] rounded-lg overflow-hidden">
                   <button
                     onClick={() => setIsLinguisticExpanded(!isLinguisticExpanded)}
-                    className="w-full bg-[#7fa37f] text-white text-lg font-semibold py-2 px-4 flex justify-between items-center hover:bg-[#6a8f6a] transition-colors"
+                    className="w-full bg-[#3A4558] hover:bg-[#2D3748] text-white text-lg font-semibold py-2 px-4 flex justify-between items-center dark:bg-[#4A5568] dark:hover:bg-[#5A6578] transition-colors"
                   >
                     Linguistic Module
                     <span className={`transform transition-transform ${isLinguisticExpanded ? "rotate-180" : ""}`}>
@@ -308,10 +256,10 @@ const PatientReport = () => {
                   >
                     <div className="p-4 space-y-5">
                       {/* Transcription */}
-                      <p className="text-sm text-gray-600 mb-2">The transcription of the audio is shown below. Words are highlighted based on their SHAP value. <br />Greater SHAP value = Richer highlight color = More important for the prediction</p>
+                      <p className="text-sm text-muted-foreground mb-2">The transcription of the audio is shown below. Words are highlighted based on their SHAP value. <br />Greater SHAP value = Richer highlight color = More important for the prediction</p>
                       
-                      <div className="border-2 border-[#1E3658] rounded-lg p-2 relative">
-                        <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 py-1 font-semibold text-[#1E3658] rounded-lg">
+                      <div className="border-2 border-border rounded-lg p-2 relative">
+                        <span className="absolute -top-3 left-4 bg-background px-2 py-1 font-semibold text-foreground rounded-lg">
                           Transcription
                         </span>
                         <div className="mt-1 p-4 rounded">
@@ -322,36 +270,72 @@ const PatientReport = () => {
                                 const maxVal =
                                   Math.max(...tokens.map((t: any) => Math.abs(t.value))) || 1;
                                 
-                                // Color scheme based on condition
-                                const getColors = (condition: string) => {
-                                  switch (condition) {
-                                    case "ADRD":
-                                      return {
-                                        positive: "171, 105, 212", // Purple
-                                        negative: "230, 242, 244", // Light blue/background
-                                      };
-                                    case "MCI":
-                                      return {
-                                        positive: "255, 140, 0", // Orange
-                                        negative: "255, 237, 213", // Light orange
-                                      };
-                                    case "Control":
-                                      return {
-                                        positive: "76, 175, 80", // Green
-                                        negative: "200, 230, 201", // Light green
-                                      };
-                                    default:
-                                      return {
-                                        positive: "171, 105, 212", // Default to purple
-                                        negative: "230, 242, 244",
-                                      };
+                                // Color scheme based on condition - adjusted for light and dark mode
+                                const getColors = (condition: string, isDark: boolean) => {
+                                  if (isDark) {
+                                    // Dark mode: use lighter, more saturated colors
+                                    switch (condition) {
+                                      case "ADRD":
+                                        return {
+                                          positive: "200, 150, 240", // Lighter purple for dark mode
+                                          negative: "60, 70, 90", // Darker background for dark mode
+                                        };
+                                      case "MCI":
+                                        return {
+                                          positive: "255, 180, 80", // Lighter orange for dark mode
+                                          negative: "80, 60, 40", // Darker background for dark mode
+                                        };
+                                      case "Control":
+                                        return {
+                                          positive: "120, 220, 130", // Lighter green for dark mode
+                                          negative: "40, 70, 50", // Darker background for dark mode
+                                        };
+                                      default:
+                                        return {
+                                          positive: "200, 150, 240", // Default to lighter purple
+                                          negative: "60, 70, 90",
+                                        };
+                                    }
+                                  } else {
+                                    // Light mode: original colors
+                                    switch (condition) {
+                                      case "ADRD":
+                                        return {
+                                          positive: "171, 105, 212", // Purple
+                                          negative: "230, 242, 244", // Light blue/background
+                                        };
+                                      case "MCI":
+                                        return {
+                                          positive: "255, 140, 0", // Orange
+                                          negative: "255, 237, 213", // Light orange
+                                        };
+                                      case "Control":
+                                        return {
+                                          positive: "76, 175, 80", // Green
+                                          negative: "200, 230, 201", // Light green
+                                        };
+                                      default:
+                                        return {
+                                          positive: "171, 105, 212", // Default to purple
+                                          negative: "230, 242, 244",
+                                        };
+                                    }
                                   }
                                 };
 
-                                const colors = getColors(patient.condition);
+                                const colors = getColors(patient.condition, isDarkMode);
+                                
+                                // Opacity range: min 0.25 for very low values, max 0.95 for high values
+                                // This ensures lower values are dimmer and higher values are more visible
+                                // Increased range for more intensive colors
+                                const minOpacity = 0.0;
+                                const maxOpacity = 1;
                                 
                                 return tokens.map((token: any, index: number) => {
-                                  const opacity = (Math.abs(token.value) / maxVal) * 2;
+                                  // Normalize value to 0-1 range
+                                  const normalizedValue = Math.abs(token.value) / maxVal * 1.5;
+                                  // Scale to opacity range, ensuring lower values are dimmer
+                                  const opacity = minOpacity + (normalizedValue * (maxOpacity - minOpacity));
                                   const backgroundColor =
                                     token.value > 0
                                       ? `rgba(${colors.positive}, ${opacity})`
@@ -379,24 +363,24 @@ const PatientReport = () => {
                       </div>
 
                       {/* Linguistic Interpretation */}
-                      <div className="border-2 border-[#1E3658] rounded-lg p-5 relative">
-                        <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 py-1 font-semibold text-[#1E3658] rounded-lg">
+                      <div className="border-2 border-border rounded-lg p-5 relative">
+                        <span className="absolute -top-3 left-4 bg-background px-2 py-1 font-semibold text-foreground rounded-lg">
                           Linguistic Interpretation
                         </span>
                         <div className="mt-4 space-y-3">
                           {(patient.linguistic?.interpretations || []).map((interpretation, index) => (
                             <div key={index} className="relative pl-5">
-                              <span className="absolute left-0 top-3 w-2 h-2 bg-[#1E3658] rounded-full"></span>
-                              <div>
-                                <span className="font-bold text-[#1E3658] whitespace-nowrap">
+                              <span className="absolute left-0 top-3 w-2 h-2 bg-primary rounded-full"></span>
+                              <div className="text-foreground/90">
+                                <span className="font-bold text-foreground whitespace-nowrap">
                                   {interpretation.title}:
                                 </span>{" "}
                                 {interpretation.text}
                               </div>
                             </div>
                           ))}
-                          <div className="border-t-2 border-[#1E3658] pt-3 mt-3">
-                            <span className="font-bold text-[#1E3658]">
+                          <div className="border-t-2 border-border pt-3 mt-3">
+                            <span className="font-bold text-foreground">
                               The speaker is predicted to be cognitively impaired.
                             </span>
                           </div>
@@ -407,10 +391,10 @@ const PatientReport = () => {
                 </div>
 
                 {/* Acoustic Module */}
-                <div className="border-2 border-[#7fa37f] rounded-lg overflow-hidden">
+                <div className="border-2 border-[#3A4558] dark:border-[#4A5568] rounded-lg overflow-hidden">
                   <button
                     onClick={() => setIsAcousticExpanded(!isAcousticExpanded)}
-                    className="w-full bg-[#7fa37f] text-white text-lg font-semibold py-2 px-4 flex justify-between items-center hover:bg-[#6a8f6a] transition-colors"
+                    className="w-full bg-[#3A4558] hover:bg-[#2D3748] text-white text-lg font-semibold py-2 px-4 flex justify-between items-center dark:bg-[#4A5568] dark:hover:bg-[#5A6578] transition-colors"
                   >
                     Acoustic Module
                     <span className={`transform transition-transform ${isAcousticExpanded ? "rotate-180" : ""}`}>
@@ -425,8 +409,8 @@ const PatientReport = () => {
                     <div className="p-4 space-y-4">
                       {/* Waveform */}
                       {patient.acoustic?.waveform && (
-                        <div className="border-2 border-[#1E3658] rounded-lg p-5 relative">
-                          <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 py-1 font-semibold text-[#1E3658] rounded-lg">
+                        <div className="border-2 border-border rounded-lg p-5 relative">
+                          <span className="absolute -top-3 left-4 bg-background px-2 py-1 font-semibold text-foreground rounded-lg">
                             Waveform
                           </span>
                           <div className="mt-4">
@@ -438,8 +422,8 @@ const PatientReport = () => {
                             <div className="space-y-2">
                             {patient.acoustic.waveform.interpretations.map((text, index) => (
                               <div key={index} className="flex items-start">
-                                <span className="w-2 h-2 bg-[#1E3658] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                                <span>{text}</span>
+                                <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span className="text-foreground/90">{text}</span>
                               </div>
                             ))}
                             </div>
@@ -449,8 +433,8 @@ const PatientReport = () => {
 
                       {/* Spectrogram */}
                       {patient.acoustic?.spectrogram && (
-                        <div className="border-2 border-[#1E3658] rounded-lg p-5 relative">
-                          <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 py-1 font-semibold text-[#1E3658] rounded-lg">
+                        <div className="border-2 border-border rounded-lg p-5 relative">
+                          <span className="absolute -top-3 left-4 bg-background px-2 py-1 font-semibold text-foreground rounded-lg">
                             Spectrogram
                           </span>
                           <div className="mt-4">
@@ -462,8 +446,8 @@ const PatientReport = () => {
                             <div className="space-y-2">
                             {patient.acoustic.spectrogram.interpretations.map((text, index) => (
                               <div key={index} className="flex items-start">
-                                <span className="w-2 h-2 bg-[#1E3658] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                                <span>{text}</span>
+                                <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span className="text-foreground/90">{text}</span>
                               </div>
                             ))}
                             </div>
@@ -473,8 +457,8 @@ const PatientReport = () => {
 
                       {/* Entropy */}
                       {patient.acoustic?.entropy && (
-                        <div className="border-2 border-[#1E3658] rounded-lg p-5 relative">
-                          <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 py-1 font-semibold text-[#1E3658] rounded-lg">
+                        <div className="border-2 border-border rounded-lg p-5 relative">
+                          <span className="absolute -top-3 left-4 bg-background px-2 py-1 font-semibold text-foreground rounded-lg">
                             Entropy
                           </span>
                           <div className="mt-4">
@@ -486,8 +470,8 @@ const PatientReport = () => {
                             <div className="space-y-2">
                             {patient.acoustic.entropy.interpretations.map((text, index) => (
                               <div key={index} className="flex items-start">
-                                <span className="w-2 h-2 bg-[#1E3658] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                                <span>{text}</span>
+                                <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                <span className="text-foreground/90">{text}</span>
                               </div>
                             ))}
                             </div>
@@ -501,33 +485,115 @@ const PatientReport = () => {
             </div>
           </Card>
 
+          {/* Patient Health Assessment Section */}
+          <Card className="bg-card border-2 border-border rounded-lg mb-6 overflow-hidden">
+            <button
+              onClick={() => setIsHealthExpanded(!isHealthExpanded)}
+              className="w-full bg-primary text-primary-foreground text-xl font-semibold py-3 px-4 flex justify-between items-center hover:bg-primary/90 transition-colors"
+            >
+              Patient Health Assessment
+              <span className={`transform transition-transform ${isHealthExpanded ? "rotate-180" : ""}`}>
+                ▼
+              </span>
+            </button>
+            <div
+              className={`overflow-hidden transition-all duration-300 ${
+                isHealthExpanded ? "max-h-[5000px]" : "max-h-0"
+              }`}
+            >
+              <div className="p-6 space-y-6">
+                {/* Clinical and Functional Overview */}
+                <div className="border-2 border-border rounded-lg p-5 relative">
+                  <span className="absolute -top-3 left-4 bg-background px-2 py-1 font-semibold text-foreground rounded-lg">
+                    Clinical and Functional Overview
+                  </span>
+                  <div className="mt-4 space-y-3">
+                    <div className="font-bold text-foreground mt-4">Physiological</div>
+                    <div className="space-y-2">
+                      {(patient.clinical?.physiological || []).map((item, index) => (
+                        <div key={index} className="flex items-start">
+                          <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span className="text-foreground/90">
+                            <span className="font-semibold">{item.key}:</span> {item.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="font-bold text-foreground mt-4">Psychological and Behavioral</div>
+                    <div className="space-y-2">
+                      {(patient.clinical?.psychological || []).map((item, index) => (
+                        <div key={index} className="flex items-start">
+                          <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span className="text-foreground/90">
+                            <span className="font-semibold">{item.key}:</span> {item.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Lab Tests */}
+                <div className="border-2 border-border rounded-lg p-5 relative">
+                  <span className="absolute -top-3 left-4 bg-background px-2 py-1 font-semibold text-foreground rounded-lg">
+                    Lab Tests
+                  </span>
+                  <div className="mt-4 space-y-2">
+                    {(patient.labTests || []).map((test, index) => (
+                      <div key={index} className="flex items-start">
+                        <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span className="text-foreground/90">
+                          <span className="font-semibold">{test.key}:</span> {test.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Social Determinants of Health */}
+                <div className="border-2 border-border rounded-lg p-5 relative">
+                  <span className="absolute -top-3 left-4 bg-background px-2 py-1 font-semibold text-foreground rounded-lg">
+                    Social Determinants of Health (SDOH)
+                  </span>
+                    <div className="mt-4 text-foreground/90">
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: patient.sdoh || "No SDOH data available.",
+                        }}
+                      />
+                    </div>
+                </div>
+              </div>
+            </div>
+          </Card>
+
           {/* Consideration Section */}
-          <Card className="bg-white border-2 border-[#1E3658] rounded-lg mb-6">
-            <div className="bg-[#1E3658] text-white text-xl font-semibold py-3 px-4 rounded-t-sm">
+          <Card className="bg-card border-2 border-border rounded-lg mb-6">
+            <div className="bg-primary text-primary-foreground text-xl font-semibold py-3 px-4 rounded-t-sm">
               Consideration
             </div>
             <div className="p-6 space-y-4">
-              <p>
+              <p className="text-foreground/90">
                 Please be advised that the sensitivity of this system is not 100%. A more comprehensive
                 evaluation should include the individual's medical history and additional cognitive
                 assessments.
               </p>
-              <div className="border-2 border-[#1E3658] rounded-lg p-5 relative">
-                <span className="absolute -top-3 left-4 bg-[#E5F1F3] px-2 py-1 font-semibold text-[#1E3658] rounded-lg">
+              <div className="border-2 border-border rounded-lg p-5 relative">
+                <span className="absolute -top-3 left-4 bg-background px-2 py-1 font-semibold text-foreground rounded-lg">
                   Recommendations
                 </span>
                 <div className="mt-4 space-y-2">
                   <div className="flex items-start">
-                    <span className="w-2 h-2 bg-[#1E3658] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span>Having regular exercise</span>
+                    <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <span className="text-foreground/90">Having regular exercise</span>
                   </div>
                   <div className="flex items-start">
-                    <span className="w-2 h-2 bg-[#1E3658] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span>Connecting with family/community</span>
+                    <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <span className="text-foreground/90">Connecting with family/community</span>
                   </div>
                   <div className="flex items-start">
-                    <span className="w-2 h-2 bg-[#1E3658] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span>Limiting alcohol intake</span>
+                    <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <span className="text-foreground/90">Limiting alcohol intake</span>
                   </div>
                 </div>
               </div>
