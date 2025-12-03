@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { ExternalLink, X, Loader2, ChevronRight, Info, Target, Lightbulb, TrendingUp } from "lucide-react";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import publicationsData from "@/data/publications.json";
 
 const LG_BREAKPOINT = 1024; // Tailwind's lg breakpoint
@@ -41,6 +42,11 @@ const Publications = () => {
       setImageLoading(true);
     }
     setSelectedPub(pub);
+  };
+
+  // Handle image zoom
+  const handleImageZoom = (imageUrl: string) => {
+    setZoomImage(imageUrl);
   };
 
   // Preview content component (reusable for both desktop and mobile)
@@ -90,7 +96,7 @@ const Publications = () => {
             className={`w-full max-h-[50vh] object-contain mx-auto cursor-zoom-in transition-opacity duration-300 ${
               imageLoading ? "opacity-0" : "opacity-100"
             }`}
-            onClick={() => !imageLoading && setZoomImage(pub.image)}
+            onClick={() => !imageLoading && handleImageZoom(pub.image)}
             onLoad={handleImageLoad}
           />
           {!imageLoading && (
@@ -329,7 +335,15 @@ const Publications = () => {
 
           {/* MOBILE/TABLET SHEET - Shows preview in a drawer */}
           {isMobileOrTablet && (
-            <Sheet open={!!selectedPub} onOpenChange={(open) => !open && setSelectedPub(null)}>
+            <Sheet 
+              open={!!selectedPub} 
+              onOpenChange={(open) => {
+                // Don't close the Sheet if zoom overlay is open
+                if (!open && !zoomImage) {
+                  setSelectedPub(null);
+                }
+              }}
+            >
               <SheetContent side="right" className="w-full sm:max-w-lg overflow-y-auto">
                 <SheetHeader>
                   <SheetTitle className="flex items-center gap-2">
@@ -346,30 +360,35 @@ const Publications = () => {
         </div>
       </div>
 
-      {/* FULLSCREEN ZOOM OVERLAY */}
-      {zoomImage && (
-        <div
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50"
-          onClick={() => setZoomImage(null)}
-        >
-          <button
-            className="absolute top-6 right-6 text-white hover:text-gray-300"
-            onClick={(e) => {
-              e.stopPropagation();
-              setZoomImage(null);
-            }}
-          >
-            <X className="w-8 h-8" />
-          </button>
+      {/* FULLSCREEN ZOOM OVERLAY - Rendered via Portal */}
+      {zoomImage && typeof document !== 'undefined' 
+        ? createPortal(
+            <div
+              className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-[100]"
+              onClick={() => setZoomImage(null)}
+              style={{ pointerEvents: 'auto' }}
+            >
+              <button
+                className="absolute top-6 right-6 text-white hover:text-gray-300 z-10"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setZoomImage(null);
+                }}
+              >
+                <X className="w-8 h-8" />
+              </button>
 
-          <img
-            src={zoomImage}
-            alt="Zoomed Image"
-            className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-lg"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
+              <img
+                src={zoomImage}
+                alt="Zoomed Image"
+                className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-lg pointer-events-auto"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </div>,
+            document.body
+          )
+        : null
+      }
     </div>
   );
 };
