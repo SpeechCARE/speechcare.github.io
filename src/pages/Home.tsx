@@ -49,9 +49,8 @@ const Home = () => {
                 AI & Medical Informatics
               </span>
             </h1>
-            <p className="text-xl text-muted-foreground mb-8 animate-fade-in text-gray-700" style={{ animationDelay: "0.1s" }}>
-              SpeechCARE is a research team dedicated to developing innovative AI and deep learning
-              solutions that transform medical informatics and improve patient outcomes.
+            <p className="text-xl text-foreground/75 mb-8 animate-fade-in font-medium" style={{ animationDelay: "0.1s" }}>
+            SpeechCARE is a research team based at Columbia University, dedicated to developing innovative AI and deep learning solutions that transform medical informatics and improve patient outcomes.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: "0.2s" }}>
               <Button asChild size="lg" className="group">
