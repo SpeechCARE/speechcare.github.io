@@ -34,6 +34,15 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Verify CNAME file
+        run: |
+          if [ ! -f "./dist/CNAME" ]; then
+            echo "CNAME file not found in dist, copying from public..."
+            cp ./public/CNAME ./dist/CNAME
+          fi
+          echo "CNAME file contents:"
+          cat ./dist/CNAME
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
         with:
