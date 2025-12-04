@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Linkedin, Github } from "lucide-react";
+import { Mail, Linkedin, Github, GraduationCap } from "lucide-react";
 import membersData from "@/data/members.json";
 import { useEffect } from "react";
 
@@ -71,31 +71,48 @@ const Members = () => {
                       </div>
                     </div>
                     <div className="flex items-center gap-4 pt-2">
-                      <a
-                        href={`mailto:${member.email}`}
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                        aria-label="Email"
-                      >
-                        <Mail className="h-6 w-6" />
-                      </a>
-                      <a
-                        href="https://linkedin.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                        aria-label="LinkedIn"
-                      >
-                        <Linkedin className="h-6 w-6" />
-                      </a>
-                      <a
-                        href="https://github.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                        aria-label="GitHub"
-                      >
-                        <Github className="h-6 w-6" />
-                      </a>
+                      {member.email && (
+                        <a
+                          href={`mailto:${member.email}`}
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                          aria-label="Email"
+                        >
+                          <Mail className="h-6 w-6" />
+                        </a>
+                      )}
+                      {member.linkedin && (
+                        <a
+                          href={member.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                          aria-label="LinkedIn"
+                        >
+                          <Linkedin className="h-6 w-6" />
+                        </a>
+                      )}
+                      {member.github && (
+                        <a
+                          href={member.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                          aria-label="GitHub"
+                        >
+                          <Github className="h-6 w-6" />
+                        </a>
+                      )}
+                      {'googleScholar' in member && (member as any).googleScholar && (
+                        <a
+                          href={(member as any).googleScholar}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                          aria-label="Google Scholar"
+                        >
+                          <GraduationCap className="h-6 w-6" />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </CardContent>

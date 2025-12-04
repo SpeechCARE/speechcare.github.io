@@ -5,7 +5,9 @@
         "role": "Director of SpeechCARE Lab",
         "expertise": ["Medical Informatics", "Health Sciences", "Healthcare AI"],
         "bio": "Maryam Zolnoori, PhD, is an Assistant Professor of Health Sciences Research in the School of Nursing. She received her PhD in health sciences-clinical Informatics from the University of Wisconsin-Milwaukee.",
-        "email": "maryam.zolnoori@gmail.com"
+        "email": "mz2825@cumc.columbia.edu",
+        "linkedin": "https://www.linkedin.com/in/maryam-zolnoori-9aabab231/",
+        "googleScholar": "https://scholar.google.com/citations?user=niefc-8AAAAJ&hl=en"
     },
     {
         "name": "Ali Zolnour",
@@ -13,7 +15,10 @@
         "role": "Research Scientist",
         "expertise": ["NLP", "Speech Analysis", "Cognitive Science"],
         "bio": "Ali is a researcher in artificial intelligence specializing in natural language processing, speech analysis, and AI applications in cognitive science.",
-        "email": "ali.zolnour@gmail.com"
+        "email": "zonour97@gmail.com",
+        "linkedin": "https://www.linkedin.com/in/ali-zolnour-401598176/",
+        "googleScholar": "https://scholar.google.com/citations?user=Apzk_MAAAAAJ&hl=en",
+        "github": "https://github.com/zonour97"
     },
     {
         "name": "Sina Rashidi",
@@ -21,34 +26,50 @@
         "role": "Research Scientist",
         "expertise": ["Speech Processing", "NLP", "Generative AI", "Multi-Modal LLMs"],
         "bio": "Sina is a research scientist with a passion for applying natural language processing to healthcare applications and clinical text analysis.",
-        "email": "sina.rashidi@gmail.com"
+        "email": "sinarashidi46@gmail.com",
+        "linkedin": "https://www.linkedin.com/in/sinarashidi/",
+        "github": "https://github.com/sinarashidi",
+        "googleScholar": "https://scholar.google.com/citations?user=R_U1wDsAAAAJ&hl=en"
     },
     {
         "name": "Yasaman Haghbin",
         "image": "Yasaman.jpeg",
         "role": "Research Scientist",
         "expertise": ["Speech Processing", "Clinical NLP", "Generative AI"],
-        "bio": "Yasaman is a machine learning researcher with a passion for applying natural language processing, speech processing and generative AI to healthcare"
+        "bio": "Yasaman is a machine learning researcher with a passion for applying natural language processing, speech processing and generative AI to healthcare",
+        "email": "hbn.yasaman@gmail.com",
+        "linkedin": "https://www.linkedin.com/in/yasaman-haghbin-3615b1235/",
+        "googleScholar": "https://scholar.google.com/citations?user=J6fG7ocAAAAJ&hl=en",
+        "github": "https://github.com/yasamanhbn"
     },
     {
         "name": "Fatemeh Taherinezhad",
         "image": "Fatemeh.JPG",
         "role": "Research Scientist",
         "expertise": ["Human-centered Technologies", "NLP", "Healthcare"],
-        "bio": "Fatemeh is an AI researcher passionate about developing human-centered technologies that leverage language, speech, and generative models to improve healthcare."
+        "bio": "Fatemeh is an AI researcher passionate about developing human-centered technologies that leverage language, speech, and generative models to improve healthcare.",
+        "email": "ftaherin00@gmail.com",
+        "linkedin": "https://www.linkedin.com/in/fatemeh-taherinezhad-226081163/",
+        "googleScholar": "https://scholar.google.com/citations?hl=en&user=yWC80kAAAAAJ",
+        "github": "https://github.com/FTaheriN"
     },
     {
         "name": "Mohammad Javad Momeni Nezhad",
         "image": "MJ.jpg",
         "role": "Research Scientist",
         "expertise": ["NLP", "LLM", "RAG Systems"],
-        "bio": "Mohammad Javad is an enthusiastic AI engineer working with large language models, speech processing, and RAG-based agent systems. He develops practical AI solutions for healthcare and e-commerce domains."
+        "bio": "Mohammad Javad is an enthusiastic AI engineer working with large language models, speech processing, and RAG-based agent systems. He develops practical AI solutions for healthcare and e-commerce domains.",
+        "email": "momeninezhad.javad@gmail.com",
+        "linkedin": "https://www.linkedin.com/in/mohammad-javad-momeni-219498249/",
+        "googleScholar": "https://scholar.google.com/citations?hl=en&user=MAQdxK4AAAAJ"
     },
     {
         "name": "Pouria Fathi",
         "image": "Pouria.jpeg",
         "role": "Research Scientist",
         "expertise": ["LLMs", "RAG robustness", "Agentic AI development"],
-        "bio": "Pouria is an AI Engineer and M.Sc. candidate specializing in LLMs, RAG robustness, and agentic AI development. I’m deeply interested in problem-solving and building reliable, high-quality AI systems that work in real-world settings."
+        "bio": "Pouria is an AI Engineer and M.Sc. candidate specializing in LLMs, RAG robustness, and agentic AI development. I’m deeply interested in problem-solving and building reliable, high-quality AI systems that work in real-world settings.",
+        "email": "pouria.fathi2000@gmail.com",
+        "github": "https://github.com/pouriafathi"
     }
 ]

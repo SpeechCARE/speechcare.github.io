@@ -72,24 +72,16 @@ const Join = () => {
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li className="flex items-start">
                   <span className="mr-2">•</span>
-                  <span>Curriculum Vitae (CV) or resume</span>
+                  <span>Curriculum Vitae (CV)</span>
                 </li>
                 <li className="flex items-start">
                   <span className="mr-2">•</span>
                   <span>Cover letter explaining your research interests and fit with SpeechCARE</span>
                 </li>
-                <li className="flex items-start">
-                  <span className="mr-2">•</span>
-                  <span>Research statement (for postdoc and faculty positions)</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2">•</span>
-                  <span>Contact information for 2-3 references</span>
-                </li>
               </ul>
               <Button size="lg" className="group">
                 <Mail className="mr-2 h-4 w-4" />
-                <a href="mailto:recruitment@speechcare.org">recruitment@speechcare.org</a>
+                <a href="mailto:speech.care.team@gmail.com">speech.care.team@gmail.com</a>
               </Button>
             </CardContent>
           </Card>
