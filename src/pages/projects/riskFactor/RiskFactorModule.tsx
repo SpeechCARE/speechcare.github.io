@@ -74,46 +74,13 @@ const RiskFactorModule = () => {
                   <h2 className="text-2xl font-heading font-semibold mb-4">Methodology</h2>
 
                   <p className="text-muted-foreground leading-relaxed mb-3">
-                    This project develops an integrated, explainable AI framework that uses large language models (LLMs) 
-                    to extract, structure, and apply MCI-ED risk factors to generate individualized care plans.
-                    The foundation is a comprehensive MCI-ED Knowledge Graph (KG) built from PubMed abstracts  (1990–2025) 
-                    retrieved through an automated literature-review pipeline using GPT-5.1. Through a structured, multi-stage prompting process,
-                    GPT-5.1 identifies clinical, social, and behavioral risk factors in each article, links them to supporting evidence, 
-                    and maps them to standardized medical terminologies (e.g., SNOMED CT). The resulting KG provides a vetted, machine-readable 
-                    representation of risk factors and their relationships.
-                  </p>
-
-                  <p className="text-muted-foreground leading-relaxed mb-3">
-                    The foundation is a comprehensive MCI-ED Knowledge Graph (KG) built from 
-                    PubMed abstracts (1990–2025), retrieved using an automated 
-                    literature-review pipeline powered by GPT-5.1. Through a structured, 
-                    multi-stage prompting process, GPT-5.1 identifies clinical, social, and 
-                    behavioral risk factors, links them to supporting evidence, and 
-                    maps them to standardized medical terminologies (e.g., SNOMED CT). 
-                    The resulting KG provides a vetted, machine-readable representation 
-                    of risk factors and their relationships.
-                  </p>
-
-                  <p className="text-muted-foreground leading-relaxed mb-3">
-                    Using this KG, we develop an LLM-based retrieval-augmented generation (RAG) pipeline that extracts
-                    risk factors directly from multimodal patient data, including patient–clinician conversations, 
-                    free-text clinical notes, and structured EHR fields. The RAG pipeline retrieves relevant nodes 
-                    from the KG and constrains the LLM to extract only risk factors and attributes defined in the 
-                    schema—such as intensity, frequency, duration, temporal context, and family history—ensuring 
-                    accuracy, reduced hallucination, and transparent evidence tracing.
-                  </p>
-
-                  <p className="text-muted-foreground leading-relaxed">
-                    Identified risk factors then feed a generative care-plan module built on evidence-based dementia-care 
-                    guidelines (e.g., CMS GUIDE Model dementia care standards and relevant NIA recommendations). 
-                    Using the patient-specific risk profile and KG-linked evidence, the LLM generates precise, 
-                    culturally responsive recommendations that address clinical, social, and behavioral needs. Generated care plans 
-                    include modifiable risk-factor targets, monitoring steps, caregiver guidance, and guideline-based referrals. 
-                    All care plans undergo human-in-the-loop review to ensure clinical safety, fairness, and relevance across 
-                    sociolinguistic groups.
+                    We develop an explainable LLM-based framework to extract MCI-ED risk factors from patient data 
+                    and generate individualized care plans. A curated MCI-ED Knowledge Graph is constructed from 
+                    PubMed abstracts (1990–2025) using a GPT-5.1–based literature pipeline, mapping evidence-linked
+                    risk factors to standardized terminologies. A retrieval-augmented pipeline extracts predefined
+                    risk factors from multimodal patient data and informs risk factor extraction from textual data.
                   </p>
                 </div>
-
               </div>
             </CardContent>
           </Card>
