@@ -381,7 +381,7 @@ const PatientReport = () => {
                           ))}
                           <div className="border-t-2 border-border pt-3 mt-3">
                             <span className="font-bold text-foreground">
-                              The speaker is predicted to be cognitively impaired.
+                              The speaker is predicted to be {patient.condition}.
                             </span>
                           </div>
                         </div>
