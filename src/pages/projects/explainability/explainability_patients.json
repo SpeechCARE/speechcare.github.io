@@ -3021,12 +3021,8 @@
             "value": -0.04096992766218526
         },
         {
-            "text": "sin",
+            "text": "sink",
             "value": 0.012467549315520694
-        },
-        {
-            "text": "k ",
-            "value": -0.015697126143745015
         },
         {
             "text": "running ",
@@ -3057,23 +3053,11 @@
             "value": 0.022828088801160648
         },
         {
-            "text": "sto",
+            "text": "stools",
             "value": 0.01422879553815245
         },
         {
-            "text": "ol",
-            "value": 0.01422879553815245
-        },
-        {
-            "text": "s ",
-            "value": 0.01422879553815245
-        },
-        {
-            "text": "tipp",
-            "value": 0.004237405151467432
-        },
-        {
-            "text": "ing ",
+            "text": "tipping",
             "value": 0.004237405151467432
         },
         {
@@ -3093,11 +3077,7 @@
             "value": 0.057098292047157884
         },
         {
-            "text": "out ",
-            "value": -0.001265365319947402
-        },
-        {
-            "text": "of ",
+            "text": "out of",
             "value": -0.001265365319947402
         },
         {
@@ -3105,11 +3085,7 @@
             "value": 0.0032550996014227467
         },
         {
-            "text": "cup",
-            "value": -0.012535378414516648
-        },
-        {
-            "text": "board",
+            "text": "cupboard",
             "value": -0.012535378414516648
         },
         {
@@ -3121,15 +3097,11 @@
             "value": 0.00701112085548432
         },
         {
-            "text": "girls ",
+            "text": "girl ",
             "value": 0.00701112085548432
         },
         {
-            "text": "reach",
-            "value": 0.004324283167395903
-        },
-        {
-            "text": "ing ",
+            "text": "reaching",
             "value": 0.004324283167395903
         },
         {
@@ -3153,43 +3125,19 @@
             "value": 0.013180588212782058
         },
         {
-            "text": "lady",
+            "text": "lady's",
             "value": 0.013180588212782058
         },
         {
-            "text": "'",
-            "value": 0.013180588212782058
-        },
-        {
-            "text": "s ",
-            "value": 0.013180588212782058
-        },
-        {
-            "text": "wa",
+            "text": "washing",
             "value": 0.014095791921937379
         },
         {
-            "text": "shing ",
+            "text": "dishes",
             "value": 0.014095791921937379
         },
         {
-            "text": "di",
-            "value": 0.014095791921937379
-        },
-        {
-            "text": "shes ",
-            "value": 0.014095791921937379
-        },
-        {
-            "text": "in ",
-            "value": 0.009898033731869628
-        },
-        {
-            "text": "front ",
-            "value": 0.009898033731869628
-        },
-        {
-            "text": "of ",
+            "text": "in front of",
             "value": 0.009898033731869628
         },
         {
@@ -3197,11 +3145,7 @@
             "value": 0.009898033731869628
         },
         {
-            "text": "sin",
-            "value": 0.016293086927947172
-        },
-        {
-            "text": "k",
+            "text": "sink",
             "value": 0.016293086927947172
         },
         {
@@ -3313,11 +3257,7 @@
             "value": 0.0023340802174061535
         },
         {
-            "text": "di",
-            "value": 0.001601139750952522
-        },
-        {
-            "text": "shes ",
+            "text": "dishes",
             "value": 0.001601139750952522
         },
         {
@@ -3337,12 +3277,8 @@
             "value": 0.001601139750952522
         },
         {
-            "text": "curta",
-            "value": 0.009699270750085514
-        },
-        {
-            "text": "ins ",
-            "value": 0.009699270750085514
+            "text": "curtains",
+            "value": 0.07699270750085514
         },
         {
             "text": "on ",
@@ -3365,15 +3301,7 @@
             "value": 0.010922488290816545
         },
         {
-            "text": "boy",
-            "value": 0.009324800688773394
-        },
-        {
-            "text": "'",
-            "value": 0.009324800688773394
-        },
-        {
-            "text": "s ",
+            "text": "boy's",
             "value": 0.009324800688773394
         },
         {
@@ -3381,11 +3309,7 @@
             "value": 0.01794252327332894
         },
         {
-            "text": "short",
-            "value": 0.01794252327332894
-        },
-        {
-            "text": "s",
+            "text": "shorts",
             "value": 0.01794252327332894
         },
         {
@@ -3405,16 +3329,8 @@
             "value": 0.007817689329385757
         },
         {
-            "text": "a",
-            "value": 0.015294957285126051
-        },
-        {
-            "text": "pron ",
-            "value": 0.015294957285126051
-        },
-        {
-            "text": "on",
-            "value": 0.015294957285126051
+            "text": "apronon",
+            "value": 0.025294957285126051
         },
         {
             "text": ". ",
@@ -3437,11 +3353,7 @@
             "value": -0.011782523451579943
         },
         {
-            "text": "spill",
-            "value": -0.002020719978544447
-        },
-        {
-            "text": "ing ",
+            "text": "spilling",
             "value": -0.002020719978544447
         },
         {
@@ -3457,11 +3369,7 @@
             "value": -0.002020719978544447
         },
         {
-            "text": "sin",
-            "value": 0.008841735576944692
-        },
-        {
-            "text": "k ",
+            "text": "sink",
             "value": 0.008841735576944692
         },
         {
@@ -3492,7 +3400,7 @@
       "interpretations": [
         {
           "title": "Lexical Richness",
-          "text": "The speaker demonstrates a good vocabulary diversity, as seen in the use of various words such as \"cupboard\", \"curtains\", and \"apron\"."
+          "text": "The speaker demonstrates a good vocabulary diversity, as seen in the use of various words such as \"cupboard\", \"curtains\", and \"apronon\"."
         },
         {
           "title": "Semantic Coherence",
