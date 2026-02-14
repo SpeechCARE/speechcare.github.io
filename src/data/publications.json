@@ -91,7 +91,7 @@
   {
     "title": "Multimodal Attention Fusion of Speech and EHR Data for Early Detection of Cognitive Decline in Home Healthcare",
     "authors": "Yasaman Haghbin*, Sina Rashidi*, Margaret McDonald, Maryam Zolnoori",
-    "venue": "ICASSP 2026",
+    "venue": "Interspeech 2026",
     "year": 2026,
     "month": 4,
     "type": "Under Review",
@@ -106,7 +106,7 @@
     "venue": "ICASSP 2026",
     "year": 2026,
     "month": 4,
-    "type": "Under Review",
+    "type": "Journal Article",
     "image": "/images/publications/SpeechCURA.jpg",
     "challenge": "Alzheimer’s disease detection from speech is limited by scarce patient audio data, which restricts model training and weakens generalizability. This scarcity arises because: Collecting clinical speech is difficult due to privacy constraints, clinician burden, and inconsistent recording environments. Existing speech datasets (e.g., DementiaBank, ADReSSo) are small and lack demographic and acoustic diversity, reducing robustness. Conventional augmentation (e.g., SpecAugment) introduces limited variability, altering acoustics but not linguistic cues. These limitations hinder the development of accurate, clinically deployable ADRD screening models.",
     "solution": "This study introduces two generative pipelines that expand both acoustic and linguistic diversity: <ul> <li><strong>Text-to-Speech (TTS) pipeline:</strong> Fine-tuned LLaMA-3.1-8B and medGemma-27B models generate diagnosis-specific synthetic transcripts, which are converted to audio using SparkTTS with diagnosis-matched speaker embeddings.</li> <li><strong>Voice Conversion (VC) pipeline:</strong> Uses OpenVoice to convert each real speaker’s voice into another speaker’s profile while preserving linguistic content, increasing acoustic diversity.</li> <li><strong>Model evaluation:</strong> Both pipelines are tested with SpeechCARE-AGF (multimodal) and SpeechCARE-Whisper (acoustic-only) transformer architectures.</li></ul> Together, these pipelines create rich, clinically relevant synthetic speech to strengthen model training.",
