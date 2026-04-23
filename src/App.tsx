@@ -11,7 +11,6 @@ import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/projects/ProjectDetail";
 import Publications from "./pages/Publications";
-import Members from "./pages/Members";
 import Join from "./pages/Join";
 import AwardsPage from "./pages/Awards"
 import NotFound from "./pages/NotFound";
@@ -70,7 +69,6 @@ const App = () => (
                 <Route path="/projects/explainability/demo/:patientId" element={<PatientReport />} />
                 <Route path="/publications" element={<Publications />} />
                 <Route path="/awards" element={<AwardsPage />} />
-                <Route path="/members" element={<Members />} />
                 <Route path="/join" element={<Join />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

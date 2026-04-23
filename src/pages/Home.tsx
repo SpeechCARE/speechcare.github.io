@@ -106,9 +106,6 @@ const Home = () => {
               in healthcare. Our interdisciplinary approach enables us to create impactful research
               that bridges technology and medicine.
             </p>
-            <Button asChild size="lg" variant="outline">
-              <Link to="/members">Meet Our Team</Link>
-            </Button>
           </div>
         </div>
       </section>

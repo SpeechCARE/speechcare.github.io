@@ -24,7 +24,6 @@ const Navbar = () => {
     { name: "Projects", path: "/projects" },
     { name: "Publications", path: "/publications" },
     { name: "Awards", path: "/awards" },
-    { name: "Members", path: "/members" },
     { name: "Join Us", path: "/join" },
   ];
 

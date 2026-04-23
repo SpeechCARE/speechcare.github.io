@@ -36,11 +36,6 @@ const Footer = () => {
                   Publications
                 </a>
               </li>
-              <li>
-                <a href="/members" className="text-muted-foreground hover:text-primary transition-colors">
-                  Members
-                </a>
-              </li>
             </ul>
           </div>
 
